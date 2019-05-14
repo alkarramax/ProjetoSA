@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">ProjetoSA</string>
+    <string name="colaborador">Colaborador</string>
+    <string name="entidade">Entidade</string>
+    <string name="solidary_player">Solidary Player</string>
+    <string name="exemplo_tela_colaborador">EXEMPLO TELA COLABORADOR</string>
+    <string name="button_tela2">Button</string>
+    <string name="voltar_tela_1">Voltar tela 1</string>
+    <string name="hint">hint</string>
+    <string name="nome">Nome:</string>
+    <string name="sobrenome">Sobrenome:</string>
+    <string name="email">Email:</string>
+    <string name="solidarity_player">Solidarity Player</string>
+    <string name="telefone">Telefone:</string>
+    <string name="unidade">Unidade:</string>
+    <string name="cargo">Cargo:</string>
+    <string name="senha">Senha:</string>
+    <string name="cadastrar">Cadastrar</string>
+    <string name="endereco">Endereço:</string>
+    <string name="responsavel">Responsavel:</string>
+    <string name="finalidades">Finalidades:</string>
+    <string name="objetivos">Objetivos:</string>
+    <string name="entrar">Entrar</string>
+    <string name="notifications_fragment">Notifications fragment</string>
+    <string name="profile_fragment">Profile fragment</string>
+    <string name="home_fragment">Home fragment</string>
+    <string name="sobre">Sobre</string>
+    <string name="softplayer">Softplayer</string>
+    <string name="softPlayer">SoftPlayer</string>
+    <string name="voltar">Voltar</string>
+</resources>
