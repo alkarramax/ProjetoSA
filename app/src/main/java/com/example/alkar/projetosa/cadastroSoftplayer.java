@@ -27,12 +27,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.example.alkar.projetosa.database.DatabaseHelper;
 
 
 public class cadastroSoftplayer extends AppCompatActivity {
-
-    DatabaseHelper meuBanco;
 
     private TextInputLayout textInputNome;
     private TextInputLayout textInputSobrenome;
@@ -51,8 +48,6 @@ public class cadastroSoftplayer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro__softplayer);
-
-        meuBanco = new DatabaseHelper(this);
 
         textInputNome = findViewById(R.id.textSoft_input_nome);
         textInputSobrenome = findViewById(R.id.textSoft_input_sobrenome);
@@ -127,15 +122,8 @@ public class cadastroSoftplayer extends AppCompatActivity {
                 if(!validarNome() | !validarSobrenome() | !validarEmail() | !validarUnidade() | !validarCargo() | !validarSenha()) {
                     return;
                 } else {
-                    boolean resultado = meuBanco.insertData(textInputNome.getEditText().getText().toString(), textInputSobrenome.getEditText().getText().toString(), textInputEmail.getEditText().getText().toString(), textInputUnidade.getEditText().getText().toString(), textInputCargo.getEditText().getText().toString(), textInputSenha.getEditText().getText().toString());
-
-                    if (resultado == true) {
                         Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        Toast.makeText(cadastroSoftplayer.this, "Dados inseridos", Toast.LENGTH_LONG).show();
-                        startActivity(i);
-                    } else {
-                        Toast.makeText(cadastroSoftplayer.this, "Dados não inseridos", Toast.LENGTH_LONG).show();
-                    }
+                      startActivity(i);
                 }
             }
         });

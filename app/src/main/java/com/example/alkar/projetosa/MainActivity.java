@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.alkar.projetosa.database.DatabaseHelper;
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,14 +24,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView esqueciSenha;
 
 
-    DatabaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        db = new DatabaseHelper(this);
 
         buttonSobre = findViewById(R.id.buttonSobre);
         buttonSobre.setOnClickListener(new View.OnClickListener() {
@@ -64,19 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 String email = et_email.getEditText().getText().toString();
                 String senha = et_senha.getEditText().getText().toString();
 
-
-                if(!validarEmail() | !validarSenha()) {
-                    return;
-                } else {
-                    String res = db.validarLogin(email, senha);
-
-                    if(res == "OK") {
-                        Toast.makeText(MainActivity.this, "Login OK", Toast.LENGTH_SHORT).show();
-                        startActivity(intent1);
-                    } else {
-                        Toast.makeText(MainActivity.this, "Login incorreto ou não cadastrado", Toast.LENGTH_SHORT).show();
-                    }
-                }
             }
         });
 
