@@ -8,7 +8,7 @@
     android:id="@+id/mainTela"
     android:background="@drawable/mainactivity"
     android:theme="@style/Theme.Design"
-    tools:context=".MainActivity"
+    tools:context=".LoginMain"
     tools:ignore="ExtraText">
 
     <ImageView

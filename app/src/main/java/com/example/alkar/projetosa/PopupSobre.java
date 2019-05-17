@@ -10,7 +10,7 @@ public class PopupSobre extends AppCompatDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Sobre o projeto")
+        builder.setTitle("Solidarity Player")
                 .setMessage("Projeto Soliedariedade, feito pelos alunos do Senai, com a parceria da Softplan, com o objetivo de juntar o grupo Solidario com os Softplayers.")
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override

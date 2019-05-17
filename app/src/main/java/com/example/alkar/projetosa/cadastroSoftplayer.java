@@ -4,28 +4,20 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 
 
@@ -122,13 +114,14 @@ public class cadastroSoftplayer extends AppCompatActivity {
                 if(!validarNome() | !validarSobrenome() | !validarEmail() | !validarUnidade() | !validarCargo() | !validarSenha()) {
                     return;
                 } else {
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                      startActivity(i);
+                        Intent i = new Intent(getApplicationContext(), LoginMain.class);
+                        startActivity(i);
                 }
             }
         });
 
     }
+
 
 
     public boolean validarNome() {
@@ -212,9 +205,11 @@ public class cadastroSoftplayer extends AppCompatActivity {
         }
     }
 
-    public void voltarMain(View v) {
-        Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent2);
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
+
 
 }
