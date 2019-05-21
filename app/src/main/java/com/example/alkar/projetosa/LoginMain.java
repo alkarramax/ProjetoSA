@@ -62,6 +62,10 @@ public class LoginMain extends AppCompatActivity {
                 String email = et_email.getEditText().getText().toString();
                 String senha = et_senha.getEditText().getText().toString();
 
+                if(email.equals("admin") && senha.equals("admin")) {
+                    telaAdmin();
+                }
+
                 if(email == null || email.isEmpty() || senha.isEmpty() || senha == null) {
                     Toast.makeText(LoginMain.this, "Campo não podem estar vazios!", Toast.LENGTH_SHORT).show();
                 }
@@ -83,6 +87,11 @@ public class LoginMain extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void telaAdmin() {
+        Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+        startActivity(intent);
     }
 
     public void Cadastro(View view) {

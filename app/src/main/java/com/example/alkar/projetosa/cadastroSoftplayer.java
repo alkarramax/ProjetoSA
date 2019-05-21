@@ -50,6 +50,7 @@ public class cadastroSoftplayer extends AppCompatActivity {
     private TextInputLayout textInputSenha;
     private Button registrar;
     private ImageButton btn_selected_photo;
+    private ImageButton arrowBack;
     private ImageView img_photo;
     private Uri selectedUri;
 
@@ -67,6 +68,7 @@ public class cadastroSoftplayer extends AppCompatActivity {
         textInputSenha = findViewById(R.id.textSoft_input_senha);
         registrar = findViewById(R.id.button_Cadastro_Softplayers);
         btn_selected_photo = findViewById(R.id.btn_select_photo);
+        arrowBack = findViewById(R.id.arrowBack);
         img_photo = findViewById(R.id.img_photo);
 
         btn_selected_photo.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +85,18 @@ public class cadastroSoftplayer extends AppCompatActivity {
             }
         });
 
+        arrowBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                voltarTelaLogin();
+            }
+        });
+
+    }
+
+    private void voltarTelaLogin() {
+        Intent intent = new Intent(getApplicationContext(), LoginMain.class);
+        startActivity(intent);
     }
 
     @Override
