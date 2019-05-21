@@ -1,0 +1,85 @@
+package com.example.alkar.projetosa.TelaAdmin;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+
+import com.example.alkar.projetosa.LoginMain;
+import com.example.alkar.projetosa.R;
+
+public class TelaAdmin extends AppCompatActivity {
+
+    private ImageButton imgButtonEntidade;
+    private ImageButton Button_Atualizar_Entidade;
+    private ImageButton Button_Remover_Entidade;
+    private ImageButton Button_Remover_Membro;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tela_admin);
+
+        imgButtonEntidade = findViewById(R.id.imgButton_Entidade);
+        Button_Atualizar_Entidade = findViewById(R.id.Button_Atualizar_Entidade);
+        Button_Remover_Entidade = findViewById(R.id.Button_Remover_Entidade);
+        Button_Remover_Membro = findViewById(R.id.Button_Remover_Membro);
+
+
+
+
+        imgButtonEntidade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cadastroEntidade();
+            }
+        });
+        Button_Remover_Entidade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removerEntidade();
+            }
+        });
+        Button_Atualizar_Entidade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateEntidade();
+            }
+        });
+        Button_Remover_Membro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeEntidade();
+            }
+        });
+
+    }
+
+    private void removeEntidade() {
+        Intent intent = new Intent(getApplicationContext(), RemoverMembro.class);
+        startActivity(intent);
+    }
+
+    private void updateEntidade() {
+        Intent intent = new Intent(getApplicationContext(), UpdateEntidade.class);
+        startActivity(intent);
+    }
+
+    private void removerEntidade() {
+        Intent intent = new Intent(getApplicationContext(), RemoverEntidade.class);
+        startActivity(intent);
+    }
+
+    private void cadastroEntidade() {
+        Intent intent = new Intent(getApplicationContext(), Cadastro_Entidade.class);
+        startActivity(intent);
+
+    }
+
+    public void voltarMain(View view) {
+        Intent i = new Intent(getApplicationContext(), LoginMain.class);
+        startActivity(i);
+    }
+}

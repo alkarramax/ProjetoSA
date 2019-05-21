@@ -51,12 +51,10 @@
         android:layout_height="85dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         app:errorEnabled="true"
-        app:layout_constraintBottom_toTopOf="@+id/textSoft_input_senha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,16 +74,15 @@
         style="@style/StyledTilEditText"
         android:layout_width="350dp"
         android:layout_height="85dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/button_EsqueciSenha"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textLogin_Email"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textLogin_Email"
+        app:layout_constraintTop_toBottomOf="@+id/textLogin_Email"
+        app:layout_constraintVertical_bias="1.0"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="#FFF">
 
@@ -98,23 +95,20 @@
     </android.support.design.widget.TextInputLayout>
 
 
-
     <TextView
         android:id="@+id/button_EsqueciSenha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="208dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
+        android:focusable="true"
         android:text="Esqueci minha senha"
         android:textColor="#fff"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.265"
-        app:layout_constraintStart_toStartOf="parent"
-        android:focusable="true" />
+        app:layout_constraintBottom_toTopOf="@+id/button_Entrar"
+        app:layout_constraintEnd_toEndOf="@+id/textLogin_Senha"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textLogin_Senha" />
 
     <Button
         android:id="@+id/button_Entrar"
