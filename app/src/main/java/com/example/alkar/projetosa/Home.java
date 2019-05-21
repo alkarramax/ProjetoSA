@@ -1,16 +1,16 @@
 package com.example.alkar.projetosa;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
+
+import com.example.alkar.projetosa.Fragmentos.HomeFragment;
+import com.example.alkar.projetosa.Fragmentos.NotificationsFragment;
+import com.example.alkar.projetosa.Fragmentos.ProfileFragment;
 
 public class Home extends AppCompatActivity  {
 
@@ -43,6 +43,9 @@ public class Home extends AppCompatActivity  {
                             break;
                         case R.id.nav_notifications:
                             selectedFragment = new NotificationsFragment();
+                            break;
+                        case R.id.nav_campanhas:
+                            selectedFragment = new CampanhaFragment();
                             break;
                     }
 

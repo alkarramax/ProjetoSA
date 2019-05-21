@@ -1,4 +1,4 @@
-package com.example.alkar.projetosa;
+package com.example.alkar.projetosa.Fragmentos;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 
 import com.example.alkar.projetosa.HomeConfig.Book;
 import com.example.alkar.projetosa.HomeConfig.RecyclerViewAdapter;
+import com.example.alkar.projetosa.R;
 
 import java.util.ArrayList;
 import java.util.List;
