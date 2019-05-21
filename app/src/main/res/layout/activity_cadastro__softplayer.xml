@@ -6,72 +6,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/e"
     android:id="@+id/layoutCadastroSoftplayer"
     tools:context=".cadastroSoftplayer">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/ivImagem"
-        android:layout_width="150dp"
-        android:layout_height="120dp"
+        android:id="@+id/img_photo"
+        android:layout_width="111dp"
+        android:layout_height="109dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:src="@drawable/profileblank"
+        app:layout_constraintCircleRadius="@dimen/cardview_default_radius"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/btnImagem"
+        android:id="@+id/btn_select_photo"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginRight="136dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/ic_add_circle_black_24dp"
+        android:background="@drawable/custom_imagem_button"
+        android:src="@drawable/ic_camera_alt_black_24dp"
         app:layout_constraintBottom_toTopOf="@+id/textSoft_input_nome"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/ivImagem"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/img_photo"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.909" />
+        app:layout_constraintVertical_bias="0.988" />
 
     <android.support.design.widget.TextInputLayout
-        style="@style/StyledTilEditText"
+
         android:id="@+id/textSoft_input_nome"
         android:layout_width="350dp"
         android:layout_height="85dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivImagem">
+        app:layout_constraintTop_toBottomOf="@+id/img_photo">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:hint="Nome" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        style="@style/StyledTilEditText"
         android:id="@+id/textSoft_input_sobrenome"
         android:layout_width="350dp"
         android:layout_height="85dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textSoft_input_nome"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textSoft_input_nome"
         app:layout_constraintTop_toBottomOf="@+id/textSoft_input_nome">
 
 
@@ -79,23 +78,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Sobrenome" />
+            android:hint= "Sobrenome" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        style="@style/StyledTilEditText"
         android:id="@+id/textSoft_input_email"
         android:layout_width="350dp"
         android:layout_height="85dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSoft_input_senha">
+        app:layout_constraintEnd_toEndOf="@+id/textSoft_input_senha"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textSoft_input_senha"
+        app:layout_constraintTop_toBottomOf="@+id/textSoft_input_senha"
+        tools:ignore="MissingConstraints">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
@@ -106,66 +102,57 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        style="@style/StyledTilEditText"
         android:id="@+id/textSoft_input_unidade"
         android:layout_width="350dp"
         android:layout_height="85dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:errorEnabled="true"
         app:layout_constraintBottom_toTopOf="@+id/button_Cadastro_Softplayers"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSoft_input_cargo">
+        app:layout_constraintEnd_toEndOf="@+id/textSoft_input_cargo"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textSoft_input_cargo"
+        app:layout_constraintTop_toBottomOf="@+id/textSoft_input_cargo"
+        app:layout_constraintVertical_bias="0.0">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Unidade" />
+            android:hint="Unidade"
+            android:inputType="text" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        style="@style/StyledTilEditText"
         android:id="@+id/textSoft_input_cargo"
         android:layout_width="350dp"
         android:layout_height="85dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textSoft_input_unidade"
+        app:layout_constraintEnd_toEndOf="@+id/textSoft_input_email"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textSoft_input_email"
         app:layout_constraintTop_toBottomOf="@+id/textSoft_input_email">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="Cargo" />
+            android:hint="Cargo"
+            android:inputType="text" />
 
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        style="@style/StyledTilEditText"
         android:id="@+id/textSoft_input_senha"
         android:layout_width="350dp"
         android:layout_height="85dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
         app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textSoft_input_sobrenome"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textSoft_input_sobrenome"
         app:layout_constraintTop_toBottomOf="@+id/textSoft_input_sobrenome"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="#FFF">
+        app:passwordToggleEnabled="true">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
@@ -179,31 +166,30 @@
         android:id="@+id/button_Cadastro_Softplayers"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
-        android:background="@drawable/custom_button"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/custom_button2"
         android:text="Cadastrar"
-        android:textColor="#fff"
+        android:textColor="#020db0"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintEnd_toEndOf="@+id/textSoft_input_unidade"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="@+id/textSoft_input_unidade"
+        app:layout_constraintTop_toBottomOf="@+id/textSoft_input_unidade" />
 
     <ImageButton
-        android:id="@+id/button_back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="voltarMain"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/ic_arrow_back_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/textSoft_input_nome"
+        app:layout_constraintEnd_toStartOf="@+id/ivImagem"
+        app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.183" />
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>

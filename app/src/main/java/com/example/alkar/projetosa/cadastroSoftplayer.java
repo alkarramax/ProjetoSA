@@ -4,29 +4,40 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.IOException;
+import java.util.UUID;
 
 
 public class cadastroSoftplayer extends AppCompatActivity {
@@ -38,10 +49,9 @@ public class cadastroSoftplayer extends AppCompatActivity {
     private TextInputLayout textInputCargo;
     private TextInputLayout textInputSenha;
     private Button registrar;
-    private ImageView imagem;
-    private final int GALERIA_IMAGENS = 1;
-    private final int PERMISSAO_REQUEST = 2;
-
+    private ImageButton btn_selected_photo;
+    private ImageView img_photo;
+    private Uri selectedUri;
 
 
     @Override
@@ -56,78 +66,145 @@ public class cadastroSoftplayer extends AppCompatActivity {
         textInputCargo = findViewById(R.id.textSoft_input_cargo);
         textInputSenha = findViewById(R.id.textSoft_input_senha);
         registrar = findViewById(R.id.button_Cadastro_Softplayers);
+        btn_selected_photo = findViewById(R.id.btn_select_photo);
+        img_photo = findViewById(R.id.img_photo);
 
-
-
-
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            } else {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        PERMISSAO_REQUEST);
-            }
-        }
-
-        imagem         = findViewById(R.id.ivImagem);
-        ImageButton galeria = findViewById(R.id.btnImagem);
-        galeria.setOnClickListener(new View.OnClickListener() {
+        btn_selected_photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
-                startActivityForResult(intent, GALERIA_IMAGENS);
+                selectPhoto();
             }
         });
 
-        addData();
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == 1) {
-            Uri selectedImage = data.getData();
-            String[] filePath = { MediaStore.Images.Media.DATA };
-            Cursor c = getContentResolver().query(selectedImage,filePath, null, null, null);
-            c.moveToFirst();
-            int columnIndex = c.getColumnIndex(filePath[0]);
-            String picturePath = c.getString(columnIndex);
-            c.close();
-            Bitmap thumbnail = (BitmapFactory.decodeFile(picturePath));
-            imagem.setImageBitmap(thumbnail);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        if (requestCode == PERMISSAO_REQUEST) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-            } else {
-            }
-            return;
-        }
-    }
-
-    public void addData() {
         registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if(!validarNome() | !validarSobrenome() | !validarEmail() | !validarUnidade() | !validarCargo() | !validarSenha()) {
-                    return;
-                } else {
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                      startActivity(i);
-                }
+                createUser();
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 0) {
+            selectedUri = data.getData();
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedUri);
+                img_photo.setImageDrawable(new BitmapDrawable(bitmap));
+            } catch (IOException e) {
+            }
+        }
+    }
+
+    private void selectPhoto() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, 0);
+
+    }
+
+
+    private void createUser() {
+
+        String nome = textInputNome.getEditText().getText().toString().trim();
+        String sobrenome = textInputSobrenome.getEditText().getText().toString().trim();
+        String email = textInputEmail.getEditText().getText().toString().trim();
+        String unidade = textInputUnidade.getEditText().getText().toString().trim();
+        String cargo = textInputCargo.getEditText().getText().toString().trim();
+        String senha = textInputSenha.getEditText().getText().toString().trim();
+
+        if(nome.isEmpty()) {
+            textInputNome.setError("Campo não pode estar vazio.");
+            return;
+        } else {
+            textInputNome.setError(null);
+        }
+
+        if(sobrenome.isEmpty()) {
+            textInputSobrenome.setError("Campo não pode estar vazio.");
+            return;
+        } else {
+            textInputSobrenome.setError(null);
+        }
+
+        if(senha.isEmpty()) {
+            textInputSenha.setError("Campo não pode estar vazio.");
+            return;
+        } else if(senha.length() < 6) {
+            textInputSenha.setError("Minimo de 6 caracteres");
+            return;
+        } else {
+            textInputSenha.setError(null);
+        }
+
+        if(email.isEmpty()) {
+            textInputEmail.setError("Campo não pode estar vazio.");
+            return;
+        } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            textInputEmail.setError("Email inválido ");
+            return;
+        } else  {
+            textInputEmail.setError(null);
+        }
+
+
+        if(cargo.isEmpty()) {
+            textInputCargo.setError("Campo não pode estar vazio.");
+            return;
+        } else {
+            textInputCargo.setError(null);
+        }
+
+        if(unidade.isEmpty()) {
+            textInputUnidade.setError("Campo não pode estar vazio.");
+            return;
+        } else {
+            textInputUnidade.setError(null);
+        }
+
+
+
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+
+                    if(task.isSuccessful()){
+                        Toast.makeText(cadastroSoftplayer.this, "Correct!", Toast.LENGTH_SHORT).show();
+                        saveUserInFirebase();
+
+                    } else {
+                        Toast.makeText(cadastroSoftplayer.this, " :( " +task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+    }
+
+    private void saveUserInFirebase() {
+        String filename = UUID.randomUUID().toString();
+        final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/" + filename);
+        ref.putFile(selectedUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Log.i("Teste", uri.toString());
+                            }
+                        });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(cadastroSoftplayer.this, "Deu ruim lek!", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 
@@ -142,6 +219,8 @@ public class cadastroSoftplayer extends AppCompatActivity {
             textInputNome.setError(null);
             return true;
         }
+
+
     }
 
     public boolean validarSobrenome() {
@@ -212,9 +291,5 @@ public class cadastroSoftplayer extends AppCompatActivity {
         }
     }
 
-    public void voltarMain(View v) {
-        Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent2);
-    }
 
 }

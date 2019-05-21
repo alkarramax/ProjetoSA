@@ -1,6 +1,5 @@
 package com.example.alkar.projetosa;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,8 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class Home extends AppCompatActivity implements View.OnClickListener {
-    private ImageButton btn_sair;
+public class Home extends AppCompatActivity  {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,24 +23,9 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        btn_sair = findViewById(R.id.btn_sair);
-
-        btn_sair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent sair = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(sair);
-            }
-        });
-
-        CardView imagem1 = findViewById(R.id.image1);
-        imagem1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent teste = new Intent(getApplicationContext(), Home_imagem1.class);
-                startActivity(teste);
-            }
-        });
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.fragment_container, new HomeFragment());
+        fragmentTransaction.commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -61,14 +45,10 @@ public class Home extends AppCompatActivity implements View.OnClickListener {
                             selectedFragment = new NotificationsFragment();
                             break;
                     }
+
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                     return true;
                 }
             };
 
-
-    @Override
-    public void onClick(View v) {
-
-    }
 }
