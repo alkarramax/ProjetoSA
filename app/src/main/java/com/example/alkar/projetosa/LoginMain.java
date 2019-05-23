@@ -26,7 +26,6 @@ public class LoginMain extends AppCompatActivity {
     private TextView esqueciSenha;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +65,7 @@ public class LoginMain extends AppCompatActivity {
                     telaAdmin();
                 }
 
-                if(email == null || email.isEmpty() || senha.isEmpty() || senha == null) {
+                if(email.isEmpty() || senha.isEmpty()) {
                     Toast.makeText(LoginMain.this, "Campo não podem estar vazios!", Toast.LENGTH_SHORT).show();
                 }
 
@@ -136,6 +135,7 @@ public class LoginMain extends AppCompatActivity {
 
     public void entrarHome() {
         Intent intent1 = new Intent(getApplicationContext(), Home.class);
+        intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent1);
 
     }

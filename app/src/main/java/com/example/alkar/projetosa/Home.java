@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.alkar.projetosa.Fragmentos.CampanhaFragment;
 import com.example.alkar.projetosa.Fragmentos.HomeFragment;
 import com.example.alkar.projetosa.Fragmentos.NotificationsFragment;
 import com.example.alkar.projetosa.Fragmentos.ProfileFragment;

@@ -36,7 +36,6 @@ public class Cadastro_Entidade extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro__entidade);
 
         textInputNomeEntidade = findViewById(R.id.textInputNomeEntidade);
-        textInputObjetivoEntidade = findViewById(R.id.textInputObjetivoEntidade);
         textInputDescricao = findViewById(R.id.textInputDescricao);
         btn_select_photo_entidade = findViewById(R.id.btn_select_photo_Entidade);
         img_photo_Entidade = findViewById(R.id.img_photo_Entidade);
