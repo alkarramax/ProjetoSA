@@ -25,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.alkar.projetosa.Firebase.Softplayer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -32,6 +33,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -179,9 +182,6 @@ public class cadastroSoftplayer extends AppCompatActivity {
         } else {
             textInputUnidade.setError(null);
         }
-
-
-
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -209,6 +209,32 @@ public class cadastroSoftplayer extends AppCompatActivity {
                             @Override
                             public void onSuccess(Uri uri) {
                                 Log.i("Teste", uri.toString());
+
+                                String uid = FirebaseAuth.getInstance().getUid();
+                                String nome = textInputNome.getEditText().getText().toString().trim();
+                                String sobrenome = textInputSobrenome.getEditText().getText().toString().trim();
+                                String email = textInputEmail.getEditText().getText().toString().trim();
+                                String unidade = textInputUnidade.getEditText().getText().toString().trim();
+                                String cargo = textInputCargo.getEditText().getText().toString().trim();
+                                String profileUrl = uri.toString();
+
+                                Softplayer softplayer = new Softplayer(uid, nome, sobrenome, email, unidade, cargo, profileUrl);
+
+                                FirebaseFirestore.getInstance().collection("softplayers")
+                                        .add(softplayer)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Toast.makeText(cadastroSoftplayer.this, "Deu certo" +documentReference.getId(), Toast.LENGTH_SHORT).show();
+                                                irLogin();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(cadastroSoftplayer.this, "Ruim" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                             }
                         });
                     }
@@ -219,6 +245,12 @@ public class cadastroSoftplayer extends AppCompatActivity {
                         Toast.makeText(cadastroSoftplayer.this, "Deu ruim lek!", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void irLogin() {
+        Intent intent = new Intent(getApplicationContext(), LoginMain.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 
