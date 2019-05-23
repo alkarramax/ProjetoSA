@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.451"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circleImageView"
+        app:layout_constraintTop_toBottomOf="@+id/imagemViewPerfil"
         app:layout_constraintVertical_bias="0.0"
         android:layout_marginLeft="8dp" />
 
@@ -48,7 +48,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/ic_arrow_back_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/circleImageView"
+        app:layout_constraintBottom_toTopOf="@+id/imagemViewPerfil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.022"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +64,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/ic_settings_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/circleImageView"
+        app:layout_constraintBottom_toTopOf="@+id/imagemViewPerfil"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.973"
         app:layout_constraintStart_toEndOf="@+id/imageButton"

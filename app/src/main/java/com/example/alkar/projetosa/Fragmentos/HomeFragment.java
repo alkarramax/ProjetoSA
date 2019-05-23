@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
 
         RecyclerView myrv = view.findViewById(R.id.recyclerview_id);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(getActivity(),lstBook);
-        myrv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        myrv.setLayoutManager(new GridLayoutManager(getActivity(), 1));
         myrv.setAdapter(myAdapter);
 
 
