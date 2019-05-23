@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,9 @@ import android.widget.Toast;
 
 import com.example.alkar.projetosa.Firebase.Softplayer;
 import com.example.alkar.projetosa.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -26,81 +30,70 @@ import com.xwray.groupie.GroupAdapter;
 import com.xwray.groupie.Item;
 import com.xwray.groupie.ViewHolder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
 
-    private GroupAdapter adapter;
+    RecyclerView recyclerView;
+    ArrayList<Softplayer> softplayerArrayList;
+    AdapterProfile adapter;
+    View v;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
-        RecyclerView rv = view.findViewById(R.id.rv_profile);
-        adapter = new GroupAdapter();
-        rv.setAdapter(adapter);
-
-
-
         return view;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        FirebaseFirestore.getInstance().collection("softplayers")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        if(e != null) {
-                            Toast.makeText(getActivity(), "Teste" +e.getMessage(), Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-
-                        List<DocumentSnapshot> docs = queryDocumentSnapshots.getDocuments();
-                        for(DocumentSnapshot doc : docs) {
-                            Softplayer softplayer = doc.toObject(Softplayer.class);
-                            adapter.add(new UserItem(softplayer));
-                        }
-                    }
-                });
+        softplayerArrayList = new ArrayList<>();
+        setUpRecyclerView();
+        loadData();
+        this.v = view;
 
     }
 
-    private class UserItem extends Item<ViewHolder> {
+    private void loadData() {
+        FirebaseFirestore.getInstance().collection("softplayers")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        for (DocumentSnapshot querySnapshot : task.getResult()) {
+                            Softplayer softplayer = new Softplayer(querySnapshot.getString("nome"),
+                                    querySnapshot.getString("cargo"),
+                                    querySnapshot.getString("unidade"),
+                                    querySnapshot.getString("email"));
+                                    softplayerArrayList.add(softplayer);
 
-        private Softplayer softplayer;
+                            /*
+                            Softplayer softplayer = querySnapshot.toObject(Softplayer.class);
+                            softplayerArrayList.add(softplayer);
+                            */
+                        }
+                        adapter = new AdapterProfile(ProfileFragment.this, softplayerArrayList);
+                        recyclerView.setAdapter(adapter);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getContext(), "Deu ruim" +e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
 
-        private UserItem(Softplayer softplayer) {
-            this.softplayer = softplayer;
-        }
 
-        @Override
-        public void bind(@NonNull ViewHolder viewHolder, int position) {
-            TextView    txtNome    = viewHolder.itemView.findViewById(R.id.textViewNome);
-            TextView    txtCargo   = viewHolder.itemView.findViewById(R.id.textViewCargo);
-            TextView    txtUnidade = viewHolder.itemView.findViewById(R.id.textViewUnidade);
-            TextView    txtEmail   = viewHolder.itemView.findViewById(R.id.textViewEmail);
-            ImageView   imgPhoto   = viewHolder.itemView.findViewById(R.id.imagemViewPerfil);
-
-            txtNome.setText(softplayer.getNome());
-            txtCargo.setText(softplayer.getCargo());
-            txtUnidade.setText(softplayer.getUnidade());
-            txtEmail.setText(softplayer.getEmail());
-
-            Picasso.get()
-                    .load(softplayer.getProfileUrl())
-                    .into(imgPhoto);
-
-        }
-
-        @Override
-        public int getLayout() {
-            return R.layout.item_profile;
-        }
+    private void setUpRecyclerView() {
+        recyclerView = v.findViewById(R.id.rv_profile);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

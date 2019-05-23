@@ -10,7 +10,7 @@ public class Softplayer {
     private String unidade;
     private String profileUrl;
 
-    public Softplayer() {
+    public Softplayer(String nome, String cargo, String unidade, String email) {
     }
 
     public Softplayer(String uuid, String nome, String sobrenome, String email, String cargo, String unidade, String profileUrl) {
