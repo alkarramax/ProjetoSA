@@ -6,23 +6,37 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.Image;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.alkar.projetosa.Firebase.Entidade;
+import com.example.alkar.projetosa.Firebase.Softplayer;
 import com.example.alkar.projetosa.R;
+import com.example.alkar.projetosa.cadastroSoftplayer;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.UUID;
 
 public class Cadastro_Entidade extends AppCompatActivity {
 
     private TextInputLayout textInputNomeEntidade;
-    private TextInputLayout textInputObjetivoEntidade;
     private TextInputLayout textInputDescricao;
     private Button cadastrar;
 
@@ -37,8 +51,10 @@ public class Cadastro_Entidade extends AppCompatActivity {
 
         textInputNomeEntidade = findViewById(R.id.textInputNomeEntidade);
         textInputDescricao = findViewById(R.id.textInputDescricao);
+        cadastrar = findViewById(R.id.btn_CadastrarEntidade);
         btn_select_photo_entidade = findViewById(R.id.btn_select_photo_Entidade);
         img_photo_Entidade = findViewById(R.id.img_photo_Entidade);
+
 
         btn_select_photo_entidade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +63,52 @@ public class Cadastro_Entidade extends AppCompatActivity {
             }
         });
 
+        cadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveEntidade();
+            }
+        });
+
+
+    }
+
+    private void saveEntidade() {
+        String filename = UUID.randomUUID().toString();
+        final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/" + filename);
+        ref.putFile(selectedUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Log.i("Teste", uri.toString());
+
+                                String nome = textInputNomeEntidade.getEditText().getText().toString().trim();
+                                String descricao = textInputDescricao.getEditText().getText().toString().trim();
+                                String entidadeUrl = uri.toString();
+
+                                Entidade entidade = new Entidade(nome, descricao, entidadeUrl);
+
+                                FirebaseFirestore.getInstance().collection("entidade")
+                                        .add(entidade)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Toast.makeText(Cadastro_Entidade.this, "Deu certo" +documentReference.getId(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Toast.makeText(Cadastro_Entidade.this, "Ruim" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        });
+                    }
+                });
 
     }
 
