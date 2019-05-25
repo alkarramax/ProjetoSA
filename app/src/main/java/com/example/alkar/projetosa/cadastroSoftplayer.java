@@ -225,7 +225,6 @@ public class cadastroSoftplayer extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                             @Override
                                             public void onSuccess(DocumentReference documentReference) {
-                                                Toast.makeText(cadastroSoftplayer.this, "Deu certo" +documentReference.getId(), Toast.LENGTH_SHORT).show();
                                                 irLogin();
                                             }
                                         })
