@@ -10,33 +10,34 @@ import android.widget.Toast;
 
 public class Doacao extends AppCompatActivity {
 
-    private TextView textViewTipo1;
-    private SeekBar seekBar1;
-    private int value=0;
+    private TextView textView;
+    private SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doacao);
 
-        textViewTipo1=findViewById(R.id.txtQtd);
-        seekBar1=findViewById(R.id.seekQtd);
-        seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int i, boolean fromUser) {
-                value=i;
-                textViewTipo1.setText(i);
+        textView=findViewById(R.id.txtQtd);
+        seekBar=findViewById(R.id.seekQtd);
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int seekBarProgress = 0;
+
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                seekBarProgress = progress;
+
             }
 
-            @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
 
-            @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                textView.setText("Progress: " + seekBarProgress + " / " + seekBar.getMax());
+                Toast.makeText(getApplicationContext(), "SeekBar Touch Stop ", Toast.LENGTH_SHORT).show();
             }
+
         });
 
     }

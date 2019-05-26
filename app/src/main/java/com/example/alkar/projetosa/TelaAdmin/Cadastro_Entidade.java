@@ -134,5 +134,10 @@ public class Cadastro_Entidade extends AppCompatActivity {
 
     }
 
+    public void voltarTelaAdmin(View view){
+
+        Intent intent = new Intent(this, TelaAdmin.class);
+        startActivity(intent);
+    }
 
 }

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Doacao"></activity>
+        <activity android:name=".TelaAdmin.CadastroDoacao"></activity>
+        <activity android:name=".Doacao" />
         <activity android:name=".TelaAdmin.RemoverMembro" />
         <activity android:name=".TelaAdmin.UpdateEntidade" />
         <activity android:name=".TelaAdmin.RemoverEntidade" />

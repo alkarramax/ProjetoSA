@@ -20,25 +20,42 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txtQtd"
+        android:id="@+id/txtTipoDoa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="188dp"
-        android:layout_marginRight="188dp"
-        android:textSize="25sp"
+        android:text="Roupas"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="129dp" />
+
+    <TextView
+        android:id="@+id/txtQtd"
+        android:layout_width="16dp"
+        android:layout_height="29dp"
+        android:layout_marginEnd="212dp"
+        android:layout_marginRight="212dp"
+        android:text="0"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_back" />
+        tools:layout_editor_absoluteY="221dp" />
 
     <SeekBar
         android:id="@+id/seekQtd"
         android:layout_width="200dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
+        android:layout_marginEnd="104dp"
+        android:layout_marginRight="104dp"
         android:max="50"
         android:min="1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtQtd" />
+        tools:layout_editor_absoluteY="169dp" />
+
+    <Button
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button2"
+        android:text="Doar"
+        android:textColor="#020db0"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="644dp" />
 </android.support.constraint.ConstraintLayout>

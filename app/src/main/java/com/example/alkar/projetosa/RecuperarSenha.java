@@ -50,4 +50,9 @@ public class RecuperarSenha extends AppCompatActivity {
 
     }
 
+    public void voltarLogin(View view){
+
+        Intent intent = new Intent(this, Doacao.class);
+        startActivity(intent);
+    }
 }

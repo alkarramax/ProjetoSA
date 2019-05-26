@@ -9,123 +9,174 @@
 
     <ImageButton
         android:id="@+id/Button_Remover_Membro"
-        android:layout_width="40dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="396dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="45dp"
         android:background="@drawable/ic_plus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView8"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/imgButton_Update_Doacao"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imgButton_Update_Doacao"
+        app:layout_constraintTop_toBottomOf="@+id/imgButton_Update_Doacao" />
 
     <TextView
-        android:id="@+id/textView8"
-        android:layout_width="326dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="396dp"
+        android:id="@+id/text_Remover_Membro"
+        android:layout_width="224dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="45dp"
         android:text="Remover Membro"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_Update_Doacao"
+        app:layout_constraintStart_toStartOf="@+id/text_Update_Doacao"
+        app:layout_constraintTop_toBottomOf="@+id/text_Update_Doacao" />
 
     <ImageButton
         android:id="@+id/Button_Atualizar_Entidade"
-        android:layout_width="40dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="296dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="45dp"
         android:background="@drawable/ic_plus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/imgButton_Remover_Doacao"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imgButton_Remover_Doacao"
+        app:layout_constraintTop_toBottomOf="@+id/imgButton_Remover_Doacao" />
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="326dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="296dp"
+        android:id="@+id/text_Atualizar_Entidade"
+        android:layout_width="224dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="45dp"
         android:text="Update Entidade"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_Remover_Doacao"
+        app:layout_constraintStart_toStartOf="@+id/text_Remover_Doacao"
+        app:layout_constraintTop_toBottomOf="@+id/text_Remover_Doacao" />
 
     <ImageButton
         android:id="@+id/Button_Remover_Entidade"
-        android:layout_width="40dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="192dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="45dp"
         android:background="@drawable/ic_plus"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView5"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/imgButton_Cadastrar_Doacao"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imgButton_Cadastrar_Doacao"
+        app:layout_constraintTop_toBottomOf="@+id/imgButton_Cadastrar_Doacao" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="326dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="192dp"
+        android:id="@+id/text_Remover_Entidade"
+        android:layout_width="224dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="45dp"
         android:text="Remover Entidade"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_Cadastrar_Doacao"
+        app:layout_constraintStart_toStartOf="@+id/text_Cadastrar_Doacao"
+        app:layout_constraintTop_toBottomOf="@+id/text_Cadastrar_Doacao" />
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="326dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginBottom="489dp"
-        android:text="Adicionar Entidade"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:id="@+id/text_Cadastrar_Entidade"
+        android:layout_width="224dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="48dp"
+        android:text="Cadastrar Entidade"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imgButton_Entidade"
-        android:layout_width="40dp"
-        android:layout_height="39dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:id="@+id/imgButton_Cadastrar_Entidade"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
         android:background="@drawable/ic_plus"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.243"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_Cadastrar_Doacao"
+        android:layout_width="224dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="45dp"
+        android:text="Cadastrar Doação"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_Cadastrar_Entidade"
+        app:layout_constraintStart_toStartOf="@+id/text_Cadastrar_Entidade"
+        app:layout_constraintTop_toBottomOf="@+id/text_Cadastrar_Entidade" />
+
+    <ImageButton
+        android:id="@+id/imgButton_Cadastrar_Doacao"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/ic_plus"
+        app:layout_constraintEnd_toEndOf="@+id/imgButton_Cadastrar_Entidade"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/imgButton_Cadastrar_Entidade"
+        app:layout_constraintTop_toBottomOf="@+id/imgButton_Cadastrar_Entidade" />
+
+    <TextView
+        android:id="@+id/text_Remover_Doacao"
+        android:layout_width="224dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="45dp"
+        android:text="Remover Doação"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_Remover_Entidade"
+        app:layout_constraintStart_toStartOf="@+id/text_Remover_Entidade"
+        app:layout_constraintTop_toBottomOf="@+id/text_Remover_Entidade" />
+
+    <ImageButton
+        android:id="@+id/imgButton_Remover_Doacao"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/ic_plus"
+        app:layout_constraintEnd_toEndOf="@+id/Button_Remover_Entidade"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Button_Remover_Entidade"
+        app:layout_constraintTop_toBottomOf="@+id/Button_Remover_Entidade" />
+
+    <TextView
+        android:id="@+id/text_Update_Doacao"
+        android:layout_width="224dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="45dp"
+        android:text="Update Doação"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_Atualizar_Entidade"
+        app:layout_constraintStart_toStartOf="@+id/text_Atualizar_Entidade"
+        app:layout_constraintTop_toBottomOf="@+id/text_Atualizar_Entidade" />
+
+    <ImageButton
+        android:id="@+id/imgButton_Update_Doacao"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/ic_plus"
+        app:layout_constraintEnd_toEndOf="@+id/Button_Atualizar_Entidade"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Button_Atualizar_Entidade"
+        app:layout_constraintTop_toBottomOf="@+id/Button_Atualizar_Entidade" />
+
 
     <Button
         android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/custom_button2"
         android:onClick="voltarMain"
         android:text="Voltar"
+        android:textColor="#020db0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/text_Remover_Membro" />
+
 </android.support.constraint.ConstraintLayout>

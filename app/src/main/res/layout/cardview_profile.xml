@@ -98,15 +98,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:drawableLeft="@drawable/ic_email_black_24dp"
             android:text="Text View"
             android:textSize="19sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
             app:layout_constraintEnd_toEndOf="@+id/textViewUnidade"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/textViewUnidade"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUnidade"
-            app:layout_constraintVertical_bias="0.086" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewUnidade" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doações:0"
+            android:textSize="19sp"
+            app:layout_constraintEnd_toEndOf="@+id/textViewEmail"
+            app:layout_constraintStart_toStartOf="@+id/textViewEmail"
+            tools:layout_editor_absoluteY="579dp" />
+
+
     </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

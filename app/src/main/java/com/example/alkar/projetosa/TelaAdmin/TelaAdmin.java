@@ -15,6 +15,7 @@ public class TelaAdmin extends AppCompatActivity {
     private ImageButton Button_Atualizar_Entidade;
     private ImageButton Button_Remover_Entidade;
     private ImageButton Button_Remover_Membro;
+    private ImageButton Button_Cadastrar_Doacao;
 
 
     @Override
@@ -22,14 +23,20 @@ public class TelaAdmin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_admin);
 
-        imgButtonEntidade = findViewById(R.id.imgButton_Entidade);
+        imgButtonEntidade = findViewById(R.id.imgButton_Cadastrar_Entidade);
         Button_Atualizar_Entidade = findViewById(R.id.Button_Atualizar_Entidade);
         Button_Remover_Entidade = findViewById(R.id.Button_Remover_Entidade);
         Button_Remover_Membro = findViewById(R.id.Button_Remover_Membro);
+        Button_Cadastrar_Doacao = findViewById(R.id.imgButton_Cadastrar_Doacao);
 
 
 
-
+        Button_Cadastrar_Doacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cadastroDoacao();
+            }
+        });
         imgButtonEntidade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +81,11 @@ public class TelaAdmin extends AppCompatActivity {
 
     private void cadastroEntidade() {
         Intent intent = new Intent(getApplicationContext(), Cadastro_Entidade.class);
+        startActivity(intent);
+
+    }
+    private void cadastroDoacao() {
+        Intent intent = new Intent(getApplicationContext(), CadastroDoacao.class);
         startActivity(intent);
 
     }
