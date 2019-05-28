@@ -22,7 +22,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
         Intent intent = getIntent();
         String Entidade = intent.getExtras().getString("nomeEntidade");
-        int imagem = intent.getExtras().getInt("imagem");
+        int imagem = intent.getExtras().getInt("image");
 
 
         nomeEntidade.setText(Entidade);

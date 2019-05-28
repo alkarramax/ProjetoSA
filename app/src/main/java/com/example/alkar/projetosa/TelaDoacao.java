@@ -17,29 +17,35 @@ public class TelaDoacao extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doacao);
+        seebar();
+    }
 
-        textView=findViewById(R.id.txtQtd);
-        seekBar=findViewById(R.id.seekQtd);
+    public void seebar() {
 
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int seekBarProgress = 0;
+        seekBar = (SeekBar)findViewById(R.id.seekQtd);
+        textView = (TextView)findViewById(R.id.txtQtd);
+        textView.setText(":): " +seekBar.getProgress() + "/" + seekBar.getMax());
 
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                seekBarProgress = progress;
+        seekBar.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() {
+                    int progressV;
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        progressV = progress;
+                        textView.setText("Quantidade: " + progress + "/" + seekBar.getMax());
+                    }
 
-            }
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
 
-            public void onStartTrackingTouch(SeekBar seekBar) {
+                    }
 
-            }
-
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                textView.setText("Progress: " + seekBarProgress + " / " + seekBar.getMax());
-                Toast.makeText(getApplicationContext(), "SeekBar Touch Stop ", Toast.LENGTH_SHORT).show();
-            }
-
-        });
-
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        textView.setText(":): " + progressV + "/" + seekBar.getMax());
+                    }
+                }
+        );
     }
     public void voltarT(View view){
 
