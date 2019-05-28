@@ -7,32 +7,26 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
-import org.w3c.dom.Text;
-
 public class Home_Imagens_Detalhe extends AppCompatActivity {
 
-    private TextView tvtitle, tvdescricao;
-    private ImageView img;
+    private TextView nomeEntidade, descricao;
+    private ImageView entidadeURL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home__imagens__detalhe);
 
-        tvtitle = findViewById(R.id.txtTitle);
-        tvdescricao = findViewById(R.id.txtDescri);
-        img = findViewById(R.id.bookthumbnail);
+        nomeEntidade = findViewById(R.id.txtTitle);
+        entidadeURL = findViewById(R.id.bookthumbnail);
 
         Intent intent = getIntent();
-        String Title = intent.getExtras().getString("Title");
-        String Descricao = intent.getExtras().getString("Descrição");
-        int image = intent.getExtras().getInt("Thumbnail");
+        String Entidade = intent.getExtras().getString("nomeEntidade");
+        int imagem = intent.getExtras().getInt("imagem");
 
-        tvtitle.setText(Title);
-        tvdescricao.setText(Descricao);
-        img.setImageResource(image);
+
+        nomeEntidade.setText(Entidade);
+        entidadeURL.setImageResource(imagem);
 
     }
     public void voltarTela(View view){
@@ -42,7 +36,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
     }
     public void proximaTelaDoar(View view){
 
-        Intent intent = new Intent(this,Doacao.class);
+        Intent intent = new Intent(this, TelaDoacao.class);
         startActivity(intent);
     }
 }

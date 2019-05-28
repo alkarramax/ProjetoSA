@@ -1,9 +1,12 @@
 package com.example.alkar.projetosa.Fragmentos;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -14,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.alkar.projetosa.Firebase.Entidade;
+import com.example.alkar.projetosa.Home_Imagens_Detalhe;
 import com.example.alkar.projetosa.R;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -29,7 +33,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-
+    private Context mContext;
     private GroupAdapter adapter;
 
     @Nullable
@@ -78,9 +82,21 @@ public class HomeFragment extends Fragment {
 
 
         @Override
-        public void bind(@NonNull ViewHolder viewHolder, int position) {
+        public void bind(@NonNull ViewHolder viewHolder, final int position) {
             TextView nomeEntidade  = viewHolder.itemView.findViewById(R.id.nome_entidade_id);
             ImageView img_photo    = viewHolder.itemView.findViewById(R.id.entidade_img_id);
+            CardView cardView      = viewHolder.itemView.findViewById(R.id.cardview_id);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), Home_Imagens_Detalhe.class);
+                    intent.putExtra("imagem", entidade.getEntidadeUrl());
+                    intent.putExtra("nomeEntidade", entidade.getNome());
+
+                    startActivity(intent);
+                }
+            });
 
             nomeEntidade.setText(entidade.getNome());
 
@@ -92,7 +108,8 @@ public class HomeFragment extends Fragment {
         @Override
         public int getLayout() {
             return R.layout.cardview_home;
-            
+
+
         }
     }
 

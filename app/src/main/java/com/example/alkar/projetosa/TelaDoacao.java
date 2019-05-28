@@ -8,7 +8,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Doacao extends AppCompatActivity {
+public class TelaDoacao extends AppCompatActivity {
 
     private TextView textView;
     private SeekBar seekBar;
