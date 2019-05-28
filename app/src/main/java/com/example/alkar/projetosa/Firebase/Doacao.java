@@ -12,6 +12,9 @@ public class Doacao {
     private String hora;
     private String data;
 
+    public Doacao() {
+    }
+
     public Doacao(String nome, String tipo1, String tipo2, String tipo3, String tipo4, String objetivo, String local, String hora, String data){
         this.nome = nome;
         this.tipo1 = tipo1;

@@ -237,12 +237,6 @@ public class cadastroSoftplayer extends AppCompatActivity {
                             }
                         });
                     }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(cadastroSoftplayer.this, "Deu ruim lek!", Toast.LENGTH_SHORT).show();
-                    }
                 });
     }
 

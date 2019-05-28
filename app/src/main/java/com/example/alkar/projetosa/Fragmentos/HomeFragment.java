@@ -92,6 +92,7 @@ public class HomeFragment extends Fragment {
         @Override
         public int getLayout() {
             return R.layout.cardview_home;
+            
         }
     }
 
