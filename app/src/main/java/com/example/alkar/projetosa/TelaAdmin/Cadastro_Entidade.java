@@ -74,7 +74,7 @@ public class Cadastro_Entidade extends AppCompatActivity {
     }
 
     private void saveEntidade() {
-        String filename = UUID.randomUUID().toString();
+        final String filename = UUID.randomUUID().toString();
         final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/" + filename);
         ref.putFile(selectedUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -85,11 +85,12 @@ public class Cadastro_Entidade extends AppCompatActivity {
                             public void onSuccess(Uri uri) {
                                 Log.i("Teste", uri.toString());
 
+                                String uuid = filename;
                                 String nome = textInputNomeEntidade.getEditText().getText().toString().trim();
                                 String descricao = textInputDescricao.getEditText().getText().toString().trim();
                                 String entidadeUrl = uri.toString();
 
-                                Entidade entidade = new Entidade(nome, descricao, entidadeUrl);
+                                Entidade entidade = new Entidade(uuid, nome, descricao, entidadeUrl);
 
                                 FirebaseFirestore.getInstance().collection("entidade")
                                         .add(entidade)

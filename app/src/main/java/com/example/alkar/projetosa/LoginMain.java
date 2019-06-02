@@ -61,30 +61,32 @@ public class LoginMain extends AppCompatActivity {
                 String email = et_email.getEditText().getText().toString();
                 String senha = et_senha.getEditText().getText().toString();
 
-                if(email.equals("admin") && senha.equals("admin")) {
+                if (email.equals("admin") && senha.equals("admin")) {
                     telaAdmin();
-                }
+                } else {
 
-                if(email.isEmpty() || senha.isEmpty()) {
-                    Toast.makeText(LoginMain.this, "Campo não podem estar vazios!", Toast.LENGTH_SHORT).show();
-                }
+                    if (email.isEmpty() || senha.isEmpty()) {
+                        Toast.makeText(LoginMain.this, "Campo não podem estar vazios!", Toast.LENGTH_SHORT).show();
+                    }
 
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(email, senha)
-                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                            @Override
-                            public void onSuccess(AuthResult authResult) {
-                                Toast.makeText(LoginMain.this, "Logado com sucesso!", Toast.LENGTH_SHORT).show();
-                                entrarHome();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(LoginMain.this, "Email ou senha invalido", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email, senha)
+                            .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                                @Override
+                                public void onSuccess(AuthResult authResult) {
+                                    Toast.makeText(LoginMain.this, "Logado com sucesso!", Toast.LENGTH_SHORT).show();
+                                    entrarHome();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(LoginMain.this, "Email ou senha invalido", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
             }
         });
+
 
     }
 

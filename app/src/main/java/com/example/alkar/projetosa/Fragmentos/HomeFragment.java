@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.alkar.projetosa.Firebase.Doacao;
 import com.example.alkar.projetosa.Firebase.Entidade;
 import com.example.alkar.projetosa.Home_Imagens_Detalhe;
 import com.example.alkar.projetosa.R;
@@ -81,6 +82,7 @@ public class HomeFragment extends Fragment {
         }
 
 
+
         @Override
         public void bind(@NonNull ViewHolder viewHolder, final int position) {
             TextView nomeEntidade  = viewHolder.itemView.findViewById(R.id.nome_entidade_id);
@@ -91,9 +93,6 @@ public class HomeFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getContext(), Home_Imagens_Detalhe.class);
-                    intent.putExtra("imagem", entidade.getEntidadeUrl());
-                    intent.putExtra("nomeEntidade", entidade.getNome());
-
                     startActivity(intent);
                 }
             });
@@ -108,9 +107,40 @@ public class HomeFragment extends Fragment {
         @Override
         public int getLayout() {
             return R.layout.cardview_home;
-
-
         }
     }
 
+    /*
+    public class DoacaoItem extends Item<ViewHolder> {
+
+        private final Doacao doacao;
+
+        public DoacaoItem(Doacao doacao) {
+            this.doacao = doacao;
+        }
+
+
+        @Override
+        public void bind(@NonNull ViewHolder viewHolder, int position) {
+            CardView cardView = viewHolder.itemView.findViewById(R.id.cardview_id);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), Home_Imagens_Detalhe.class);
+                    intent.putExtra("Objetivo", doacao.getObjetivo());
+
+                    startActivity(intent);
+                }
+            });
+
+
+        }
+
+        @Override
+        public int getLayout() {
+            return R.layout.activity_cadastro_doacao;
+        }
+    }
+    */
 }

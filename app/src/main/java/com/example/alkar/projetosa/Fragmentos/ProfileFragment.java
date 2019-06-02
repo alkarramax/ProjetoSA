@@ -51,11 +51,7 @@ public class ProfileFragment extends Fragment {
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
-
-
         fetchUsers();
-
         return view;
     }
 
@@ -105,8 +101,6 @@ public class ProfileFragment extends Fragment {
             Picasso.get()
                     .load(softplayer.getProfileUrl())
                     .into(img_photo);
-
-
         }
 
         @Override

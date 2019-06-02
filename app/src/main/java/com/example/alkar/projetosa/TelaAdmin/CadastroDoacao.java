@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,14 +17,20 @@ import android.widget.Toast;
 import com.example.alkar.projetosa.Firebase.Doacao;
 import com.example.alkar.projetosa.Firebase.Entidade;
 import com.example.alkar.projetosa.R;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.Random;
 import java.util.UUID;
 
 public class CadastroDoacao extends AppCompatActivity {
@@ -38,6 +45,10 @@ public class CadastroDoacao extends AppCompatActivity {
     private TextInputLayout textHora;
     private TextInputLayout textData;
     private Button cadastrar;
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference entidadeRef = db.collection("entidade");
+    private Task<DocumentReference> Resultado;
 
 
     @Override
@@ -68,6 +79,8 @@ public class CadastroDoacao extends AppCompatActivity {
 
     private void saveDoacao() {
 
+        final String uuid = UUID.randomUUID().toString();
+
         String nome = textInputNomeEntidade.getEditText().getText().toString().trim();
         String tipo1 = textInputTipo1.getEditText().getText().toString().trim();
         String tipo2 = textInputTipo2.getEditText().getText().toString().trim();
@@ -78,24 +91,25 @@ public class CadastroDoacao extends AppCompatActivity {
         String hora = textHora.getEditText().getText().toString().trim();
         String data = textData.getEditText().getText().toString().trim();
 
-        Doacao doacao = new Doacao(nome, tipo1, tipo2, tipo3, tipo4, objetivo, local, data, hora);
 
-            FirebaseFirestore.getInstance().collection("doação")
-                    .add(doacao)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                            @Override
-                                            public void onSuccess(DocumentReference documentReference) {
-                                                Toast.makeText(CadastroDoacao.this, "Deu certo" +documentReference.getId(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(CadastroDoacao.this, "Deu errado" + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
+        final Doacao doacao = new Doacao(nome, tipo1, tipo2, tipo3, tipo4, objetivo, local, data, hora);
 
+
+        Resultado = entidadeRef.document(uuid).collection("doacao").add(doacao);
+        Resultado.addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentReference> task) {
+                if(task.isSuccessful()) {
+                    Toast.makeText(CadastroDoacao.this, "Cadastrado", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(CadastroDoacao.this, "Erro " + task.getResult(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
+
 
 
     public void voltarTelaAdm(View view){

@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/text_Remover_Membro"
-        android:layout_width="224dp"
+        android:layout_width="255dp"
         android:layout_height="33dp"
         android:layout_marginTop="45dp"
         android:text="Remover Membro"
@@ -42,7 +42,7 @@
 
     <TextView
         android:id="@+id/text_Atualizar_Entidade"
-        android:layout_width="224dp"
+        android:layout_width="255dp"
         android:layout_height="35dp"
         android:layout_marginTop="45dp"
         android:text="Update Entidade"
@@ -64,7 +64,7 @@
 
     <TextView
         android:id="@+id/text_Remover_Entidade"
-        android:layout_width="224dp"
+        android:layout_width="255dp"
         android:layout_height="34dp"
         android:layout_marginTop="45dp"
         android:text="Remover Entidade"
@@ -75,13 +75,16 @@
 
     <TextView
         android:id="@+id/text_Cadastrar_Entidade"
-        android:layout_width="224dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginLeft="68dp"
+        android:layout_width="255dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="Cadastrar Entidade"
         android:textSize="25sp"
+        app:layout_constraintEnd_toStartOf="@+id/imgButton_Cadastrar_Entidade"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,7 +101,7 @@
 
     <TextView
         android:id="@+id/text_Cadastrar_Doacao"
-        android:layout_width="224dp"
+        android:layout_width="255dp"
         android:layout_height="35dp"
         android:layout_marginTop="45dp"
         android:text="Cadastrar Doação"
@@ -120,7 +123,7 @@
 
     <TextView
         android:id="@+id/text_Remover_Doacao"
-        android:layout_width="224dp"
+        android:layout_width="255dp"
         android:layout_height="35dp"
         android:layout_marginTop="45dp"
         android:text="Remover Doação"
@@ -142,7 +145,7 @@
 
     <TextView
         android:id="@+id/text_Update_Doacao"
-        android:layout_width="224dp"
+        android:layout_width="255dp"
         android:layout_height="35dp"
         android:layout_marginTop="45dp"
         android:text="Update Doação"

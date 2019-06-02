@@ -22,8 +22,8 @@ public class TelaDoacao extends AppCompatActivity {
 
     public void seebar() {
 
-        seekBar = (SeekBar)findViewById(R.id.seekQtd);
-        textView = (TextView)findViewById(R.id.txtQtd);
+        seekBar = findViewById(R.id.seekQtd);
+        textView = findViewById(R.id.txtQtd);
         textView.setText(":): " +seekBar.getProgress() + "/" + seekBar.getMax());
 
         seekBar.setOnSeekBarChangeListener(
