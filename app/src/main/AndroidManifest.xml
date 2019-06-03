@@ -12,7 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TelaAdmin.CadastroDoacao"></activity>
-        <activity android:name=".TelaDoacao" />
         <activity android:name=".TelaAdmin.RemoverMembro" />
         <activity android:name=".TelaAdmin.UpdateEntidade" />
         <activity android:name=".TelaAdmin.RemoverEntidade" />

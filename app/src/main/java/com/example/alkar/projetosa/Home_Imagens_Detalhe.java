@@ -25,9 +25,4 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
-    public void proximaTelaDoar(View view){
-
-        Intent intent = new Intent(this, TelaDoacao.class);
-        startActivity(intent);
-    }
 }

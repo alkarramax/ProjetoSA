@@ -10,6 +10,7 @@ import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -23,7 +24,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
@@ -32,6 +35,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.Random;
 import java.util.UUID;
+
+import javax.annotation.Nullable;
 
 public class CadastroDoacao extends AppCompatActivity {
 
@@ -49,6 +54,8 @@ public class CadastroDoacao extends AppCompatActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference entidadeRef = db.collection("entidade");
     private Task<DocumentReference> Resultado;
+
+    private Entidade entidade;
 
 
     @Override
@@ -79,7 +86,6 @@ public class CadastroDoacao extends AppCompatActivity {
 
     private void saveDoacao() {
 
-        final String uuid = UUID.randomUUID().toString();
 
         String nome = textInputNomeEntidade.getEditText().getText().toString().trim();
         String tipo1 = textInputTipo1.getEditText().getText().toString().trim();
@@ -91,29 +97,19 @@ public class CadastroDoacao extends AppCompatActivity {
         String hora = textHora.getEditText().getText().toString().trim();
         String data = textData.getEditText().getText().toString().trim();
 
-
         final Doacao doacao = new Doacao(nome, tipo1, tipo2, tipo3, tipo4, objetivo, local, data, hora);
+        Resultado = entidadeRef.document("Doações").collection(doacao.getNome()).add(doacao);
 
-
-        Resultado = entidadeRef.document(uuid).collection("doacao").add(doacao);
-        Resultado.addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                if(task.isSuccessful()) {
-                    Toast.makeText(CadastroDoacao.this, "Cadastrado", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
-                    startActivity(intent);
-                } else {
-                    Toast.makeText(CadastroDoacao.this, "Erro " + task.getResult(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        if(Resultado.isSuccessful()) {
+            Toast.makeText(this, "Cadastrado", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+        }
     }
 
-
-
     public void voltarTelaAdm(View view){
-
         Intent intent = new Intent(this, TelaAdmin.class);
         startActivity(intent);
     }
