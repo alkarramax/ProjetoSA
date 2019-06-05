@@ -8,6 +8,8 @@
       <w>dados</w>
       <w>descricao</w>
       <w>doacao</w>
+      <w>doação</w>
+      <w>doações</w>
       <w>endereco</w>
       <w>entid</w>
       <w>entidade</w>
@@ -21,6 +23,7 @@
       <w>sobrenome</w>
       <w>softplayer</w>
       <w>softplayers</w>
+      <w>solidariedade</w>
       <w>telefone</w>
       <w>unidade</w>
     </words>

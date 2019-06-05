@@ -53,10 +53,6 @@ public class CadastroDoacao extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference entidadeRef = db.collection("entidade");
-    private Task<DocumentReference> Resultado;
-
-    private Entidade entidade;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,16 +93,11 @@ public class CadastroDoacao extends AppCompatActivity {
         String hora = textHora.getEditText().getText().toString().trim();
         String data = textData.getEditText().getText().toString().trim();
 
-        final Doacao doacao = new Doacao(nome, tipo1, tipo2, tipo3, tipo4, objetivo, local, data, hora);
-        Resultado = entidadeRef.document("Doações").collection(doacao.getNome()).add(doacao);
+        Doacao doacao = new Doacao(nome, tipo1, tipo2, tipo3, tipo4, objetivo, local, data, hora);
 
-        if(Resultado.isSuccessful()) {
-            Toast.makeText(this, "Cadastrado", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
-        }
+        entidadeRef.document("Doações").collection("Doação").add(doacao);
+        Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+        startActivity(intent);
     }
 
     public void voltarTelaAdm(View view){
