@@ -45,9 +45,6 @@ public class Home extends AppCompatActivity  {
                         case R.id.nav_notifications:
                             selectedFragment = new NotificationsFragment();
                             break;
-                        case R.id.nav_campanhas:
-                            selectedFragment = new CampanhaFragment();
-                            break;
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();

@@ -89,6 +89,7 @@ public class HomeFragment extends Fragment {
         public void bind(@NonNull ViewHolder viewHolder, final int position) {
             final TextView nomeEntidade  = viewHolder.itemView.findViewById(R.id.nome_entidade_id);
             ImageView img_photo    = viewHolder.itemView.findViewById(R.id.entidade_img_id);
+            TextView descEntidade = viewHolder.itemView.findViewById(R.id.descricao_entidade);
             CardView cardView      = viewHolder.itemView.findViewById(R.id.cardview_id);
 
             cardView.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +101,7 @@ public class HomeFragment extends Fragment {
             });
 
             nomeEntidade.setText(entidade.getNome());
+            descEntidade.setText(entidade.getDescricao());
 
             Picasso.get()
                     .load(entidade.getEntidadeUrl())
