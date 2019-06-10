@@ -26,6 +26,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -68,7 +69,7 @@ public class Cadastro_Entidade extends AppCompatActivity {
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveEntidade();
+                        saveEntidade();
             }
         });
 
@@ -86,11 +87,10 @@ public class Cadastro_Entidade extends AppCompatActivity {
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                Log.i("Teste", uri.toString());
 
                                 String uuid = UUID.randomUUID().toString();
-                                String nome = textInputNomeEntidade.getEditText().getText().toString().trim();
                                 String descricao = textInputDescricao.getEditText().getText().toString().trim();
+                                String nome = textInputNomeEntidade.getEditText().getText().toString().trim();
                                 String entidadeUrl = uri.toString();
 
                                 Entidade entidade = new Entidade(uuid, nome, descricao, entidadeUrl);

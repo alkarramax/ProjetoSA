@@ -13,15 +13,10 @@ import android.widget.Toast;
 
 import com.example.alkar.projetosa.Firebase.Doacao;
 import com.example.alkar.projetosa.Firebase.Entidade;
-import com.example.alkar.projetosa.Fragmentos.HomeFragment;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -30,20 +25,18 @@ import com.xwray.groupie.GroupAdapter;
 import com.xwray.groupie.Item;
 import com.xwray.groupie.ViewHolder;
 
-import org.w3c.dom.Text;
-
-import javax.annotation.Nullable;
+import java.util.UUID;
 
 import static android.graphics.BitmapFactory.decodeStream;
 
 public class Home_Imagens_Detalhe extends AppCompatActivity {
 
     private GroupAdapter adapter;
-    private Entidade entidade;
+    private final Entidade entidade;
 
-    FirebaseFirestore db;
-    CollectionReference entidadeRef = db.collection("entidade");
-
+    public Home_Imagens_Detalhe(Entidade entidade) {
+        this.entidade = entidade;
+    }
 
 
     @Override
@@ -61,23 +54,24 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
     }
 
     private void dados() {
-        Query queryEntidades = entidadeRef.whereEqualTo("nome", entidade.getNome());
 
-        queryEntidades.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        Query queryEntidades = FirebaseFirestore.getInstance().collection("entidade")
+                .whereEqualTo("nome", "along");
+
+        queryEntidades.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()) {
-                    for(QueryDocumentSnapshot document : task.getResult()) {
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                        Entidade entidade = document.toObject(Entidade.class);
-                        Doacao doacao = document.toObject(Doacao.class);
+                Toast.makeText(Home_Imagens_Detalhe.this, "AAAAAAAAAAAAAA", Toast.LENGTH_SHORT).show();
+                /*
+                for(QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    Entidade entidade = document.toObject(Entidade.class);
+                    //Doacao doacao = document.toObject(Doacao.class);
 
-                        adapter.add(new EntidadeItem(entidade));
-                        adapter.add(new DoacaoItem(doacao));
-                    }
-                } else  {
-                    Toast.makeText(Home_Imagens_Detalhe.this, "Error: " + task.getResult(), Toast.LENGTH_SHORT).show();
+                    adapter.add(new EntidadeItem(entidade));
+                    //adapter.add(new DoacaoItem(doacao));
                 }
+                */
             }
         });
 
