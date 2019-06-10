@@ -34,6 +34,8 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
+    public static final String NOME_TEXT = "nome";
+
     private Context mContext;
     private GroupAdapter adapter;
 
@@ -85,7 +87,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void bind(@NonNull ViewHolder viewHolder, final int position) {
-            TextView nomeEntidade  = viewHolder.itemView.findViewById(R.id.nome_entidade_id);
+            final TextView nomeEntidade  = viewHolder.itemView.findViewById(R.id.nome_entidade_id);
             ImageView img_photo    = viewHolder.itemView.findViewById(R.id.entidade_img_id);
             CardView cardView      = viewHolder.itemView.findViewById(R.id.cardview_id);
 
@@ -109,38 +111,4 @@ public class HomeFragment extends Fragment {
             return R.layout.cardview_home;
         }
     }
-
-    /*
-    public class DoacaoItem extends Item<ViewHolder> {
-
-        private final Doacao doacao;
-
-        public DoacaoItem(Doacao doacao) {
-            this.doacao = doacao;
-        }
-
-
-        @Override
-        public void bind(@NonNull ViewHolder viewHolder, int position) {
-            CardView cardView = viewHolder.itemView.findViewById(R.id.cardview_id);
-
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), Home_Imagens_Detalhe.class);
-                    intent.putExtra("Objetivo", doacao.getObjetivo());
-
-                    startActivity(intent);
-                }
-            });
-
-
-        }
-
-        @Override
-        public int getLayout() {
-            return R.layout.activity_cadastro_doacao;
-        }
-    }
-    */
 }

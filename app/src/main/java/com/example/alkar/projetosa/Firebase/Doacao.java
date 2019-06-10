@@ -2,7 +2,6 @@ package com.example.alkar.projetosa.Firebase;
 
 public class Doacao {
 
-    private String nome;
     private String tipo1;
     private String tipo2;
     private String tipo3;
@@ -15,8 +14,7 @@ public class Doacao {
     public Doacao() {
     }
 
-    public Doacao(String nome, String tipo1, String tipo2, String tipo3, String tipo4, String objetivo, String local, String hora, String data){
-        this.nome = nome;
+    public Doacao(String tipo1, String tipo2, String tipo3, String tipo4, String objetivo, String local, String hora, String data){
         this.tipo1 = tipo1;
         this.tipo2 = tipo2;
         this.tipo3 = tipo3;
@@ -25,10 +23,6 @@ public class Doacao {
         this.local = local;
         this.hora = hora;
         this.data = data;
-    }
-
-    public String getNome() {
-        return nome;
     }
 
     public String getTipo1() {

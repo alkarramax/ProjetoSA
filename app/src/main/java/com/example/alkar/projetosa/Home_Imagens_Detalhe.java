@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,12 +13,15 @@ import android.widget.Toast;
 
 import com.example.alkar.projetosa.Firebase.Doacao;
 import com.example.alkar.projetosa.Firebase.Entidade;
+import com.example.alkar.projetosa.Fragmentos.HomeFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -28,11 +32,15 @@ import com.xwray.groupie.ViewHolder;
 
 import org.w3c.dom.Text;
 
+import javax.annotation.Nullable;
+
 import static android.graphics.BitmapFactory.decodeStream;
 
 public class Home_Imagens_Detalhe extends AppCompatActivity {
 
     private GroupAdapter adapter;
+    private Entidade entidade;
+
     FirebaseFirestore db;
     CollectionReference entidadeRef = db.collection("entidade");
 
@@ -46,23 +54,33 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.recyclerview_home_detalhes);
         adapter = new GroupAdapter();
         rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         dados();
 
     }
 
     private void dados() {
-        entidadeRef.document("Doações")
-                .collection("Doação").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for(QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                            Doacao doacao = document.toObject(Doacao.class);
-                            adapter.add(new DoacaoItem(doacao));
-                        }
+        Query queryEntidades = entidadeRef.whereEqualTo("nome", entidade.getNome());
+
+        queryEntidades.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    for(QueryDocumentSnapshot document : task.getResult()) {
+
+                        Entidade entidade = document.toObject(Entidade.class);
+                        Doacao doacao = document.toObject(Doacao.class);
+
+                        adapter.add(new EntidadeItem(entidade));
+                        adapter.add(new DoacaoItem(doacao));
                     }
-                });
+                } else  {
+                    Toast.makeText(Home_Imagens_Detalhe.this, "Error: " + task.getResult(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
     public class DoacaoItem extends Item<ViewHolder> {
@@ -111,9 +129,6 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
             Picasso.get()
                     .load(entidade.getEntidadeUrl())
                     .into(imageView);
-
-
-
         }
 
         @Override
@@ -122,9 +137,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         }
     }
 
-
     public void voltarTela(View view){
-
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }

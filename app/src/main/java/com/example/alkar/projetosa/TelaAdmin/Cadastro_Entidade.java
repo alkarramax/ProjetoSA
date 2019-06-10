@@ -22,8 +22,10 @@ import com.example.alkar.projetosa.Firebase.Entidade;
 import com.example.alkar.projetosa.Firebase.Softplayer;
 import com.example.alkar.projetosa.R;
 import com.example.alkar.projetosa.cadastroSoftplayer;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -73,6 +75,7 @@ public class Cadastro_Entidade extends AppCompatActivity {
 
     }
 
+
     private void saveEntidade() {
         final String filename = UUID.randomUUID().toString();
         final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/" + filename);
@@ -85,7 +88,7 @@ public class Cadastro_Entidade extends AppCompatActivity {
                             public void onSuccess(Uri uri) {
                                 Log.i("Teste", uri.toString());
 
-                                String uuid = filename;
+                                String uuid = UUID.randomUUID().toString();
                                 String nome = textInputNomeEntidade.getEditText().getText().toString().trim();
                                 String descricao = textInputDescricao.getEditText().getText().toString().trim();
                                 String entidadeUrl = uri.toString();
@@ -93,17 +96,15 @@ public class Cadastro_Entidade extends AppCompatActivity {
                                 Entidade entidade = new Entidade(uuid, nome, descricao, entidadeUrl);
 
                                 FirebaseFirestore.getInstance().collection("entidade")
-                                        .add(entidade)
-                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        .document(nome).set(entidade)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
-                                            public void onSuccess(DocumentReference documentReference) {
-                                                Toast.makeText(Cadastro_Entidade.this, "Deu certo" +documentReference.getId(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(Cadastro_Entidade.this, "Ruim" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if(task.isSuccessful()) {
+                                                    Toast.makeText(Cadastro_Entidade.this, "Entidade Cadastrada", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toast.makeText(Cadastro_Entidade.this, " :( ", Toast.LENGTH_SHORT).show();
+                                                }
                                             }
                                         });
                             }
@@ -112,6 +113,7 @@ public class Cadastro_Entidade extends AppCompatActivity {
                 });
 
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

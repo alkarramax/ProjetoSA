@@ -33,6 +33,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
@@ -52,7 +54,7 @@ public class CadastroDoacao extends AppCompatActivity {
     private Button cadastrar;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference entidadeRef = db.collection("entidade");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,11 +95,30 @@ public class CadastroDoacao extends AppCompatActivity {
         String hora = textHora.getEditText().getText().toString().trim();
         String data = textData.getEditText().getText().toString().trim();
 
-        Doacao doacao = new Doacao(nome, tipo1, tipo2, tipo3, tipo4, objetivo, local, data, hora);
+        Map<String, Object> Doacao = new HashMap<>();
+        Doacao.put("tipo1", tipo1);
+        Doacao.put("tipo2", tipo2);
+        Doacao.put("tipo3", tipo3);
+        Doacao.put("tipo4", tipo4);
+        Doacao.put("objetivo", objetivo);
+        Doacao.put("local", local);
+        Doacao.put("hora", hora);
+        Doacao.put("data", data);
 
-        entidadeRef.document("Doações").collection("Doação").add(doacao);
-        Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
-        startActivity(intent);
+        Doacao doacao = new Doacao(tipo1, tipo2, tipo3, tipo4, objetivo, local, data, hora);
+
+        db.collection("entidade").document(nome)
+                .update(Doacao)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(CadastroDoacao.this, "Doacao Cadastrada", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(CadastroDoacao.this, " :( ", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     public void voltarTelaAdm(View view){
