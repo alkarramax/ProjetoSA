@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -36,7 +37,7 @@ import static android.graphics.BitmapFactory.decodeStream;
 public class Home_Imagens_Detalhe extends AppCompatActivity {
 
     private GroupAdapter adapter;
-    private int contador = 0;
+    private String contador = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,28 +100,25 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
             imageButtonDoar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    contador +=1;
+                    contador += "1";
 
-                    Map<String, Object> Contador = new HashMap<>();
-                    Contador.put("Doações", contador);
 
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    CollectionReference collectionReference = db.collection("softplayer");
-                    Query nome = collectionReference.whereEqualTo("nome", FirebaseAuth.getInstance().getUid());
+                    final CollectionReference collectionReference = db.collection("softplayers");
+                    final Query nome = collectionReference.whereEqualTo("uuid", FirebaseAuth.getInstance().getUid());
 
-                    db.collection("softplayer").document(String.valueOf(nome))
+
+                    Map<String, Object> Contador = new HashMap<>();
+                    Contador.put("contador", contador);
+
+                    collectionReference.document(FirebaseAuth.getInstance().getUid())
                             .update(Contador)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful()) {
-                                        Toast.makeText(getApplicationContext(), "Doação Cadastrada", Toast.LENGTH_SHORT).show();
-                                    } else {
-                                        Toast.makeText(getApplicationContext(), " :( " + task.getResult(), Toast.LENGTH_SHORT).show();
-                                    }
+                                    Toast.makeText(Home_Imagens_Detalhe.this, "Correquiti ", Toast.LENGTH_SHORT).show();
                                 }
                             });
-
                 }
             });
 

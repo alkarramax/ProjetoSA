@@ -217,21 +217,16 @@ public class cadastroSoftplayer extends AppCompatActivity {
                                 String unidade = textInputUnidade.getEditText().getText().toString().trim();
                                 String cargo = textInputCargo.getEditText().getText().toString().trim();
                                 String profileUrl = uri.toString();
+                                String contador = "0";
 
-                                Softplayer softplayer = new Softplayer(uid, nome, sobrenome, email, unidade, cargo, profileUrl);
+                                Softplayer softplayer = new Softplayer(uid, nome, sobrenome, email, unidade, cargo, profileUrl, contador);
 
-                                FirebaseFirestore.getInstance().collection("softplayers")
-                                        .add(softplayer)
-                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                FirebaseFirestore.getInstance().collection("softplayers").document(uid)
+                                        .set(softplayer)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
-                                            public void onSuccess(DocumentReference documentReference) {
+                                            public void onComplete(@NonNull Task<Void> task) {
                                                 irLogin();
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(cadastroSoftplayer.this, "Ruim" + e.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         });
                             }

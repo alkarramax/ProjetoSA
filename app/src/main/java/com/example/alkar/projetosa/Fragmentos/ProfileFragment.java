@@ -87,16 +87,19 @@ public class ProfileFragment extends Fragment {
 
         @Override
         public void bind(@NonNull ViewHolder viewHolder, int position) {
+
             TextView nome = viewHolder.itemView.findViewById(R.id.textViewNome);
             TextView cargo = viewHolder.itemView.findViewById(R.id.textViewCargo);
             TextView unidade = viewHolder.itemView.findViewById(R.id.textViewUnidade);
             TextView email = viewHolder.itemView.findViewById(R.id.textViewEmail);
             ImageView img_photo = viewHolder.itemView.findViewById(R.id.imagemViewPerfil);
+            TextView contador = viewHolder.itemView.findViewById(R.id.contadorDoacao);
 
             nome.setText(softplayer.getNome());
             cargo.setText(softplayer.getCargo());
             unidade.setText(softplayer.getUnidade());
             email.setText(softplayer.getEmail());
+            contador.setText(softplayer.getContador());
 
             Picasso.get()
                     .load(softplayer.getProfileUrl())

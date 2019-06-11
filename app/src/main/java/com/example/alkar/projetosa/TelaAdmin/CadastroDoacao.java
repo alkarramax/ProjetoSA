@@ -105,8 +105,6 @@ public class CadastroDoacao extends AppCompatActivity {
         Entidade.put("hora", hora);
         Entidade.put("data", data);
 
-        Entidade entidadeDoacao = new Entidade(tipo1, tipo2, tipo3, tipo4, objetivo, local, data, hora);
-
         db.collection("entidade").document(nome)
                 .update(Entidade)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
