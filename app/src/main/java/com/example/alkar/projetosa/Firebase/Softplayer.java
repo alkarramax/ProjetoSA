@@ -9,6 +9,8 @@ public class Softplayer {
     private String cargo;
     private String unidade;
     private String profileUrl;
+    private int contador;
+
 
 
     public Softplayer() {
@@ -22,6 +24,10 @@ public class Softplayer {
         this.cargo = cargo;
         this.unidade = unidade;
         this.profileUrl = profileUrl;
+    }
+
+    public Softplayer(int contador) {
+        this.contador = contador;
     }
 
     public String getUuid() {
@@ -50,5 +56,9 @@ public class Softplayer {
 
     public String getUnidade() {
         return unidade;
+    }
+
+    public int getContador() {
+        return contador;
     }
 }

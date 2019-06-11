@@ -7,13 +7,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alkar.projetosa.Firebase.Doacao;
 import com.example.alkar.projetosa.Firebase.Entidade;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.alkar.projetosa.TelaAdmin.CadastroDoacao;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,19 +28,15 @@ import com.xwray.groupie.GroupAdapter;
 import com.xwray.groupie.Item;
 import com.xwray.groupie.ViewHolder;
 
-import java.util.UUID;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.graphics.BitmapFactory.decodeStream;
 
 public class Home_Imagens_Detalhe extends AppCompatActivity {
 
     private GroupAdapter adapter;
-    private final Entidade entidade;
-
-    public Home_Imagens_Detalhe(Entidade entidade) {
-        this.entidade = entidade;
-    }
-
+    private int contador = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,26 +54,88 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
     private void dados() {
 
-        Query queryEntidades = FirebaseFirestore.getInstance().collection("entidade")
-                .whereEqualTo("nome", "along");
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference collectionReference = db.collection("entidade");
 
-        queryEntidades.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        Intent intent = getIntent();
+        String nomeEntidade = intent.getStringExtra("nome");
+
+        Query queryEntidade = collectionReference.whereEqualTo("nome", nomeEntidade);
+        queryEntidade.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                Toast.makeText(Home_Imagens_Detalhe.this, "AAAAAAAAAAAAAA", Toast.LENGTH_SHORT).show();
-                /*
-                for(QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                    Entidade entidade = document.toObject(Entidade.class);
-                    //Doacao doacao = document.toObject(Doacao.class);
-
-                    adapter.add(new EntidadeItem(entidade));
-                    //adapter.add(new DoacaoItem(doacao));
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()) {
+                    for(QueryDocumentSnapshot document : task.getResult()) {
+                        Entidade entidade = document.toObject(Entidade.class);
+                        adapter.add(new EntidadeItem(entidade));
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "Something is wrong", Toast.LENGTH_SHORT).show();
                 }
-                */
             }
         });
 
+    }
+
+    public class EntidadeItem extends Item<ViewHolder> {
+
+        private final Entidade entidade;
+
+        public EntidadeItem(Entidade entidade) {
+            this.entidade = entidade;
+        }
+
+
+        @Override
+        public void bind(@NonNull ViewHolder viewHolder, int position) {
+            TextView nomeEntidade = viewHolder.itemView.findViewById(R.id.txtTitle);
+            TextView descricao = viewHolder.itemView.findViewById(R.id.txtDescri);
+            ImageView imageView = viewHolder.itemView.findViewById(R.id.bookthumbnail);
+            TextView descricaoObj = viewHolder.itemView.findViewById(R.id.txtObj);
+            TextView data = viewHolder.itemView.findViewById(R.id.txtData);
+            TextView local = viewHolder.itemView.findViewById(R.id.textLocal);
+            Button imageButtonDoar = viewHolder.itemView.findViewById(R.id.imageButtonDoar);
+
+            imageButtonDoar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    contador +=1;
+
+                    Map<String, Object> Contador = new HashMap<>();
+                    Contador.put("Doações", contador);
+
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    CollectionReference collectionReference = db.collection("softplayer");
+                    Query nome = collectionReference.whereEqualTo("nome", FirebaseAuth.getInstance().getUid());
+
+                    db.collection("softplayer").document(String.valueOf(nome))
+                            .update(Contador)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()) {
+                                        Toast.makeText(getApplicationContext(), "Doação Cadastrada", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), " :( " + task.getResult(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+                }
+            });
+
+            nomeEntidade.setText(entidade.getNome());
+            descricao.setText(entidade.getDescricao());
+            Picasso.get().load(entidade.getEntidadeUrl()).into(imageView);
+            descricaoObj.setText(entidade.getObjetivo());
+            data.setText(entidade.getData());
+            local.setText(entidade.getLocal());
+        }
+
+        @Override
+        public int getLayout() {
+            return R.layout.cardview_home_detalhes;
+        }
     }
 
     public class DoacaoItem extends Item<ViewHolder> {
@@ -87,42 +148,14 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
         @Override
         public void bind(@NonNull ViewHolder viewHolder, int position) {
-            TextView descricao = viewHolder.itemView.findViewById(R.id.txtDescri);
+            TextView descricaoObj = viewHolder.itemView.findViewById(R.id.txtObj);
             TextView data = viewHolder.itemView.findViewById(R.id.txtData);
             TextView local = viewHolder.itemView.findViewById(R.id.textLocal);
 
-            descricao.setText(doacao.getObjetivo());
+            descricaoObj.setText(doacao.getObjetivo());
             data.setText(doacao.getData());
             local.setText(doacao.getLocal());
 
-        }
-
-        @Override
-        public int getLayout() {
-            return R.layout.cardview_home_detalhes;
-        }
-    }
-
-    public class EntidadeItem extends Item<ViewHolder> {
-
-        private final Entidade entidade;
-
-        public EntidadeItem(Entidade entidade) {
-            this.entidade = entidade;
-        }
-
-        @Override
-        public void bind(@NonNull ViewHolder viewHolder, int position) {
-            TextView nomeEntidade = viewHolder.itemView.findViewById(R.id.txtTitle);
-            TextView descricao = viewHolder.itemView.findViewById(R.id.txtDescri);
-            ImageView imageView = viewHolder.itemView.findViewById(R.id.bookthumbnail);
-
-            nomeEntidade.setText(entidade.getNome());
-            descricao.setText(entidade.getDescricao());
-
-            Picasso.get()
-                    .load(entidade.getEntidadeUrl())
-                    .into(imageView);
         }
 
         @Override
