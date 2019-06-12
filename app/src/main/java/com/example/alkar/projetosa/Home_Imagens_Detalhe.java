@@ -87,21 +87,36 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
 
         @Override
-        public void bind(@NonNull final ViewHolder viewHolder, int position) {
+        public void bind(@NonNull ViewHolder viewHolder, int position) {
             TextView nomeEntidade = viewHolder.itemView.findViewById(R.id.txtTitle);
             TextView descricao = viewHolder.itemView.findViewById(R.id.txtDescri);
             TextView descricaoObj = viewHolder.itemView.findViewById(R.id.txtObj);
             TextView data = viewHolder.itemView.findViewById(R.id.txtData);
             TextView local = viewHolder.itemView.findViewById(R.id.textLocal);
 
+            final ImageView softConfirm = viewHolder.itemView.findViewById(R.id.softDoacao);
             ImageView imageView = viewHolder.itemView.findViewById(R.id.bookthumbnail);
             Button imageButtonDoar = viewHolder.itemView.findViewById(R.id.imageButtonDoar);
+
+            nomeEntidade.setText(entidade.getNome());
+            descricao.setText(entidade.getDescricao());
+            Picasso.get().load(entidade.getEntidadeUrl()).into(imageView);
+            descricaoObj.setText(entidade.getObjetivo());
+            data.setText(entidade.getData());
+            local.setText(entidade.getLocal());
 
             imageButtonDoar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
+
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    CollectionReference collectionReference = db.collection("softplayers");
+                    final CollectionReference collectionReference = db.collection("softplayers");
+
+
+
+
+
 
                     Query querySoftplayers = collectionReference.whereEqualTo("uuid", FirebaseAuth.getInstance().getUid());
 
@@ -111,7 +126,25 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
                             if(task.isSuccessful()) {
                                 for(QueryDocumentSnapshot document : task.getResult()) {
                                     Softplayer softplayer = document.toObject(Softplayer.class);
-                                    adapter.add(new SoftplayerItem(softplayer));
+
+                                    int contador = softplayer.getContador();
+                                    contador += 1;
+
+                                    Map<String, Object> Contador = new HashMap<>();
+                                    Contador.put("contador", contador);
+
+
+                                    collectionReference.document(FirebaseAuth.getInstance().getUid()).update(Contador)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Toast.makeText(Home_Imagens_Detalhe.this, "Doação feita", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+
+
+
+                                    Picasso.get().load(softplayer.getProfileUrl()).into(softConfirm);
                                 }
                             } else {
                                 Toast.makeText(getApplicationContext(), "Something is wrong", Toast.LENGTH_SHORT).show();
@@ -120,13 +153,6 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
                     });
                 }
             });
-
-            nomeEntidade.setText(entidade.getNome());
-            descricao.setText(entidade.getDescricao());
-            Picasso.get().load(entidade.getEntidadeUrl()).into(imageView);
-            descricaoObj.setText(entidade.getObjetivo());
-            data.setText(entidade.getData());
-            local.setText(entidade.getLocal());
         }
 
         @Override
@@ -134,67 +160,19 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
             return R.layout.cardview_home_detalhes;
         }
 
-        public class SoftplayerItem extends Item<ViewHolder> {
 
-            private final Softplayer softplayer;
-
-            public SoftplayerItem(Softplayer softplayer) {
-                this.softplayer = softplayer;
-            }
-
-
-            @Override
-            public void bind(@NonNull ViewHolder viewHolder, int position) {
-                final ImageView softConfirm = viewHolder.itemView.findViewById(R.id.softDoacao);
-
-                int contador = softplayer.getContador();
-                contador ++;
-
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                final CollectionReference collectionReference = db.collection("softplayers");
-
-                Map<String, Object> Contador = new HashMap<>();
-                Contador.put("contador", contador);
-
-                collectionReference.document(FirebaseAuth.getInstance().getUid())
-                        .update(Contador)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if(task.isSuccessful()) {
-                                    Picasso.get().load(softplayer.getContador()).into(softConfirm);
-
-                                    Toast.makeText(Home_Imagens_Detalhe.this, "Doação feita.", Toast.LENGTH_SHORT).show();
-                                }
-
-                            }
-                        });
-            }
-
-            @Override
-            public int getLayout() {
-                return R.layout.cardview_home_detalhes;
-            }
-        }
     }
 
-    public class DoacaoItem extends Item<ViewHolder> {
+    public class SoftplayerItem extends Item<ViewHolder> {
 
-        private final Doacao doacao;
+        private final Softplayer softplayer;
 
-        public DoacaoItem(Doacao doacao) {
-            this.doacao = doacao;
+        public SoftplayerItem(Softplayer softplayer) {
+            this.softplayer = softplayer;
         }
 
         @Override
         public void bind(@NonNull ViewHolder viewHolder, int position) {
-            TextView descricaoObj = viewHolder.itemView.findViewById(R.id.txtObj);
-            TextView data = viewHolder.itemView.findViewById(R.id.txtData);
-            TextView local = viewHolder.itemView.findViewById(R.id.textLocal);
-
-            descricaoObj.setText(doacao.getObjetivo());
-            data.setText(doacao.getData());
-            local.setText(doacao.getLocal());
 
         }
 
@@ -204,7 +182,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         }
     }
 
-    public void voltarTela(View view){
+    public void voltarTela(View view) {
         Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }

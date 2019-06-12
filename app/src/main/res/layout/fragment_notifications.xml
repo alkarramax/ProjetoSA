@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -27,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="333dp"
-        android:text="     O Grupo Solidário nasceu por iniciativa de colaboradores voluntários da Softplan, que se unem para promover ações de assistência social, organizando campanhas beneficentes. A Softplan é uma das parceiras, e apoia financeiramente as campanhas, enquanto os colaboradores voluntários se reúnem e doam um pouco do seu tempo livre. As campanhas promovidas têm como público-alvo as entidades que assistem crianças e idosos."
+        android:text="@string/o_grupo_solid_rio_nasceu_por_iniciativa_de_colaboradores_volunt_rios_da_softplan_que_se_unem_para_promover_a_es_de_assist_ncia_social_organizando_campanhas_beneficentes_a_softplan_uma_das_parceiras_e_apoia_financeiramente_as_campanhas_enquanto_os_colaboradores_volunt_rios_se_re_nem_e_doam_um_pouco_do_seu_tempo_livre_as_campanhas_promovidas_t_m_como_p_blico_alvo_as_entidades_que_assistem_crian_as_e_idosos"
         android:textColor="#fff"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"

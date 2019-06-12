@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/mainTela"
-    android:background="@drawable/mainactivity"
+    android:background="@drawable/gradient"
     android:theme="@style/Theme.Design"
     tools:context=".LoginMain"
     tools:ignore="ExtraText">
@@ -51,7 +51,7 @@
         android:layout_height="85dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:errorEnabled="true"

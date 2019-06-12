@@ -153,7 +153,7 @@
                 android:layout_marginEnd="336dp"
                 android:layout_marginRight="336dp"
                 android:layout_marginBottom="30dp"
-                android:src="@drawable/eu" />
+                android:src="@drawable/profileblank" />
 
 
             <Button
