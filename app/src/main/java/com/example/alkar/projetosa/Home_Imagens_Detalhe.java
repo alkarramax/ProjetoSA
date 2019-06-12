@@ -14,12 +14,12 @@ import android.widget.Toast;
 
 import com.example.alkar.projetosa.Firebase.Doacao;
 import com.example.alkar.projetosa.Firebase.Entidade;
-import com.example.alkar.projetosa.TelaAdmin.CadastroDoacao;
+import com.example.alkar.projetosa.Firebase.Softplayer;
+import com.example.alkar.projetosa.Fragmentos.ProfileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -37,7 +37,6 @@ import static android.graphics.BitmapFactory.decodeStream;
 public class Home_Imagens_Detalhe extends AppCompatActivity {
 
     private GroupAdapter adapter;
-    private String contador = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,37 +87,37 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
 
         @Override
-        public void bind(@NonNull ViewHolder viewHolder, int position) {
+        public void bind(@NonNull final ViewHolder viewHolder, int position) {
             TextView nomeEntidade = viewHolder.itemView.findViewById(R.id.txtTitle);
             TextView descricao = viewHolder.itemView.findViewById(R.id.txtDescri);
-            ImageView imageView = viewHolder.itemView.findViewById(R.id.bookthumbnail);
             TextView descricaoObj = viewHolder.itemView.findViewById(R.id.txtObj);
             TextView data = viewHolder.itemView.findViewById(R.id.txtData);
             TextView local = viewHolder.itemView.findViewById(R.id.textLocal);
+
+            ImageView imageView = viewHolder.itemView.findViewById(R.id.bookthumbnail);
             Button imageButtonDoar = viewHolder.itemView.findViewById(R.id.imageButtonDoar);
 
             imageButtonDoar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    contador += "1";
-
-
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    final CollectionReference collectionReference = db.collection("softplayers");
-                    final Query nome = collectionReference.whereEqualTo("uuid", FirebaseAuth.getInstance().getUid());
+                    CollectionReference collectionReference = db.collection("softplayers");
 
+                    Query querySoftplayers = collectionReference.whereEqualTo("uuid", FirebaseAuth.getInstance().getUid());
 
-                    Map<String, Object> Contador = new HashMap<>();
-                    Contador.put("contador", contador);
-
-                    collectionReference.document(FirebaseAuth.getInstance().getUid())
-                            .update(Contador)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    Toast.makeText(Home_Imagens_Detalhe.this, "Correquiti ", Toast.LENGTH_SHORT).show();
+                    querySoftplayers.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if(task.isSuccessful()) {
+                                for(QueryDocumentSnapshot document : task.getResult()) {
+                                    Softplayer softplayer = document.toObject(Softplayer.class);
+                                    adapter.add(new SoftplayerItem(softplayer));
                                 }
-                            });
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Something is wrong", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
                 }
             });
 
@@ -133,6 +132,49 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         @Override
         public int getLayout() {
             return R.layout.cardview_home_detalhes;
+        }
+
+        public class SoftplayerItem extends Item<ViewHolder> {
+
+            private final Softplayer softplayer;
+
+            public SoftplayerItem(Softplayer softplayer) {
+                this.softplayer = softplayer;
+            }
+
+
+            @Override
+            public void bind(@NonNull ViewHolder viewHolder, int position) {
+                final ImageView softConfirm = viewHolder.itemView.findViewById(R.id.softDoacao);
+
+                int contador = softplayer.getContador();
+                contador ++;
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                final CollectionReference collectionReference = db.collection("softplayers");
+
+                Map<String, Object> Contador = new HashMap<>();
+                Contador.put("contador", contador);
+
+                collectionReference.document(FirebaseAuth.getInstance().getUid())
+                        .update(Contador)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if(task.isSuccessful()) {
+                                    Picasso.get().load(softplayer.getContador()).into(softConfirm);
+
+                                    Toast.makeText(Home_Imagens_Detalhe.this, "Doação feita.", Toast.LENGTH_SHORT).show();
+                                }
+
+                            }
+                        });
+            }
+
+            @Override
+            public int getLayout() {
+                return R.layout.cardview_home_detalhes;
+            }
         }
     }
 

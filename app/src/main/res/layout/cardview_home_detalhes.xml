@@ -144,6 +144,7 @@
                 android:textSize="18sp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/softDoacao"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_above="@+id/imageButtonDoar"

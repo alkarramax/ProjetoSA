@@ -99,7 +99,7 @@ public class ProfileFragment extends Fragment {
             cargo.setText(softplayer.getCargo());
             unidade.setText(softplayer.getUnidade());
             email.setText(softplayer.getEmail());
-            contador.setText(softplayer.getContador());
+            contador.setText(String.valueOf(softplayer.getContador()));
 
             Picasso.get()
                     .load(softplayer.getProfileUrl())

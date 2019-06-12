@@ -9,14 +9,14 @@ public class Softplayer {
     private String cargo;
     private String unidade;
     private String profileUrl;
-    private String contador;
+    private int contador;
 
 
 
     public Softplayer() {
     }
 
-    public Softplayer(String uuid, String nome, String sobrenome, String email, String cargo, String unidade, String profileUrl, String contador) {
+    public Softplayer(String uuid, String nome, String sobrenome, String email, String cargo, String unidade, String profileUrl, int contador) {
         this.uuid = uuid;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -55,7 +55,7 @@ public class Softplayer {
         return unidade;
     }
 
-    public String getContador() {
+    public int getContador() {
         return contador;
     }
 }

@@ -217,7 +217,7 @@ public class cadastroSoftplayer extends AppCompatActivity {
                                 String unidade = textInputUnidade.getEditText().getText().toString().trim();
                                 String cargo = textInputCargo.getEditText().getText().toString().trim();
                                 String profileUrl = uri.toString();
-                                String contador = "0";
+                                int contador = 0;
 
                                 Softplayer softplayer = new Softplayer(uid, nome, sobrenome, email, unidade, cargo, profileUrl, contador);
 
