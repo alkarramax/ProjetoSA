@@ -143,8 +143,8 @@
                 android:textColor="#000"
                 android:textSize="18sp" />
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/softDoacao"
+            <android.support.v7.widget.CardView
+                android:id="@+id/perfilSoftplayer"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_above="@+id/imageButtonDoar"
@@ -152,8 +152,16 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginEnd="336dp"
                 android:layout_marginRight="336dp"
-                android:layout_marginBottom="30dp"
-                android:src="@drawable/profileblank" />
+                android:layout_marginBottom="30dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/softDoacao"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:src="@drawable/profileblank"/>
+
+            </android.support.v7.widget.CardView>
+
 
 
             <Button

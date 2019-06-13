@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -98,6 +99,8 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
             ImageView imageView = viewHolder.itemView.findViewById(R.id.bookthumbnail);
             Button imageButtonDoar = viewHolder.itemView.findViewById(R.id.imageButtonDoar);
 
+            CardView perfilSoft = viewHolder.itemView.findViewById(R.id.perfilSoftplayer);
+
             nomeEntidade.setText(entidade.getNome());
             descricao.setText(entidade.getDescricao());
             Picasso.get().load(entidade.getEntidadeUrl()).into(imageView);
@@ -108,15 +111,8 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
             imageButtonDoar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
                     final CollectionReference collectionReference = db.collection("softplayers");
-
-
-
-
-
 
                     Query querySoftplayers = collectionReference.whereEqualTo("uuid", FirebaseAuth.getInstance().getUid());
 
@@ -145,12 +141,24 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
 
                                     Picasso.get().load(softplayer.getProfileUrl()).into(softConfirm);
+
+
                                 }
                             } else {
                                 Toast.makeText(getApplicationContext(), "Something is wrong", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+                }
+            });
+
+
+            perfilSoft.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), TelaPerfil.class);
+                    intent.putExtra("uuid", FirebaseAuth.getInstance().getUid());
+                    startActivity(intent);
                 }
             });
         }
@@ -161,25 +169,6 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         }
 
 
-    }
-
-    public class SoftplayerItem extends Item<ViewHolder> {
-
-        private final Softplayer softplayer;
-
-        public SoftplayerItem(Softplayer softplayer) {
-            this.softplayer = softplayer;
-        }
-
-        @Override
-        public void bind(@NonNull ViewHolder viewHolder, int position) {
-
-        }
-
-        @Override
-        public int getLayout() {
-            return R.layout.cardview_home_detalhes;
-        }
     }
 
     public void voltarTela(View view) {
