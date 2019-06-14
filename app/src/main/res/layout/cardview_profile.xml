@@ -48,8 +48,8 @@
 
         <ImageButton
             android:id="@+id/imageButton"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="22dp"
             android:layout_marginEnd="360dp"
             android:layout_marginRight="360dp"
@@ -84,8 +84,8 @@
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentTop="true"
@@ -100,52 +100,27 @@
 
                 <TextView
                     android:id="@+id/textViewCargo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="198dp"
-                    android:layout_marginRight="198dp"
+                    android:layout_alignTop="@+id/imageView"
+                    android:layout_alignBottom="@+id/imageView"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toEndOf="@+id/imageView"
+                    android:layout_toRightOf="@+id/imageView"
                     android:text="Text View"
-                    android:textSize="19sp"
+                    android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/imageView"
                     tools:layout_editor_absoluteY="453dp" />
 
-                <LinearLayout
-                    android:id="@+id/relativeLayout"
-                    android:layout_width="250dp"
-                    android:layout_height="3dp"
-                    android:layout_alignStart="@+id/textViewCargo"
-                    android:layout_alignLeft="@+id/textViewCargo"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="45dp"
-                    android:layout_marginEnd="2dp"
-                    android:layout_marginRight="23dp"
-                    android:layout_marginBottom="312dp"
-                    android:background="#ebeef0"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.518"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                </LinearLayout>
-
                 <ImageView
                     android:id="@+id/imageView2"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_below="@+id/imageView"
                     android:layout_alignStart="@+id/imageView"
                     android:layout_alignLeft="@+id/imageView"
@@ -163,59 +138,33 @@
 
                 <TextView
                     android:id="@+id/textViewUnidade"
-                    android:layout_width="wrap_content"
+                    android:layout_width="250dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/imageView"
                     android:layout_alignStart="@+id/textViewCargo"
                     android:layout_alignLeft="@+id/textViewCargo"
-                    android:layout_alignEnd="@+id/textViewCargo"
-                    android:layout_alignRight="@+id/textViewCargo"
+                    android:layout_alignTop="@+id/imageView2"
+                    android:layout_alignBottom="@+id/imageView2"
                     android:layout_marginStart="0dp"
                     android:layout_marginLeft="0dp"
-                    android:layout_marginTop="26dp"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginRight="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="Text View"
-                    android:textSize="19sp"
+                    android:textSize="15sp"
                     tools:layout_editor_absoluteX="127dp"
                     tools:layout_editor_absoluteY="550dp" />
 
-                <LinearLayout
-                    android:layout_width="250dp"
-                    android:layout_height="2dp"
-                    android:layout_above="@+id/textViewEmail"
-                    android:layout_alignStart="@+id/textViewUnidade"
-                    android:layout_alignLeft="@+id/textViewUnidade"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginStart="-7dp"
-                    android:layout_marginLeft="-7dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginBottom="22dp"
-                    android:background="#ebeef0"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
-
-                </LinearLayout>
-
                 <TextView
                     android:id="@+id/textViewEmail"
-                    android:layout_width="248dp"
+                    android:layout_width="258dp"
                     android:layout_height="wrap_content"
                     android:layout_alignStart="@+id/textViewUnidade"
                     android:layout_alignLeft="@+id/textViewUnidade"
-                    android:layout_alignEnd="@+id/textViewUnidade"
-                    android:layout_alignRight="@+id/textViewUnidade"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="-2dp"
-                    android:layout_marginLeft="-2dp"
-                    android:layout_marginEnd="-164dp"
-                    android:layout_marginRight="-164dp"
-                    android:layout_marginBottom="209dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="142dp"
                     android:text="Text View"
-                    android:textSize="19sp"
+                    android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="@+id/textViewUnidade"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/textViewUnidade"
@@ -223,37 +172,18 @@
 
                 <ImageView
                     android:layout_width="35dp"
-                    android:layout_height="40dp"
+                    android:layout_height="35dp"
                     android:layout_below="@+id/imageView2"
                     android:layout_alignStart="@+id/imageView2"
                     android:layout_alignLeft="@+id/imageView2"
                     android:layout_alignEnd="@+id/imageView2"
                     android:layout_alignRight="@+id/imageView2"
-                    android:layout_alignParentBottom="true"
                     android:layout_marginStart="-1dp"
                     android:layout_marginLeft="-1dp"
                     android:layout_marginTop="26dp"
                     android:layout_marginEnd="0dp"
                     android:layout_marginRight="0dp"
-                    android:layout_marginBottom="204dp"
                     android:src="@drawable/email" />
-
-                <LinearLayout
-                    android:layout_width="250dp"
-                    android:layout_height="2dp"
-                    android:layout_alignStart="@+id/textViewEmail"
-                    android:layout_alignLeft="@+id/textViewEmail"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="-5dp"
-                    android:layout_marginLeft="-5dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginRight="2dp"
-                    android:layout_marginBottom="202dp"
-                    android:background="#ebeef0">
-
-                </LinearLayout>
 
 
             </RelativeLayout>
@@ -277,18 +207,18 @@
 
         <TextView
             android:id="@+id/contadorDoacao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="23dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="23dp"
+            android:inputType="number"
+            android:text="0"
             android:textColor="#fff"
             android:textSize="19sp"
-            android:inputType= "number"
-            android:text="0"
             app:layout_constraintBottom_toTopOf="@+id/cardView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.663"
+            app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
