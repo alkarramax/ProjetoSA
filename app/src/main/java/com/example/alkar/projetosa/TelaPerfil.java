@@ -45,15 +45,7 @@ public class TelaPerfil extends AppCompatActivity {
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-        voltar = findViewById(R.id.imageVoltar);
 
-        voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Home_Imagens_Detalhe.class);
-                startActivity(intent);
-            }
-        });
 
         dados();
     }
@@ -81,6 +73,9 @@ public class TelaPerfil extends AppCompatActivity {
                 }
             }
         });
+
+
+
     }
 
     public class SoftplayerItem extends Item<ViewHolder> {
@@ -94,12 +89,21 @@ public class TelaPerfil extends AppCompatActivity {
         @Override
         public void bind(@NonNull ViewHolder viewHolder, int position) {
 
-            TextView nome = viewHolder.itemView.findViewById(R.id.textEntidadePerfilNome);
-            TextView cargo = viewHolder.itemView.findViewById(R.id.textEntidadePerfilCargo);
-            TextView unidade = viewHolder.itemView.findViewById(R.id.textEntidadePerfilUnidade);
-            TextView email = viewHolder.itemView.findViewById(R.id.textEntidadePerfilEmail);
-            ImageView img_photo = viewHolder.itemView.findViewById(R.id.imagemEntidadePerfil);
-            TextView contador = viewHolder.itemView.findViewById(R.id.contadorDoacaoPerfil);
+            TextView nome           = viewHolder.itemView.findViewById(R.id.textEntidadePerfilNome);
+            TextView cargo          = viewHolder.itemView.findViewById(R.id.textEntidadePerfilCargo);
+            TextView unidade        = viewHolder.itemView.findViewById(R.id.textEntidadePerfilUnidade);
+            TextView email          = viewHolder.itemView.findViewById(R.id.textEntidadePerfilEmail);
+            ImageView img_photo     = viewHolder.itemView.findViewById(R.id.imagemEntidadePerfil);
+            TextView contador       = viewHolder.itemView.findViewById(R.id.contadorDoacaoPerfil);
+            ImageButton arrowBack   = viewHolder.itemView.findViewById(R.id.imageVoltar);
+
+            arrowBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), Home.class);
+                    startActivity(intent);
+                }
+            });
 
             nome.setText(softplayer.getNome());
             cargo.setText(softplayer.getCargo());

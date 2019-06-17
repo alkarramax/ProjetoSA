@@ -27,6 +27,12 @@ public class Softplayer {
         this.contador = contador;
     }
 
+    public Softplayer(String uuid, String nome, String profileUrl) {
+        this.uuid = uuid;
+        this.nome = nome;
+        this.profileUrl = profileUrl;
+    }
+
     public String getUuid() {
         return uuid;
     }
