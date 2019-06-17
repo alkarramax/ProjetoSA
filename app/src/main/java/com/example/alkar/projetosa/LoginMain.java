@@ -31,14 +31,6 @@ public class LoginMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_main);
 
-        buttonSobre = findViewById(R.id.buttonSobre);
-        buttonSobre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Sobre();
-            }
-        });
-
         et_email = findViewById(R.id.textLogin_Email);
         et_senha = findViewById(R.id.textLogin_Senha);
         bt_login = findViewById(R.id.button_Entrar);
@@ -127,13 +119,6 @@ public class LoginMain extends AppCompatActivity {
             return true;
         }
     }
-
-
-    public void Sobre() {
-        PopupSobre popupSobre = new PopupSobre();
-        popupSobre.show(getSupportFragmentManager(), "PopUp Sobre");
-    }
-
 
     public void entrarHome() {
         Intent intent1 = new Intent(getApplicationContext(), Home.class);
