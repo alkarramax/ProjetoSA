@@ -48,7 +48,6 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         dados();
-
     }
 
     private void dados() {
@@ -58,10 +57,10 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
         Intent intent = getIntent();
         String nomeEntidade = intent.getStringExtra("nome");
+        final String uuidUser = intent.getStringExtra("uuid");
 
-        CollectionReference collectionReference1 = db.collection("entidade").document(nomeEntidade)
+        final CollectionReference collectionDoacoes = db.collection("entidade").document(nomeEntidade)
                 .collection("Doações");
-
 
         Query queryEntidade = collectionReference.whereEqualTo("nome", nomeEntidade);
         queryEntidade.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -70,26 +69,26 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
                 if(task.isSuccessful()) {
                     for(QueryDocumentSnapshot document : task.getResult()) {
                         Entidade entidade = document.toObject(Entidade.class);
-                        adapter.add(new EntidadeItem(entidade));
+                        Softplayer softplayer = document.toObject(Softplayer.class);
+                        adapter.add(new EntidadeItem(entidade, softplayer));
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "Something is wrong", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
-
-
     }
 
     public class EntidadeItem extends Item<ViewHolder> {
 
         private final Entidade entidade;
+        private final Softplayer softplayer;
 
-        public EntidadeItem(Entidade entidade) {
+
+        public EntidadeItem(Entidade entidade, Softplayer softplayer) {
             this.entidade = entidade;
+            this.softplayer = softplayer;
         }
-
 
         @Override
         public void bind(@NonNull ViewHolder viewHolder, int position) {
@@ -99,15 +98,14 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
             TextView descricaoObj = viewHolder.itemView.findViewById(R.id.txtObj);
             TextView data = viewHolder.itemView.findViewById(R.id.txtData);
             TextView local = viewHolder.itemView.findViewById(R.id.textLocal);
-
             ImageView imageView = viewHolder.itemView.findViewById(R.id.bookthumbnail);
-            ImageView softConfirm = viewHolder.itemView.findViewById(R.id.softDoacao);
-            ImageView softConfirm2 = viewHolder.itemView.findViewById(R.id.softDoacao2);
-
             Button imageButtonDoar = viewHolder.itemView.findViewById(R.id.imageButtonDoar);
 
-            CardView perfilSoft = viewHolder.itemView.findViewById(R.id.perfilSoftplayer);
+            final CardView perfilSoft = viewHolder.itemView.findViewById(R.id.perfilSoftplayer);
             CardView perfilSoft2 = viewHolder.itemView.findViewById(R.id.perfilSoftplayer2);
+
+            ImageView imagemPlayer = viewHolder.itemView.findViewById(R.id.imagemPlayer);
+            ImageView imagemPlayer2 = viewHolder.itemView.findViewById(R.id.imagemPlayer2);
 
             nomeEntidade.setText(entidade.getNome());
             descricao.setText(entidade.getDescricao());
@@ -115,7 +113,6 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
             descricaoObj.setText(entidade.getObjetivo());
             data.setText(entidade.getData());
             local.setText(entidade.getLocal());
-
 
             imageButtonDoar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -150,14 +147,14 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
                                                 }
                                             });
 
-                                    String uuid = FirebaseAuth.getInstance().getUid();
-                                    String nome = softplayer.getNome();
-                                    String url = softplayer.getProfileUrl();
+                                    String uuid     = FirebaseAuth.getInstance().getUid();
+                                    String nome     = softplayer.getNome();
+                                    String url      = softplayer.getProfileUrl();
 
                                     Softplayer softplayerDoacao = new Softplayer(uuid, nome, url);
 
                                     collectionReference1.document(nomeEntidade).collection("Doações")
-                                            .document(nomeEntidade).set(softplayerDoacao);
+                                            .document(FirebaseAuth.getInstance().getUid()).set(softplayerDoacao);
 
                                 }
                             } else {
@@ -167,6 +164,11 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
                     });
                 }
             });
+
+
+            Picasso.get().load(softplayer.getProfileUrl()).into(imagemPlayer);
+
+
 
             /*
             perfilSoft.setOnClickListener(new View.OnClickListener() {
@@ -185,5 +187,10 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
             return R.layout.cardview_home_detalhes;
         }
 
+    }
+
+    public void voltarTela (View view) {
+        Intent intent = new Intent(getApplicationContext(), Home.class);
+        startActivity(intent);
     }
 }
