@@ -21,6 +21,7 @@ import com.example.alkar.projetosa.Firebase.Entidade;
 import com.example.alkar.projetosa.Home_Imagens_Detalhe;
 import com.example.alkar.projetosa.LoginMain;
 import com.example.alkar.projetosa.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -98,6 +99,7 @@ public class HomeFragment extends Fragment {
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), Home_Imagens_Detalhe.class);
                     intent.putExtra("nome", nomeEntidade.getText().toString());
+                    intent.putExtra("uuid", FirebaseAuth.getInstance().getUid());
                     startActivity(intent);
                 }
             });
