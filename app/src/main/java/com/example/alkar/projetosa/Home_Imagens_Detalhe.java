@@ -16,7 +16,9 @@ import android.widget.Toast;
 import com.example.alkar.projetosa.Firebase.Entidade;
 import com.example.alkar.projetosa.Firebase.Softplayer;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,6 +31,7 @@ import com.xwray.groupie.Item;
 import com.xwray.groupie.ViewHolder;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.graphics.BitmapFactory.decodeStream;
@@ -53,7 +56,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
     private void dados() {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        CollectionReference collectionReference = db.collection("entidade");
+        CollectionReference collectionEntidades = db.collection("entidade");
 
         Intent intent = getIntent();
         String nomeEntidade = intent.getStringExtra("nome");
@@ -62,21 +65,39 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         final CollectionReference collectionDoacoes = db.collection("entidade").document(nomeEntidade)
                 .collection("Doações");
 
-        Query queryEntidade = collectionReference.whereEqualTo("nome", nomeEntidade);
-        queryEntidade.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        Task queryEntidade = collectionEntidades.whereEqualTo("nome", nomeEntidade).get();
+        Task queryDoacoes = collectionDoacoes.whereEqualTo("uuid", uuidUser).get();
+
+
+        Task<List<QuerySnapshot>> allTask = Tasks.whenAllSuccess(queryEntidade, queryDoacoes);
+        allTask.addOnSuccessListener(new OnSuccessListener<List<QuerySnapshot>>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if(task.isSuccessful()) {
-                    for(QueryDocumentSnapshot document : task.getResult()) {
+            public void onSuccess(List<QuerySnapshot> querySnapshots) {
+                for (QuerySnapshot queryDocumentSnapshots : querySnapshots) {
+                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         Entidade entidade = document.toObject(Entidade.class);
                         Softplayer softplayer = document.toObject(Softplayer.class);
                         adapter.add(new EntidadeItem(entidade, softplayer));
                     }
-                } else {
-                    Toast.makeText(getApplicationContext(), "Something is wrong", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
+        /*
+        Query query = collectionEntidades.whereEqualTo("nome", nomeEntidade);
+        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                    Entidade entidade     = document.toObject(Entidade.class);
+                    Softplayer softplayer = document.toObject(Softplayer.class);
+                    adapter.add(new EntidadeItem(entidade, softplayer));
+                }
+            }
+        });
+        */
+
     }
 
     public class EntidadeItem extends Item<ViewHolder> {
@@ -168,9 +189,6 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
             Picasso.get().load(softplayer.getProfileUrl()).into(imagemPlayer);
 
-
-
-            /*
             perfilSoft.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -179,7 +197,6 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
-            */
         }
 
         @Override
