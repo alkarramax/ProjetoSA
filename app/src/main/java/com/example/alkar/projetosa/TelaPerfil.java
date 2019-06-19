@@ -1,6 +1,7 @@
 package com.example.alkar.projetosa;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -39,6 +40,7 @@ public class TelaPerfil extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_perfil);
+
 
         RecyclerView rv = findViewById(R.id.recyclerview_entidade_perfil);
         adapter = new GroupAdapter();
