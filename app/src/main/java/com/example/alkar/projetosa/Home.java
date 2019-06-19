@@ -1,5 +1,6 @@
 package com.example.alkar.projetosa;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -8,10 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.alkar.projetosa.Fragmentos.CampanhaFragment;
 import com.example.alkar.projetosa.Fragmentos.HomeFragment;
-import com.example.alkar.projetosa.Fragmentos.NotificationsFragment;
 import com.example.alkar.projetosa.Fragmentos.ProfileFragment;
+import com.example.alkar.projetosa.Fragmentos.SobreFragment;
 
 public class Home extends AppCompatActivity  {
 
@@ -20,6 +20,8 @@ public class Home extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        getWindow().setStatusBarColor(Color.rgb(183,183,183));
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -42,8 +44,8 @@ public class Home extends AppCompatActivity  {
                         case R.id.nav_profile:
                             selectedFragment = new ProfileFragment();
                             break;
-                        case R.id.nav_notifications:
-                            selectedFragment = new NotificationsFragment();
+                        case R.id.nav_sobre:
+                            selectedFragment = new SobreFragment();
                             break;
                     }
 
