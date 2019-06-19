@@ -144,40 +144,47 @@
                 android:textSize="18sp" />
 
             <android.support.v7.widget.CardView
-                android:id="@+id/perfilSoftplayer"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:id="@+id/cardview_home_imagens"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_above="@+id/imageButtonDoar"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="537dp"
-                android:layout_marginEnd="336dp"
-                android:layout_marginRight="336dp"
-                android:layout_marginBottom="30dp">
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="-205dp"
+                android:layout_marginRight="205dp"
+                android:layout_marginBottom="20dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imagemPlayer"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:id="@+id/imagePerfil"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/eu" />
+
 
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/perfilSoftplayer2"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:id="@+id/cardview_home_imagens2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_above="@+id/imageButtonDoar"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginEnd="270dp"
-                android:layout_marginRight="310dp"
-                android:layout_marginBottom="30dp">
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="130dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginEnd="-205dp"
+                android:layout_marginRight="205dp"
+                android:layout_marginBottom="20dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imagemPlayer2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:id="@+id/imagePerfil2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/eu" />
 
             </android.support.v7.widget.CardView>
 
@@ -190,9 +197,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="28dp"
-                android:layout_marginRight="28dp"
-                android:layout_marginBottom="0dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="9dp"
                 android:background="@drawable/custom_button2"
                 android:text="Doar"
                 android:textColor="#ffff"

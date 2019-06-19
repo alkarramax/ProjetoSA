@@ -1,5 +1,6 @@
 package com.example.alkar.projetosa;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,6 @@ import com.example.alkar.projetosa.Firebase.Softplayer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,7 +31,6 @@ import com.xwray.groupie.Item;
 import com.xwray.groupie.ViewHolder;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static android.graphics.BitmapFactory.decodeStream;
@@ -60,55 +59,34 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
         Intent intent = getIntent();
         String nomeEntidade = intent.getStringExtra("nome");
-        final String uuidUser = intent.getStringExtra("uuid");
+        String uuidUser = intent.getStringExtra("uuid");
 
         final CollectionReference collectionDoacoes = db.collection("entidade").document(nomeEntidade)
                 .collection("Doações");
 
-        Task queryEntidade = collectionEntidades.whereEqualTo("nome", nomeEntidade).get();
-        Task queryDoacoes = collectionDoacoes.whereEqualTo("uuid", uuidUser).get();
 
-
-        Task<List<QuerySnapshot>> allTask = Tasks.whenAllSuccess(queryEntidade, queryDoacoes);
-        allTask.addOnSuccessListener(new OnSuccessListener<List<QuerySnapshot>>() {
-            @Override
-            public void onSuccess(List<QuerySnapshot> querySnapshots) {
-                for (QuerySnapshot queryDocumentSnapshots : querySnapshots) {
-                    for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                        Entidade entidade = document.toObject(Entidade.class);
-                        Softplayer softplayer = document.toObject(Softplayer.class);
-                        adapter.add(new EntidadeItem(entidade, softplayer));
-                    }
-                }
-            }
-        });
-
-
-        /*
         Query query = collectionEntidades.whereEqualTo("nome", nomeEntidade);
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
-                    Entidade entidade     = document.toObject(Entidade.class);
-                    Softplayer softplayer = document.toObject(Softplayer.class);
-                    adapter.add(new EntidadeItem(entidade, softplayer));
+                    Entidade entidade = document.toObject(Entidade.class);
+                    adapter.add(new EntidadeItem(entidade));
                 }
             }
         });
-        */
+
+
 
     }
 
     public class EntidadeItem extends Item<ViewHolder> {
 
         private final Entidade entidade;
-        private final Softplayer softplayer;
 
 
-        public EntidadeItem(Entidade entidade, Softplayer softplayer) {
+        public EntidadeItem(Entidade entidade) {
             this.entidade = entidade;
-            this.softplayer = softplayer;
         }
 
         @Override
@@ -119,18 +97,17 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
             TextView descricaoObj = viewHolder.itemView.findViewById(R.id.txtObj);
             TextView data = viewHolder.itemView.findViewById(R.id.txtData);
             TextView local = viewHolder.itemView.findViewById(R.id.textLocal);
-            ImageView imageView = viewHolder.itemView.findViewById(R.id.bookthumbnail);
+
+            ImageView imagemEntidade = viewHolder.itemView.findViewById(R.id.bookthumbnail);
+
+            final ImageView fotoPerfil = viewHolder.itemView.findViewById(R.id.imagePerfil);
+            final ImageView fotoPerfil2 = viewHolder.itemView.findViewById(R.id.imagePerfil2);
+
             Button imageButtonDoar = viewHolder.itemView.findViewById(R.id.imageButtonDoar);
-
-            final CardView perfilSoft = viewHolder.itemView.findViewById(R.id.perfilSoftplayer);
-            CardView perfilSoft2 = viewHolder.itemView.findViewById(R.id.perfilSoftplayer2);
-
-            ImageView imagemPlayer = viewHolder.itemView.findViewById(R.id.imagemPlayer);
-            ImageView imagemPlayer2 = viewHolder.itemView.findViewById(R.id.imagemPlayer2);
 
             nomeEntidade.setText(entidade.getNome());
             descricao.setText(entidade.getDescricao());
-            Picasso.get().load(entidade.getEntidadeUrl()).into(imageView);
+            Picasso.get().load(entidade.getEntidadeUrl()).into(imagemEntidade);
             descricaoObj.setText(entidade.getObjetivo());
             data.setText(entidade.getData());
             local.setText(entidade.getLocal());
@@ -149,9 +126,9 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
                     querySoftplayers.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if(task.isSuccessful()) {
-                                for(QueryDocumentSnapshot document : task.getResult()) {
-                                    Softplayer softplayer   = document.toObject(Softplayer.class);
+                            if (task.isSuccessful()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Softplayer softplayer = document.toObject(Softplayer.class);
 
                                     int contador = softplayer.getContador();
                                     contador += 1;
@@ -168,18 +145,15 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
                                                 }
                                             });
 
-                                    String uuid     = FirebaseAuth.getInstance().getUid();
-                                    String nome     = softplayer.getNome();
-                                    String url      = softplayer.getProfileUrl();
+                                    String uuid = FirebaseAuth.getInstance().getUid();
+                                    String nome = softplayer.getNome();
+                                    String url = softplayer.getProfileUrl();
 
                                     Softplayer softplayerDoacao = new Softplayer(uuid, nome, url);
 
-                                    collectionReference1.document(nomeEntidade).collection("Doações")
-                                            .document(FirebaseAuth.getInstance().getUid()).set(softplayerDoacao);
-
+                                     collectionReference1.document(nomeEntidade).collection("Doações")
+                                             .document(FirebaseAuth.getInstance().getUid()).set(softplayerDoacao);
                                 }
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Something is wrong", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
@@ -187,14 +161,24 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
             });
 
 
-            Picasso.get().load(softplayer.getProfileUrl()).into(imagemPlayer);
+            Intent intent = getIntent();
+            String nomeEntidadeTe = intent.getStringExtra("nome");
 
-            perfilSoft.setOnClickListener(new View.OnClickListener() {
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            CollectionReference collectionDoacoes = db.collection("entidade").document(nomeEntidadeTe).collection("Doações");
+            collectionDoacoes.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(), TelaPerfil.class);
-                    intent.putExtra("uuid", FirebaseAuth.getInstance().getUid());
-                    startActivity(intent);
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    for(QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
+                        Softplayer softplayer = queryDocumentSnapshot.toObject(Softplayer.class);
+
+                        if(fotoPerfil != fotoPerfil2) {
+                            Picasso.get().load(softplayer.getProfileUrl()).into(fotoPerfil);
+                        }
+
+                        Picasso.get().load(softplayer.getProfileUrl()).into(fotoPerfil2);
+
+                    }
                 }
             });
         }
