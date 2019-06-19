@@ -59,11 +59,6 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
         Intent intent = getIntent();
         String nomeEntidade = intent.getStringExtra("nome");
-        String uuidUser = intent.getStringExtra("uuid");
-
-        final CollectionReference collectionDoacoes = db.collection("entidade").document(nomeEntidade)
-                .collection("Doações");
-
 
         Query query = collectionEntidades.whereEqualTo("nome", nomeEntidade);
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -90,7 +85,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         }
 
         @Override
-        public void bind(@NonNull ViewHolder viewHolder, int position) {
+        public void bind(@NonNull final ViewHolder viewHolder, int position) {
 
             final TextView nomeEntidade = viewHolder.itemView.findViewById(R.id.txtTitle);
             TextView descricao = viewHolder.itemView.findViewById(R.id.txtDescri);
@@ -100,8 +95,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
             ImageView imagemEntidade = viewHolder.itemView.findViewById(R.id.bookthumbnail);
 
-            final ImageView fotoPerfil = viewHolder.itemView.findViewById(R.id.imagePerfil);
-            final ImageView fotoPerfil2 = viewHolder.itemView.findViewById(R.id.imagePerfil2);
+
 
             Button imageButtonDoar = viewHolder.itemView.findViewById(R.id.imageButtonDoar);
 
@@ -152,7 +146,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
                                     Softplayer softplayerDoacao = new Softplayer(uuid, nome, url);
 
                                      collectionReference1.document(nomeEntidade).collection("Doações")
-                                             .document(FirebaseAuth.getInstance().getUid()).set(softplayerDoacao);
+                                             .document(softplayer.getNome()).set(softplayerDoacao);
                                 }
                             }
                         }
@@ -172,10 +166,10 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
                     for(QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                         Softplayer softplayer = queryDocumentSnapshot.toObject(Softplayer.class);
 
-                        if(fotoPerfil != fotoPerfil2) {
-                            Picasso.get().load(softplayer.getProfileUrl()).into(fotoPerfil);
-                        }
+                        final ImageView fotoPerfil = viewHolder.itemView.findViewById(R.id.imagePerfil);
+                        final ImageView fotoPerfil2 = viewHolder.itemView.findViewById(R.id.imagePerfil2);
 
+                        Picasso.get().load(softplayer.getProfileUrl()).into(fotoPerfil);
                         Picasso.get().load(softplayer.getProfileUrl()).into(fotoPerfil2);
 
                     }
