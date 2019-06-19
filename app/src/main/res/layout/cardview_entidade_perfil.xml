@@ -7,294 +7,237 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/arrowBack"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/perfil">
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/perfilcerto">
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imagemEntidadePerfil"
-                android:layout_width="100dp"
-                android:layout_height="110dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:src="@drawable/profileblank"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.094" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagemEntidadePerfil"
+            android:layout_width="100dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="5dp"
+            android:src="@drawable/profileblank"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.11" />
 
-            <TextView
-                android:id="@+id/textEntidadePerfilNome"
-                android:layout_width="wrap_content"
-                android:layout_height="41dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Text view"
-                android:textColor="#fff"
-                android:textSize="30sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.485"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imagemEntidadePerfil"
-                app:layout_constraintVertical_bias="0.023" />
+        <TextView
+            android:id="@+id/textEntidadePerfilNome"
+            android:layout_width="wrap_content"
+            android:layout_height="41dp"
+            android:layout_marginBottom="8dp"
+            android:text="Text view"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagemEntidadePerfil"
+            app:layout_constraintVertical_bias="0.026" />
 
 
-            <ImageButton
-                android:id="@+id/imageVoltar"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginEnd="360dp"
-                android:layout_marginRight="360dp"
-                android:layout_marginBottom="282dp"
-                android:background="@drawable/ic_arrow_back_white_24dp"
-                app:layout_constraintBottom_toTopOf="@+id/cardView2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.272" />
+        <ImageButton
+            android:id="@+id/imageVoltar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/ic_arrow_back_white_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.064"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardView2"
-                android:layout_width="0dp"
-                android:layout_height="200dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:layout_marginBottom="222dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/contadorDoacao">
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView2"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="150dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contadorDoacao">
 
 
-                <RelativeLayout
-                    android:layout_width="360dp"
-                    android:layout_height="360dp">
+            <RelativeLayout
+                android:layout_width="360dp"
+                android:layout_height="360dp">
 
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginStart="33dp"
-                        android:layout_marginLeft="33dp"
-                        android:layout_marginTop="13dp"
-                        android:background="@drawable/suitcase"
-                        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.0" />
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="33dp"
+                    android:layout_marginLeft="33dp"
+                    android:layout_marginTop="13dp"
+                    android:background="@drawable/vector_work"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
 
-                    <TextView
-                        android:id="@+id/textEntidadePerfilCargo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="198dp"
-                        android:layout_marginRight="198dp"
-                        android:text="Text View"
-                        android:textSize="19sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/imageView"
-                        tools:layout_editor_absoluteY="453dp" />
+                <TextView
+                    android:id="@+id/textEntidadePerfilCargo"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/imageView"
+                    android:layout_alignBottom="@+id/imageView"
+                    android:layout_marginStart="11dp"
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_toEndOf="@+id/imageView"
+                    android:layout_toRightOf="@+id/imageView"
+                    android:text="Text View"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    tools:layout_editor_absoluteY="453dp" />
 
-                    <LinearLayout
-                        android:id="@+id/relativeLayout"
-                        android:layout_width="250dp"
-                        android:layout_height="3dp"
-                        android:layout_alignStart="@+id/textEntidadePerfilCargo"
-                        android:layout_alignLeft="@+id/textEntidadePerfilCargo"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="45dp"
-                        android:layout_marginEnd="2dp"
-                        android:layout_marginRight="23dp"
-                        android:layout_marginBottom="312dp"
-                        android:background="#ebeef0"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.518"
-                        app:layout_constraintStart_toStartOf="parent">
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_below="@+id/imageView"
+                    android:layout_alignStart="@+id/imageView"
+                    android:layout_alignLeft="@+id/imageView"
+                    android:layout_alignEnd="@+id/imageView"
+                    android:layout_alignRight="@+id/imageView"
+                    android:layout_marginStart="-1dp"
+                    android:layout_marginLeft="-1dp"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginEnd="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="@drawable/vector_setor"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView"
+                    app:layout_constraintStart_toStartOf="@+id/imageView"
+                    tools:layout_editor_absoluteY="490dp" />
 
-                    </LinearLayout>
+                <TextView
+                    android:id="@+id/textEntidadePerfilUnidade"
+                    android:layout_width="250dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/textEntidadePerfilCargo"
+                    android:layout_alignLeft="@+id/textEntidadePerfilCargo"
+                    android:layout_alignTop="@+id/imageView2"
+                    android:layout_alignBottom="@+id/imageView2"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Text View"
+                    android:textSize="15sp"
+                    tools:layout_editor_absoluteX="127dp"
+                    tools:layout_editor_absoluteY="550dp" />
 
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_below="@+id/imageView"
-                        android:layout_alignStart="@+id/imageView"
-                        android:layout_alignLeft="@+id/imageView"
-                        android:layout_alignEnd="@+id/imageView"
-                        android:layout_alignRight="@+id/imageView"
-                        android:layout_marginStart="-1dp"
-                        android:layout_marginLeft="-1dp"
-                        android:layout_marginTop="26dp"
-                        android:layout_marginEnd="1dp"
-                        android:layout_marginRight="1dp"
-                        android:background="@drawable/skyscraper"
-                        app:layout_constraintEnd_toEndOf="@+id/imageView"
-                        app:layout_constraintStart_toStartOf="@+id/imageView"
-                        tools:layout_editor_absoluteY="490dp" />
+                <TextView
+                    android:id="@+id/textEntidadePerfilEmail"
+                    android:layout_width="258dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/textEntidadePerfilUnidade"
+                    android:layout_alignLeft="@+id/textEntidadePerfilUnidade"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="142dp"
+                    android:text="Text View"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="@+id/textViewUnidade"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/textViewUnidade"
+                    tools:layout_editor_absoluteY="418dp" />
 
-                    <TextView
-                        android:id="@+id/textEntidadePerfilUnidade"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/imageView"
-                        android:layout_alignStart="@+id/textEntidadePerfilCargo"
-                        android:layout_alignLeft="@+id/textEntidadePerfilCargo"
-                        android:layout_alignEnd="@+id/textEntidadePerfilCargo"
-                        android:layout_alignRight="@+id/textEntidadePerfilCargo"
-                        android:layout_marginStart="0dp"
-                        android:layout_marginLeft="0dp"
-                        android:layout_marginTop="26dp"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginRight="0dp"
-                        android:text="Text View"
-                        android:textSize="19sp"
-                        tools:layout_editor_absoluteX="127dp"
-                        tools:layout_editor_absoluteY="550dp" />
-
-                    <LinearLayout
-                        android:layout_width="250dp"
-                        android:layout_height="2dp"
-                        android:layout_above="@+id/textEntidadePerfilUnidade"
-                        android:layout_alignStart="@+id/textEntidadePerfilUnidade"
-                        android:layout_alignLeft="@+id/textEntidadePerfilUnidade"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginStart="1dp"
-                        android:layout_marginLeft="1dp"
-                        android:layout_marginEnd="-1dp"
-                        android:layout_marginRight="-1dp"
-                        android:layout_marginBottom="-60dp"
-                        android:background="#ebeef0"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent">
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/textEntidadePerfilEmail"
-                        android:layout_width="248dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignStart="@+id/textEntidadePerfilUnidade"
-                        android:layout_alignLeft="@+id/textEntidadePerfilUnidade"
-                        android:layout_alignEnd="@+id/textEntidadePerfilUnidade"
-                        android:layout_alignRight="@+id/textEntidadePerfilUnidade"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginStart="-2dp"
-                        android:layout_marginLeft="-2dp"
-                        android:layout_marginEnd="-164dp"
-                        android:layout_marginRight="-164dp"
-                        android:layout_marginBottom="209dp"
-                        android:text="Text View"
-                        android:textSize="19sp"
-                        app:layout_constraintEnd_toEndOf="@+id/textEntidadePerfilUnidade"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/textEntidadePerfilUnidade"
-                        tools:layout_editor_absoluteY="418dp" />
-
-                    <ImageView
-                        android:layout_width="35dp"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/imageView2"
-                        android:layout_alignStart="@+id/imageView2"
-                        android:layout_alignLeft="@+id/imageView2"
-                        android:layout_alignEnd="@+id/imageView2"
-                        android:layout_alignRight="@+id/imageView2"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginStart="-1dp"
-                        android:layout_marginLeft="-1dp"
-                        android:layout_marginTop="26dp"
-                        android:layout_marginEnd="0dp"
-                        android:layout_marginRight="0dp"
-                        android:layout_marginBottom="204dp"
-                        android:src="@drawable/email" />
-
-                    <LinearLayout
-                        android:layout_width="250dp"
-                        android:layout_height="2dp"
-                        android:layout_alignStart="@+id/textEntidadePerfilEmail"
-                        android:layout_alignLeft="@+id/textEntidadePerfilEmail"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginStart="-5dp"
-                        android:layout_marginLeft="-5dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_marginRight="2dp"
-                        android:layout_marginBottom="202dp"
-                        android:background="#ebeef0">
-
-                    </LinearLayout>
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_below="@+id/imageView2"
+                    android:layout_alignStart="@+id/imageView2"
+                    android:layout_alignLeft="@+id/imageView2"
+                    android:layout_alignEnd="@+id/imageView2"
+                    android:layout_alignRight="@+id/imageView2"
+                    android:layout_marginStart="-1dp"
+                    android:layout_marginLeft="-1dp"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginRight="0dp"
+                    android:src="@drawable/vector_email" />
 
 
-                </RelativeLayout>
+            </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:layout_marginLeft="26dp"
-                android:layout_marginTop="248dp"
-                android:layout_marginBottom="16dp"
-                android:text="Doações"
-                android:textColor="#fff"
-                android:textSize="19sp"
-                app:layout_constraintBottom_toTopOf="@+id/contadorDoacaoPerfil"
-                app:layout_constraintStart_toStartOf="@+id/textEntidadePerfilNome"
-                app:layout_constraintTop_toTopOf="parent" />
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="20dp"
+            android:background="#fff"
+            app:layout_constraintBottom_toTopOf="@+id/cardView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.515"
+            app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                android:id="@+id/contadorDoacaoPerfil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginBottom="23dp"
-                android:inputType="number"
-                android:text="0"
-                android:textColor="#fff"
-                android:textSize="19sp"
-                app:layout_constraintBottom_toTopOf="@+id/cardView2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.489"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView1" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="240dp"
+            android:layout_marginBottom="16dp"
+            android:text="Doações"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/contadorDoacao"
+            app:layout_constraintEnd_toEndOf="@+id/textEntidadePerfilNome"
+            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintStart_toStartOf="@+id/textEntidadePerfilNome"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/contadorDoacaoPerfil"
+            android:layout_width="9dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="30dp"
+            android:inputType="number"
+            android:text="0"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toTopOf="@+id/cardView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
 
-        </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </android.support.v7.widget.CardView>

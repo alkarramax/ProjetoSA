@@ -1,5 +1,6 @@
 package com.example.alkar.projetosa.Fragmentos;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -46,6 +47,7 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+
         RecyclerView rv = view.findViewById(R.id.recyclerview_profile);
         adapter = new GroupAdapter();
         rv.setAdapter(adapter);
@@ -54,6 +56,7 @@ public class ProfileFragment extends Fragment {
         fetchUsers();
         return view;
     }
+
 
 
     private void fetchUsers() {
@@ -111,4 +114,5 @@ public class ProfileFragment extends Fragment {
             return R.layout.cardview_profile;
         }
     }
+
 }
