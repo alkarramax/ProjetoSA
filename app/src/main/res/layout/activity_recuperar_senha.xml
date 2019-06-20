@@ -78,7 +78,8 @@
         android:layout_marginBottom="381dp"
         android:background="@drawable/custom_button2"
         android:text="Recuperar Senha"
-        android:textColor="#fff" />
+        android:textColor="#fff"
+        android:textSize="13sp"/>
 
 
 </RelativeLayout>

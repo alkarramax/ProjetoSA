@@ -1,24 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     tools:context=".Home_Imagens_Detalhe">
 
-
-    <android.support.constraint.ConstraintLayout
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="700dp">
 
 
         <RelativeLayout
             android:id="@+id/linearLayout"
-            android:layout_width="420dp"
-            android:layout_height="650dp"
-            android:gravity="center"
-            android:orientation="vertical"
+            android:layout_width="415dp"
+            android:layout_height="700dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -26,206 +23,198 @@
 
             <ImageView
                 android:id="@+id/bookthumbnail"
-                android:layout_width="396dp"
-                android:layout_height="260dp"
+                android:layout_width="match_parent"
+                android:layout_height="268dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginRight="0dp"
                 android:background="#2d2d2d"
-                android:scaleType="centerCrop"/>
+                android:scaleType="centerCrop" />
 
             <ImageButton
                 android:id="@+id/imageButtonBack"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_alignTop="@+id/bookthumbnail"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="360dp"
-                android:layout_marginRight="360dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="368dp"
+                android:layout_marginRight="368dp"
                 android:layout_marginBottom="20dp"
-                android:background="@drawable/ic_arrow_back_white_24dp"
+                android:background="@drawable/ic_arrow_back_black_24dp"
                 android:onClick="voltarTela"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="175dp"
+                android:text="Doações"
+                android:textColor="#234b61"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
 
             <TextView
                 android:id="@+id/txtData"
                 android:layout_width="102dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/bookthumbnail"
                 android:layout_alignStart="@+id/bookthumbnail"
                 android:layout_alignLeft="@+id/bookthumbnail"
-                android:layout_marginStart="11dp"
-                android:layout_marginLeft="11dp"
-                android:layout_marginTop="4dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="91dp"
+                android:layout_marginLeft="91dp"
+                android:layout_marginBottom="330dp"
                 android:inputType="text"
                 android:text="Data doação"
-                android:textSize="16sp"
-                android:textStyle="italic" />
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="330dp"
+                android:text="Data da doação:"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/txtTitle"
-                android:layout_width="wrap_content"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtData"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginStart="89dp"
-                android:layout_marginLeft="89dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="68dp"
-                android:layout_marginRight="68dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="119dp"
+                android:layout_marginLeft="119dp"
+                android:layout_marginEnd="121dp"
+                android:layout_marginRight="121dp"
+                android:layout_marginBottom="278dp"
                 android:text="Nome Entidade"
-                android:textColor="#000"
-                android:textSize="30sp" />
+                android:textColor="#234b61"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="320dp"
+                android:layout_height="3dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="54dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginBottom="252dp"
+                android:background="#ebeef0">
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/txtDescri"
                 android:layout_width="232dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtTitle"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginStart="96dp"
-                android:layout_marginLeft="96dp"
-                android:layout_marginTop="11dp"
-                android:layout_marginEnd="79dp"
-                android:layout_marginRight="79dp"
-                android:maxLines="20"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="212dp"
+                android:maxLines="8"
                 android:text="Descrição"
-                android:textSize="16sp" />
+                android:textColor="#234b61"
+                android:textSize="14sp" />
 
 
             <TextView
                 android:id="@+id/txtObj"
                 android:layout_width="342dp"
-                android:layout_height="35dp"
-                android:layout_above="@+id/imageButtonDoar"
-                android:layout_below="@+id/txtDescri"
-                android:layout_alignStart="@+id/txtDescri"
-                android:layout_alignLeft="@+id/txtDescri"
-                android:layout_alignEnd="@+id/txtDescri"
-                android:layout_alignRight="@+id/txtDescri"
-                android:layout_marginStart="-73dp"
-                android:layout_marginLeft="-73dp"
-                android:layout_marginTop="29dp"
-                android:layout_marginEnd="-38dp"
-                android:layout_marginRight="-38dp"
-                android:layout_marginBottom="125dp"
-                android:text="Objetivo da doacao"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="132dp"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/imageButtonDoar"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginEnd="260dp"
-                android:layout_marginRight="260dp"
-                android:layout_marginBottom="76dp"
-                android:text="Participantes:"
-                android:textColor="#000"
-                android:textSize="18sp" />
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="159dp"
+                android:text="Objetivo da doacao"
+                android:textColor="#234b61"
+                android:textSize="14sp" />
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardview_home_imagens"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_above="@+id/imageButtonDoar"
+            <Button
+                android:layout_width="150dp"
+                android:layout_height="30dp"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginEnd="-205dp"
-                android:layout_marginRight="205dp"
-                android:layout_marginBottom="20dp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imagePerfil"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/eu" />
-
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/cardview_home_imagens2"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_above="@+id/imageButtonDoar"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginStart="130dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginEnd="-205dp"
-                android:layout_marginRight="205dp"
-                android:layout_marginBottom="20dp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imagePerfil2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/eu" />
-
-            </android.support.v7.widget.CardView>
-
-
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="17dp"
+                android:layout_marginBottom="38dp"
+                android:background="@drawable/custom_button4"
+                android:text="Participantes"
+                android:textColor="#2bbd7e"
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/imageButtonDoar"
-                android:layout_width="350dp"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
-                android:layout_marginEnd="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginBottom="9dp"
-                android:background="@drawable/custom_button2"
+                android:layout_marginEnd="56dp"
+                android:layout_marginRight="56dp"
+                android:layout_marginBottom="38dp"
+                android:background="@drawable/custom_button3"
                 android:text="Doar"
                 android:textColor="#ffff"
+                android:textSize="10sp"
                 tools:layout_editor_absoluteX="33dp"
                 tools:layout_editor_absoluteY="674dp" />
 
             <TextView
                 android:id="@+id/textLocal"
-                android:layout_width="93dp"
+                android:layout_width="146dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/bookthumbnail"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginStart="157dp"
-                android:layout_marginLeft="157dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="41dp"
-                android:layout_marginRight="41dp"
-                android:layout_toEndOf="@+id/txtData"
-                android:layout_toRightOf="@+id/txtData"
+                android:layout_alignParentBottom="true"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="330dp"
                 android:text="Local"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
+            <TextView
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginBottom="330dp"
+                android:layout_toStartOf="@+id/textLocal"
+                android:layout_toEndOf="@+id/txtData"
+                android:text="Local:"
+                android:textSize="12sp" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_above="@+id/txtTitle"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="-1dp"
+                android:layout_marginBottom="42dp"
+                android:background="#2bbd7e">
+
+            </LinearLayout>
 
         </RelativeLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
 
-</android.support.v7.widget.CardView>
+</ScrollView>
