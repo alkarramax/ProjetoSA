@@ -1,24 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragmentos.SobreFragment">
+    tools:context=".LoginMain">
 
 
     <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="Campanhas"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginBottom="40dp"
+        android:text="Sobre"
+        android:textColor="#234b61"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:layout_width="500dp"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="638dp"
+        android:background="#ebeef0"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="72dp">
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="202dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="414dp"
+        android:lineSpacingExtra="12dp"
+        android:text="
+    O grupo Solidário é uma iniciativa de alguns colaboradores voluntários da Softplan, tendo como objetivo contribuir com entidades beneficentes que assistem a crianças e idosos. Desta forma, eles  promovem ações de assistência social, organizando campanhas beneficentes e instigando a empatia pelo próximo."
+        android:textColor="#234b61"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="391dp"
+        android:layout_height="176dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginBottom="205dp"
+        android:lineSpacingExtra="12dp"
+        android:text="
+   O Solidarity Player vem com o intuito de auxiliar em suas campanhas, a fim de que seu objetivo seja alcançado com maestria. Com o Solidarity player fica fácil ser solidário, as campanhas beneficentes são visíveis, transparentes e de fácil comunicação para todos os softplayers contribuírem de forma rápida e eficiente."
+        android:textColor="#234b61"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <Button
+        android:id="@+id/button_link"
+        android:layout_width="380dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/custom_button4"
+        android:text="Clique aqui para saber mais sobre o grupo solidário s2"
+        android:textColor="#2bbd7e"
+        android:textSize="10sp" />
+
+
+</RelativeLayout>
