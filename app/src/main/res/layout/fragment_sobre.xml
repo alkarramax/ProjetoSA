@@ -25,10 +25,14 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <LinearLayout
-        android:layout_width="500dp"
+        android:layout_width="300dp"
         android:layout_height="1dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="638dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="644dp"
         android:background="#ebeef0"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="72dp">
