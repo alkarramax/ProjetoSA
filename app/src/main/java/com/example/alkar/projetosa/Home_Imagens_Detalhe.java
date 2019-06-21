@@ -1,6 +1,7 @@
 package com.example.alkar.projetosa;
 
 import android.annotation.SuppressLint;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -45,6 +46,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         setContentView(R.layout.activity_home__imagens_detalhe);
 
 
+
         RecyclerView rv = findViewById(R.id.recyclerview_home_detalhes);
         adapter = new GroupAdapter();
         rv.setAdapter(adapter);
@@ -60,10 +62,6 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference collectionEntidades = db.collection("entidade");
-        CollectionReference collectionDoacoes = collectionEntidades.document(nomeEntidade)
-                .collection("Doações");
-
-
 
         Query query = collectionEntidades.whereEqualTo("nome", nomeEntidade);
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -78,6 +76,11 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
 
 
 
+    }
+
+    public void listaParticipantes(View view) {
+        Participantes dialog = new Participantes();
+        dialog.show(getSupportFragmentManager(), "Dialog");
     }
 
     public class EntidadeItem extends Item<ViewHolder> {
