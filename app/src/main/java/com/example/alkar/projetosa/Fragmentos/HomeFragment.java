@@ -36,9 +36,6 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    public static final String NOME_TEXT = "nome";
-
-    private Context mContext;
     private GroupAdapter adapter;
 
     @Nullable

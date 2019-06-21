@@ -2,6 +2,7 @@
   <dictionary name="Aluno">
     <words>
       <w>contador</w>
+      <w>fragmentos</w>
     </words>
   </dictionary>
 </component>

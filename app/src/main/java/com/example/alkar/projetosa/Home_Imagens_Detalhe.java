@@ -44,6 +44,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home__imagens_detalhe);
 
+
         RecyclerView rv = findViewById(R.id.recyclerview_home_detalhes);
         adapter = new GroupAdapter();
         rv.setAdapter(adapter);
@@ -52,13 +53,17 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
         dados();
     }
 
+
     private void dados() {
+        Intent intent = getIntent();
+        String nomeEntidade = intent.getStringExtra("nome");
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference collectionEntidades = db.collection("entidade");
+        CollectionReference collectionDoacoes = collectionEntidades.document(nomeEntidade)
+                .collection("Doações");
 
-        Intent intent = getIntent();
-        String nomeEntidade = intent.getStringExtra("nome");
+
 
         Query query = collectionEntidades.whereEqualTo("nome", nomeEntidade);
         query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -94,8 +99,6 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
             TextView local = viewHolder.itemView.findViewById(R.id.textLocal);
 
             ImageView imagemEntidade = viewHolder.itemView.findViewById(R.id.bookthumbnail);
-
-
 
             Button imageButtonDoar = viewHolder.itemView.findViewById(R.id.imageButtonDoar);
 
@@ -154,27 +157,6 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
                 }
             });
 
-
-            Intent intent = getIntent();
-            String nomeEntidadeTe = intent.getStringExtra("nome");
-
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            CollectionReference collectionDoacoes = db.collection("entidade").document(nomeEntidadeTe).collection("Doações");
-            collectionDoacoes.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    for(QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-                        Softplayer softplayer = queryDocumentSnapshot.toObject(Softplayer.class);
-
-                        final ImageView fotoPerfil = viewHolder.itemView.findViewById(R.id.imagePerfil);
-                        final ImageView fotoPerfil2 = viewHolder.itemView.findViewById(R.id.imagePerfil2);
-
-                        Picasso.get().load(softplayer.getProfileUrl()).into(fotoPerfil);
-                        Picasso.get().load(softplayer.getProfileUrl()).into(fotoPerfil2);
-
-                    }
-                }
-            });
         }
 
         @Override

@@ -1,5 +1,6 @@
 package com.example.alkar.projetosa.Fragmentos;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,13 +10,18 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alkar.projetosa.Firebase.Softplayer;
+import com.example.alkar.projetosa.LoginMain;
 import com.example.alkar.projetosa.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -37,26 +43,32 @@ import com.xwray.groupie.ViewHolder;
 
 import java.util.List;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements PopupMenu.OnMenuItemClickListener {
 
     private GroupAdapter adapter;
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        final View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        ImageButton settings = view.findViewById(R.id.settingsPerfil);
 
         RecyclerView rv = view.findViewById(R.id.recyclerview_profile);
         adapter = new GroupAdapter();
         rv.setAdapter(adapter);
         rv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopUp(v);
+            }
+        });
+
         fetchUsers();
         return view;
     }
-
 
 
     private void fetchUsers() {
@@ -79,6 +91,34 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+
+
+    public void showPopUp(View view) {
+        PopupMenu popupMenu = new PopupMenu(getContext(), view);
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.inflate(R.menu.setting_perfil);
+        popupMenu.show();
+
+    }
+
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_perfil_editar:
+                Toast.makeText(getActivity(), "Edit", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.nav_perfil_sair:
+                Intent intent = new Intent(getActivity(), LoginMain.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                return true;
+            default:
+                return false;
+
+        }
+    }
+
 
     public class SoftplayerItem extends Item<ViewHolder> {
 
@@ -114,5 +154,4 @@ public class ProfileFragment extends Fragment {
             return R.layout.cardview_profile;
         }
     }
-
 }
