@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.alkar.projetosa.LoginMain;
@@ -11,11 +12,11 @@ import com.example.alkar.projetosa.R;
 
 public class TelaAdmin extends AppCompatActivity {
 
-    private ImageButton imgButtonEntidade;
-    private ImageButton Button_Atualizar_Entidade;
-    private ImageButton Button_Remover_Entidade;
-    private ImageButton Button_Remover_Membro;
-    private ImageButton Button_Cadastrar_Doacao;
+    private Button imgButtonEntidade;
+    private Button Button_Atualizar_Entidade;
+    private Button Button_Remover_Entidade;
+    private Button Button_Remover_Membro;
+    private Button Button_Cadastrar_Doacao;
 
 
     @Override
