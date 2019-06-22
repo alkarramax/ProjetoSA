@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatDialogFragment;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.alkar.projetosa.Firebase.Softplayer;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -50,15 +52,21 @@ public class Participantes extends AppCompatDialogFragment {
                     }
                 });
 
+
         dados();
 
         return builder.create();
     }
 
     private void dados() {
+
+        Intent intent = getActivity().getIntent();
+        String nomeEntidade = intent.getStringExtra("nome");
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference collectionEntidades = db.collection("entidade");
-        CollectionReference collectionDoacoes = collectionEntidades.document("Keanu")
+
+        CollectionReference collectionDoacoes = collectionEntidades.document(nomeEntidade)
                 .collection("Doações");
 
 
@@ -88,12 +96,20 @@ public class Participantes extends AppCompatDialogFragment {
 
             TextView nome = viewHolder.itemView.findViewById(R.id.textParticipanteNome);
             ImageView img_photo = viewHolder.itemView.findViewById(R.id.imageParticipante);
+            CardView cardViewParticipantes = viewHolder.itemView.findViewById(R.id.cardView_Participantes);
+
+            cardViewParticipantes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), TelaPerfil.class);
+                    intent.putExtra("uuid", softplayer.getUuid());
+                    startActivity(intent);
+                }
+            });
 
 
             nome.setText(softplayer.getNome());
-            Picasso.get()
-                    .load(softplayer.getProfileUrl())
-                    .into(img_photo);
+            Picasso.get().load(softplayer.getProfileUrl()).into(img_photo);
         }
 
         @Override

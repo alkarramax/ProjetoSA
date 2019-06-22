@@ -159,6 +159,7 @@
                 android:background="@drawable/custom_button4"
                 android:text="Participantes"
                 android:textColor="#2bbd7e"
+                android:onClick="listaParticipantes"
                 android:textSize="10sp" />
 
             <Button
