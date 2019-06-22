@@ -11,10 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TelaAdmin.RemoverDoacao"></activity>
+        <activity android:name=".ListaEntidadeDoacao" />
+        <activity android:name=".TelaAdmin.UpdateDoacao" />
+        <activity android:name=".ListaEntidade" />
         <activity
             android:name=".TelaPerfil"
             android:label="@string/title_activity_tela_perfil"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TelaAdmin.CadastroDoacao" />
         <activity android:name=".TelaAdmin.RemoverMembro" />
         <activity android:name=".TelaAdmin.UpdateEntidade" />

@@ -72,8 +72,6 @@ public class Cadastro_Entidade extends AppCompatActivity {
                         saveEntidade();
             }
         });
-
-
     }
 
 
