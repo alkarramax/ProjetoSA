@@ -11,13 +11,14 @@
         android:id="@+id/Button_Remover_Membro"
         android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/custom_button4"
         android:text="Remover Membro"
         android:textColor="#2bbd7e"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgButton_Update_Doacao" />
+        app:layout_constraintEnd_toEndOf="@+id/Button_Update_Doacao"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Button_Update_Doacao"
+        app:layout_constraintTop_toBottomOf="@+id/Button_Update_Doacao" />
 
     <Button
         android:id="@+id/Button_Atualizar_Entidade"
@@ -28,10 +29,10 @@
         android:background="@drawable/custom_button4"
         android:text="Atualizar Entidade"
         android:textColor="#2bbd7e"
-        app:layout_constraintEnd_toEndOf="@+id/imgButton_Remover_Doacao"
+        app:layout_constraintEnd_toEndOf="@+id/Button_Remover_Doacao"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgButton_Remover_Doacao" />
+        app:layout_constraintStart_toStartOf="@+id/Button_Remover_Doacao"
+        app:layout_constraintTop_toBottomOf="@+id/Button_Remover_Doacao" />
 
 
     <Button
@@ -78,7 +79,7 @@
 
 
     <Button
-        android:id="@+id/imgButton_Remover_Doacao"
+        android:id="@+id/Button_Remover_Doacao"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
@@ -92,11 +93,11 @@
         app:layout_constraintTop_toBottomOf="@+id/Button_Remover_Entidade" />
 
     <Button
-        android:id="@+id/imgButton_Update_Doacao"
+        android:id="@+id/Button_Update_Doacao"
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/custom_button4"
         android:text="Atualizar Doação"
         android:textColor="#2bbd7e"
@@ -110,6 +111,7 @@
         android:id="@+id/button"
         android:layout_width="350dp"
         android:layout_height="40dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="60dp"
         android:background="@drawable/custom_button3"
         android:onClick="voltarMain"
@@ -118,6 +120,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.475"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Button_Remover_Membro" />
 
 </android.support.constraint.ConstraintLayout>

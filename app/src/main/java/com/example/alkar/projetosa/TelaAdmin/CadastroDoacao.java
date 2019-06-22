@@ -95,18 +95,18 @@ public class CadastroDoacao extends AppCompatActivity {
         String hora = textHora.getEditText().getText().toString().trim();
         String data = textData.getEditText().getText().toString().trim();
 
-        Map<String, Object> Entidade = new HashMap<>();
-        Entidade.put("tipo1", tipo1);
-        Entidade.put("tipo2", tipo2);
-        Entidade.put("tipo3", tipo3);
-        Entidade.put("tipo4", tipo4);
-        Entidade.put("objetivo", objetivo);
-        Entidade.put("local", local);
-        Entidade.put("hora", hora);
-        Entidade.put("data", data);
+        Map<String, Object> Doacao = new HashMap<>();
+        Doacao.put("tipo1", tipo1);
+        Doacao.put("tipo2", tipo2);
+        Doacao.put("tipo3", tipo3);
+        Doacao.put("tipo4", tipo4);
+        Doacao.put("objetivo", objetivo);
+        Doacao.put("local", local);
+        Doacao.put("hora", hora);
+        Doacao.put("data", data);
 
         db.collection("entidade").document(nome)
-                .update(Entidade)
+                .update(Doacao)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

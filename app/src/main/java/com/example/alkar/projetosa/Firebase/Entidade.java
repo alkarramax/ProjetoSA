@@ -38,6 +38,7 @@ public class Entidade {
         this.data = data;
     }
 
+
     public String getUuid() {
         return uuid;
     }

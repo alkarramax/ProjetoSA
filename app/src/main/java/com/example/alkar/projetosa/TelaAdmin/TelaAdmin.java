@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.example.alkar.projetosa.ListaEntidade;
+import com.example.alkar.projetosa.ListaEntidadeDoacao;
 import com.example.alkar.projetosa.LoginMain;
 import com.example.alkar.projetosa.R;
 
@@ -14,8 +16,12 @@ public class TelaAdmin extends AppCompatActivity {
 
     private Button imgButtonEntidade;
     private Button Button_Atualizar_Entidade;
+    private Button Button_Update_Doacao;
+
     private Button Button_Remover_Entidade;
     private Button Button_Remover_Membro;
+    private Button Button_Remover_Doacao;
+
     private Button Button_Cadastrar_Doacao;
 
 
@@ -26,8 +32,12 @@ public class TelaAdmin extends AppCompatActivity {
 
         imgButtonEntidade = findViewById(R.id.imgButton_Cadastrar_Entidade);
         Button_Atualizar_Entidade = findViewById(R.id.Button_Atualizar_Entidade);
+        Button_Update_Doacao = findViewById(R.id.Button_Update_Doacao);
+
         Button_Remover_Entidade = findViewById(R.id.Button_Remover_Entidade);
         Button_Remover_Membro = findViewById(R.id.Button_Remover_Membro);
+        Button_Remover_Doacao = findViewById(R.id.Button_Remover_Doacao);
+
         Button_Cadastrar_Doacao = findViewById(R.id.imgButton_Cadastrar_Doacao);
 
 
@@ -42,6 +52,12 @@ public class TelaAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 cadastroEntidade();
+            }
+        });
+        Button_Update_Doacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateDoacao();
             }
         });
         Button_Remover_Entidade.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +78,23 @@ public class TelaAdmin extends AppCompatActivity {
                 removeEntidade();
             }
         });
+        Button_Remover_Doacao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                removeDoacao();
+            }
+        });
 
+    }
+
+    private void removeDoacao() {
+        Intent intent = new Intent(getApplicationContext(), RemoverDoacao.class);
+        startActivity(intent);
+    }
+
+    private void updateDoacao() {
+        Intent intent = new Intent(getApplicationContext(), ListaEntidadeDoacao.class);
+        startActivity(intent);
     }
 
     private void removeEntidade() {
@@ -71,7 +103,7 @@ public class TelaAdmin extends AppCompatActivity {
     }
 
     private void updateEntidade() {
-        Intent intent = new Intent(getApplicationContext(), UpdateEntidade.class);
+        Intent intent = new Intent(getApplicationContext(), ListaEntidade.class);
         startActivity(intent);
     }
 

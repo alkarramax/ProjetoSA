@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TelaAdmin.CadastroDoacao">
+    tools:context=".TelaAdmin.UpdateDoacao">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,23 +14,24 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="124dp"
-            android:layout_marginRight="124dp"
-            android:text="Cadastro doação"
+            android:text="Alterar doação"
             android:textColor="#234b61"
             android:textSize="23sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.773"
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <ImageButton
-            android:id="@+id/btn_back_TelaAdm"
+            android:id="@+id/imageButton"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/ic_arrow_back_black_24dp"
             android:onClick="voltarTelaAdm"
@@ -39,7 +40,7 @@
 
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txt_Data_Doa"
+            android:id="@+id/txt_Data_Doa_Update"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginStart="20dp"
@@ -47,10 +48,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             app:errorEnabled="true"
-            app:layout_constraintBottom_toBottomOf="@+id/txt_Hora_Doa"
-            app:layout_constraintEnd_toEndOf="@+id/txt_Obetivo_Doa"
-            app:layout_constraintStart_toEndOf="@+id/txt_Hora_Doa"
-            app:layout_constraintTop_toTopOf="@+id/txt_Hora_Doa">
+            app:layout_constraintBottom_toBottomOf="@+id/txt_Hora_Doa_Update"
+            app:layout_constraintEnd_toEndOf="@+id/txt_Obetivo_Doa_Update"
+            app:layout_constraintStart_toEndOf="@+id/txt_Hora_Doa_Update"
+            app:layout_constraintTop_toTopOf="@+id/txt_Hora_Doa_Update">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -61,15 +62,15 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txt_Local_Doa"
+            android:id="@+id/txt_Local_Doa_Update"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="@+id/txt_Obetivo_Doa"
+            app:layout_constraintEnd_toEndOf="@+id/txt_Obetivo_Doa_Update"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txt_Obetivo_Doa"
-            app:layout_constraintTop_toBottomOf="@+id/txt_Obetivo_Doa">
+            app:layout_constraintStart_toStartOf="@+id/txt_Obetivo_Doa_Update"
+            app:layout_constraintTop_toBottomOf="@+id/txt_Obetivo_Doa_Update">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -79,17 +80,17 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txt_Obetivo_Doa"
+            android:id="@+id/txt_Obetivo_Doa_Update"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="@+id/txt_Tipo4"
+            app:layout_constraintEnd_toEndOf="@+id/txt_Tipo4_Update"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txt_Tipo3"
-            app:layout_constraintTop_toBottomOf="@+id/txt_Tipo4">
+            app:layout_constraintStart_toStartOf="@+id/txt_Tipo3_Update"
+            app:layout_constraintTop_toBottomOf="@+id/txt_Tipo4_Update">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -101,15 +102,15 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txt_Hora_Doa"
+            android:id="@+id/txt_Hora_Doa_Update"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="@+id/txt_Local_Doa"
+            app:layout_constraintEnd_toEndOf="@+id/txt_Local_Doa_Update"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txt_Local_Doa"
-            app:layout_constraintTop_toBottomOf="@+id/txt_Local_Doa">
+            app:layout_constraintStart_toStartOf="@+id/txt_Local_Doa_Update"
+            app:layout_constraintTop_toBottomOf="@+id/txt_Local_Doa_Update">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -119,13 +120,14 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txt_Tipo1"
+            android:id="@+id/txt_Tipo1_Update"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="92dp"
             app:errorEnabled="true"
-            app:layout_constraintStart_toStartOf="@+id/txt_Nome_Entidade"
-            app:layout_constraintTop_toBottomOf="@+id/txt_Nome_Entidade">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -136,12 +138,13 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txt_Tipo2"
+            android:id="@+id/txt_Tipo2_Update"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
             app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="@+id/txt_Nome_Entidade"
-            app:layout_constraintTop_toTopOf="@+id/txt_Tipo1">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txt_Tipo1_Update">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -151,15 +154,15 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txt_Tipo3"
+            android:id="@+id/txt_Tipo3_Update"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="@+id/txt_Tipo1"
+            app:layout_constraintEnd_toEndOf="@+id/txt_Tipo1_Update"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/txt_Tipo1"
-            app:layout_constraintTop_toBottomOf="@+id/txt_Tipo1">
+            app:layout_constraintStart_toStartOf="@+id/txt_Tipo1_Update"
+            app:layout_constraintTop_toBottomOf="@+id/txt_Tipo1_Update">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -169,13 +172,13 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txt_Tipo4"
+            android:id="@+id/txt_Tipo4_Update"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="@+id/txt_Tipo2"
-            app:layout_constraintStart_toStartOf="@+id/txt_Tipo2"
-            app:layout_constraintTop_toTopOf="@+id/txt_Tipo3">
+            app:layout_constraintEnd_toEndOf="@+id/txt_Tipo2_Update"
+            app:layout_constraintStart_toStartOf="@+id/txt_Tipo2_Update"
+            app:layout_constraintTop_toTopOf="@+id/txt_Tipo3_Update">
 
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -185,29 +188,9 @@
                 android:inputType="text" />
         </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/txt_Nome_Entidade"
-            android:layout_width="350dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="84dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:errorEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <android.support.design.widget.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nome Entidade"
-                android:inputType="text" />
-        </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/button_Cadastro_Doa"
+            android:id="@+id/button_Cadastro_Doa_Update"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -215,13 +198,14 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/custom_button2"
-            android:text="Cadastrar Doação"
+            android:text="Alterar Doação"
             android:textColor="#ffff"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_Hora_Doa" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_Hora_Doa_Update" />
 
     </android.support.constraint.ConstraintLayout>
-</ScrollView>
+
+</RelativeLayout>
