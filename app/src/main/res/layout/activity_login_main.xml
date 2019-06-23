@@ -84,7 +84,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textLogin_Email"
         app:layout_constraintVertical_bias="1.0"
         app:passwordToggleEnabled="true"
-        app:passwordToggleTint="#FFF">
+        app:passwordToggleTint="#fff">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"

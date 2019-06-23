@@ -8,8 +8,8 @@
 
     <ImageButton
         android:id="@+id/btn_CadastrarEntidade_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
@@ -91,9 +91,9 @@
         android:layout_height="47dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="80dp"
-        android:background="@drawable/custom_button2"
+        android:background="@drawable/custom_button3"
         android:text="Cadastrar Entidade"
-        android:textColor="#020db0"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textInputDescricao"
         app:layout_constraintHorizontal_bias="0.227"

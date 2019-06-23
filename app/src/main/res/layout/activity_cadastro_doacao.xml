@@ -18,7 +18,7 @@
             android:layout_marginEnd="124dp"
             android:layout_marginRight="124dp"
             android:text="Cadastro doação"
-            android:textColor="#234b61"
+            android:textColor="#2bbd7e"
             android:textSize="23sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -27,8 +27,8 @@
 
         <ImageButton
             android:id="@+id/btn_back_TelaAdm"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
@@ -214,7 +214,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/custom_button2"
+            android:background="@drawable/custom_button3"
             android:text="Cadastrar Doação"
             android:textColor="#ffff"
             app:layout_constraintBottom_toBottomOf="parent"

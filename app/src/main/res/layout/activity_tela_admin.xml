@@ -6,12 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".TelaAdmin.TelaAdmin">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="156dp"
+        android:text="Administrador"
+        android:textColor="#2bbd7e"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Button_Remover_Membro"
         android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/custom_button4"
         android:text="Remover Membro"
         android:textColor="#2bbd7e"
@@ -25,7 +36,7 @@
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/custom_button4"
         android:text="Atualizar Entidade"
         android:textColor="#2bbd7e"
@@ -54,7 +65,7 @@
         android:id="@+id/imgButton_Cadastrar_Entidade"
         android:layout_width="350dp"
         android:layout_height="40dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="88dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/custom_button4"
         android:text="Cadastrar Entidade"
@@ -97,7 +108,7 @@
         android:layout_width="350dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/custom_button4"
         android:text="Atualizar Doação"
         android:textColor="#2bbd7e"
@@ -119,8 +130,9 @@
         android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button_Remover_Membro" />
+        app:layout_constraintTop_toBottomOf="@+id/Button_Remover_Membro"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
