@@ -1,221 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<android.support.v7.widget.CardView
+    android:id="@+id/cardview_id"
+    android:foreground="?android:attr/selectableItemBackground"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".Home_Imagens_Detalhe">
+    android:layout_height="730dp"
+    cardview:cardElevation="0dp"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    tools:context=".Home_Imagens_Detalhe"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v7.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="700dp">
+        android:layout_height="730dp">
 
 
-        <RelativeLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="415dp"
-            android:layout_height="700dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/bookthumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="#2d2d2d"
+            android:scaleType="centerCrop" />
+
+        <ImageButton
+            android:id="@+id/imageButtonBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="368dp"
+            android:layout_marginRight="368dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/ic_arrow_back_white_24dp"
+            android:onClick="voltarTela" />
 
 
-            <ImageView
-                android:id="@+id/bookthumbnail"
-                android:layout_width="match_parent"
-                android:layout_height="268dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginStart="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="80dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginRight="0dp"
-                android:background="#2d2d2d"
-                android:scaleType="centerCrop" />
+        <TextView
+            android:id="@+id/txtData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bookthumbnail"
+            android:layout_alignLeft="@+id/bookthumbnail"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="115dp"
+            android:layout_marginLeft="109dp"
+            android:layout_marginEnd="227dp"
+            android:layout_marginBottom="390dp"
+            android:inputType="text"
+            android:text="Data doação"
+            android:textColor="#82ada9"
+            android:textSize="13sp" />
 
-            <ImageButton
-                android:id="@+id/imageButtonBack"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginEnd="368dp"
-                android:layout_marginRight="368dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/ic_arrow_back_black_24dp"
-                android:onClick="voltarTela"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginBottom="390dp"
+            android:text="Data da doação:"
+            android:textSize="13sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="175dp"
-                android:text="Doações"
-                android:textColor="#234b61"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="190dp"
+            android:layout_marginEnd="216dp"
+            android:layout_marginBottom="396dp"
+            android:src="#b9bcbe" />
 
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="162dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="125dp"
+            android:layout_marginLeft="125dp"
+            android:layout_marginEnd="124dp"
+            android:layout_marginRight="124dp"
+            android:layout_marginBottom="330dp"
+            android:text="Nome Entidade"
+            android:textColor="#234b61"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:gravity="center"/>
 
-            <TextView
-                android:id="@+id/txtData"
-                android:layout_width="102dp"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/bookthumbnail"
-                android:layout_alignLeft="@+id/bookthumbnail"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="91dp"
-                android:layout_marginLeft="91dp"
-                android:layout_marginBottom="330dp"
-                android:inputType="text"
-                android:text="Data doação"
-                android:textSize="12sp" />
+        <LinearLayout
+            android:layout_width="320dp"
+            android:layout_height="2dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="54dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="310dp"
+            android:background="#ebeef0">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="330dp"
-                android:text="Data da doação:"
-                android:textSize="12sp" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/txtTitle"
-                android:layout_width="170dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="119dp"
-                android:layout_marginLeft="119dp"
-                android:layout_marginEnd="121dp"
-                android:layout_marginRight="121dp"
-                android:layout_marginBottom="278dp"
-                android:text="Nome Entidade"
-                android:textColor="#234b61"
-                android:textSize="23sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="320dp"
-                android:layout_height="3dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="54dp"
-                android:layout_marginEnd="60dp"
-                android:layout_marginBottom="252dp"
-                android:background="#ebeef0">
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/txtDescri"
-                android:layout_width="232dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="212dp"
-                android:maxLines="8"
-                android:text="Descrição"
-                android:textColor="#234b61"
-                android:textSize="14sp" />
+        <TextView
+            android:id="@+id/txtDescri"
+            android:layout_width="366dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="254dp"
+            android:maxLines="5"
+            android:text="Descrição"
+            android:textColor="#234b61"
+            android:textSize="14sp" />
 
 
-            <TextView
-                android:id="@+id/txtObj"
-                android:layout_width="342dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="159dp"
-                android:text="Objetivo da doacao"
-                android:textColor="#234b61"
-                android:textSize="14sp" />
+        <TextView
+            android:id="@+id/txtObj"
+            android:layout_width="342dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="183dp"
+            android:text="Objetivo da doacao"
+            android:textColor="#234b61"
+            android:textSize="14sp" />
 
-            <Button
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="17dp"
-                android:layout_marginBottom="38dp"
-                android:background="@drawable/custom_button4"
-                android:text="Participantes"
-                android:textColor="#2bbd7e"
-                android:onClick="listaParticipantes"
-                android:textSize="10sp" />
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="33dp"
+            android:layout_marginBottom="52dp"
+            android:background="@drawable/custom_button4"
+            android:onClick="listaParticipantes"
+            android:text="Participantes"
+            android:textColor="#2bbd7e"
+            android:textSize="12sp" />
 
-            <Button
-                android:id="@+id/imageButtonDoar"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="56dp"
-                android:layout_marginRight="56dp"
-                android:layout_marginBottom="38dp"
-                android:background="@drawable/custom_button3"
-                android:text="Doar"
-                android:textColor="#ffff"
-                android:textSize="10sp"
-                tools:layout_editor_absoluteX="33dp"
-                tools:layout_editor_absoluteY="674dp" />
+        <Button
+            android:id="@+id/imageButtonDoar"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="52dp"
+            android:layout_marginRight="52dp"
+            android:layout_marginBottom="52dp"
+            android:background="@drawable/custom_button3"
+            android:text="Doar"
+            android:textColor="#ffff"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/textLocal"
-                android:layout_width="146dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="22dp"
-                android:layout_marginBottom="330dp"
-                android:text="Local"
-                android:textSize="12sp" />
+        <TextView
+            android:id="@+id/textLocal"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="23dp"
+            android:layout_marginBottom="390dp"
+            android:text="Local"
+            android:textColor="#82ada9"
+            android:textSize="13sp" />
 
-            <TextView
-                android:layout_width="28dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="7dp"
-                android:layout_marginBottom="330dp"
-                android:layout_toStartOf="@+id/textLocal"
-                android:layout_toEndOf="@+id/txtData"
-                android:text="Local:"
-                android:textSize="12sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="390dp"
+            android:layout_toStartOf="@+id/textLocal"
+            android:text="Local:"
+            android:textSize="13sp" />
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:layout_above="@+id/txtTitle"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="-1dp"
-                android:layout_marginBottom="42dp"
-                android:background="#2bbd7e">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_below="@+id/bookthumbnail"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="-1dp"
+            android:background="#2bbd7e">
 
-            </LinearLayout>
+        </LinearLayout>
 
-        </RelativeLayout>
+    </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
-
-</ScrollView>
+</android.support.v7.widget.CardView>

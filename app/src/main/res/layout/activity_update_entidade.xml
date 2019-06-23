@@ -8,11 +8,10 @@
 
     <ImageButton
         android:id="@+id/btn_UpdateEntidade_back"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/ic_arrow_back_black_24dp"
         android:onClick="voltarTelaAdmin"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,13 +70,14 @@
         android:layout_height="47dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="204dp"
-        android:background="@drawable/custom_button2"
+        android:background="@drawable/custom_button3"
         android:text="Alterar Entidade"
-        android:textColor="#020db0"
+        android:textColor="#fff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textInputUpdateDescricao"
-        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/textInputUpdateDescricao"
-        app:layout_constraintTop_toBottomOf="@+id/textInputUpdateDescricao" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputUpdateDescricao"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
