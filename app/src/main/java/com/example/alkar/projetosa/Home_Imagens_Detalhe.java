@@ -8,7 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -36,7 +39,7 @@ import java.util.Map;
 
 import static android.graphics.BitmapFactory.decodeStream;
 
-public class Home_Imagens_Detalhe extends AppCompatActivity {
+public class Home_Imagens_Detalhe extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
 
     private GroupAdapter adapter;
 
@@ -81,6 +84,32 @@ public class Home_Imagens_Detalhe extends AppCompatActivity {
     public void listaParticipantes(View view) {
         Participantes dialog = new Participantes();
         dialog.show(getSupportFragmentManager(), "Dialog");
+    }
+
+    public void tirarParticipacao(View view) {
+        PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
+        popupMenu.setOnMenuItemClickListener(this);
+        popupMenu.inflate(R.menu.remove_participacao);
+        popupMenu.show();
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        Intent intent = getIntent();
+        String nomeEntidade = intent.getStringExtra("nome");
+        String nomeSoftplayer  = intent.getStringExtra("uuidSoft");
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference collectionEntidades = db.collection("entidade")
+                .document(nomeEntidade).collection("Doações").document(nomeSoftplayer);
+
+        switch (item.getItemId()) {
+            case R.id.tirar_participacao:
+                collectionEntidades.delete();
+                Toast.makeText(this, "Participação removida", Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return false;
     }
 
     public class EntidadeItem extends Item<ViewHolder> {

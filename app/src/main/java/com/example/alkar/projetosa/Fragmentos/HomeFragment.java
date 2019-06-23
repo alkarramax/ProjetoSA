@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment {
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), Home_Imagens_Detalhe.class);
                     intent.putExtra("nome", nomeEntidade.getText().toString());
-                    intent.putExtra("uuid", FirebaseAuth.getInstance().getUid());
+                    intent.putExtra("uuidSoft", FirebaseAuth.getInstance().getUid());
                     startActivity(intent);
                 }
             });
