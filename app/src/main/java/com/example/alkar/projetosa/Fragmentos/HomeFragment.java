@@ -102,7 +102,7 @@ public class HomeFragment extends Fragment {
             });
 
             nomeEntidade.setText(entidade.getNome());
-            descEntidade.setText(entidade.getDescricao());
+            descEntidade.setText(entidade.getObjetivo());
 
             Picasso.get()
                     .load(entidade.getEntidadeUrl())

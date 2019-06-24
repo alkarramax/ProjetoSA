@@ -214,7 +214,7 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/contadorDoacaoPerfil"
             app:layout_constraintEnd_toEndOf="@+id/textEntidadePerfilNome"
-            app:layout_constraintHorizontal_bias="0.485"
+            app:layout_constraintHorizontal_bias="0.482"
             app:layout_constraintStart_toStartOf="@+id/textEntidadePerfilNome"
             app:layout_constraintTop_toTopOf="parent" />
 
