@@ -35,8 +35,8 @@
             android:layout_marginEnd="9dp"
             android:gravity="center"
             android:text="Text View"
-            android:textColor="#82ada9"
-            android:textSize="18sp" />
+            android:textColor="#2bbd7e"
+            android:textSize="16sp" />
 
     </RelativeLayout>
 
