@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".TelaAdmin.RemoverMembro">
 
+
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview_remover_softplayer"
         android:layout_width="match_parent"
