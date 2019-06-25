@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<android.support.v7.widget.CardView
     android:foreground="?android:attr/selectableItemBackground"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -77,6 +77,27 @@
             android:text="Data da doação:"
             android:textSize="13sp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="320dp"
+            android:layout_marginBottom="390dp"
+            android:text="Hora:"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/hora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="360dp"
+            android:layout_marginBottom="390dp"
+            android:text="Hora"
+            android:textColor="#82ada9" />
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="5dp"
             android:layout_height="5dp"
@@ -85,6 +106,15 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="190dp"
             android:layout_marginEnd="216dp"
+            android:layout_marginBottom="396dp"
+            android:src="#b9bcbe" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="100dp"
             android:layout_marginBottom="396dp"
             android:src="#b9bcbe" />
 
@@ -97,11 +127,11 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginStart="58dp"
-            android:layout_marginLeft="58dp"
-            android:layout_marginEnd="62dp"
-            android:layout_marginRight="62dp"
-            android:layout_marginBottom="52dp"
+            android:layout_marginStart="57dp"
+            android:layout_marginLeft="57dp"
+            android:layout_marginEnd="63dp"
+            android:layout_marginRight="63dp"
+            android:layout_marginBottom="43dp"
             android:gravity="center"
             android:text="Nome Entidade"
             android:textColor="#234b61"
@@ -116,20 +146,20 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="54dp"
             android:layout_marginEnd="60dp"
-            android:layout_marginBottom="310dp"
+            android:layout_marginBottom="315dp"
             android:background="#ebeef0">
 
         </LinearLayout>
 
         <TextView
             android:id="@+id/txtDescri"
-            android:layout_width="366dp"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/txtObj"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="18dp"
-            android:layout_marginBottom="258dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="256dp"
             android:maxLines="5"
             android:text="Descrição"
             android:textColor="#234b61"
@@ -138,13 +168,80 @@
 
         <TextView
             android:id="@+id/txtObj"
-            android:layout_width="342dp"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="20dp"
-            android:layout_marginBottom="183dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="504dp"
+            android:maxLines="10"
             android:text="Objetivo da doacao"
+            android:textColor="#234b61"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txt_Doacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtObj"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16sp"
+            android:layout_marginTop="20dp"
+            android:text="Doações necessárias no momento:"
+            android:textColor="#82ada9"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tipo1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_Doacao"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="17dp"
+            android:layout_marginTop="10dp"
+            android:text="Tipo"
+            android:textColor="#234b61"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tipo2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tipo1"
+            android:layout_alignBottom="@+id/tipo1"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/tipo1"
+            android:text="Tipo"
+            android:textColor="#234b61"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tipo3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tipo2"
+            android:layout_alignBottom="@+id/tipo2"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/tipo2"
+            android:text="Tipo"
+            android:textColor="#234b61"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tipo4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tipo3"
+            android:layout_alignBottom="@+id/tipo3"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/tipo3"
+            android:text="Tipo"
             android:textColor="#234b61"
             android:textSize="14sp" />
 
@@ -154,7 +251,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="33dp"
-            android:layout_marginBottom="52dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/custom_button4"
             android:onClick="listaParticipantes"
             android:text="Participantes"
@@ -168,9 +265,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="52dp"
-            android:layout_marginRight="52dp"
-            android:layout_marginBottom="52dp"
+            android:layout_marginEnd="53dp"
+            android:layout_marginRight="53dp"
+            android:layout_marginBottom="15dp"
             android:background="@drawable/custom_button3"
             android:text="Doar"
             android:textColor="#ffff"
@@ -178,11 +275,11 @@
 
         <TextView
             android:id="@+id/textLocal"
-            android:layout_width="140dp"
+            android:layout_width="62dp"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="23dp"
+            android:layout_marginEnd="106dp"
             android:layout_marginBottom="390dp"
             android:text="Local"
             android:textColor="#82ada9"
@@ -193,7 +290,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginBottom="390dp"
             android:layout_toStartOf="@+id/textLocal"
             android:text="Local:"
@@ -214,4 +311,4 @@
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>
-</ScrollView>
+</android.support.v7.widget.CardView>

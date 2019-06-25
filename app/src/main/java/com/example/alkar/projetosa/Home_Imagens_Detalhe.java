@@ -127,8 +127,13 @@ public class Home_Imagens_Detalhe extends AppCompatActivity implements PopupMenu
             final TextView nomeEntidade = viewHolder.itemView.findViewById(R.id.txtTitle);
             TextView descricao = viewHolder.itemView.findViewById(R.id.txtDescri);
             TextView descricaoObj = viewHolder.itemView.findViewById(R.id.txtObj);
+            TextView tipo1 = viewHolder.itemView.findViewById(R.id.tipo1);
+            TextView tipo2 = viewHolder.itemView.findViewById(R.id.tipo2);
+            TextView tipo3 = viewHolder.itemView.findViewById(R.id.tipo3);
+            TextView tipo4 = viewHolder.itemView.findViewById(R.id.tipo4);
             TextView data = viewHolder.itemView.findViewById(R.id.txtData);
             TextView local = viewHolder.itemView.findViewById(R.id.textLocal);
+            TextView hora = viewHolder.itemView.findViewById(R.id.hora);
 
             ImageView imagemEntidade = viewHolder.itemView.findViewById(R.id.bookthumbnail);
 
@@ -136,10 +141,15 @@ public class Home_Imagens_Detalhe extends AppCompatActivity implements PopupMenu
 
             nomeEntidade.setText(entidade.getNome());
             descricao.setText(entidade.getDescricao());
+            tipo1.setText(entidade.getTipo1());
+            tipo2.setText(entidade.getTipo2());
+            tipo3.setText(entidade.getTipo3());
+            tipo4.setText(entidade.getTipo4());
             Picasso.get().load(entidade.getEntidadeUrl()).into(imagemEntidade);
             descricaoObj.setText(entidade.getObjetivo());
             data.setText(entidade.getData());
             local.setText(entidade.getLocal());
+            hora.setText(entidade.getHora());
 
             imageButtonDoar.setOnClickListener(new View.OnClickListener() {
                 @Override

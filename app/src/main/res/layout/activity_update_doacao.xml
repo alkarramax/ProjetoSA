@@ -41,6 +41,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/txt_Data_Doa_Update"
+            style="@style/StyledTilEdit"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginStart="20dp"
@@ -63,6 +64,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/txt_Local_Doa_Update"
+            style="@style/StyledTilEdit"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -83,6 +85,7 @@
             android:id="@+id/txt_Obetivo_Doa_Update"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
+            style="@style/StyledTilEdit"
             android:layout_marginTop="25dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
@@ -103,6 +106,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/txt_Hora_Doa_Update"
+            style="@style/StyledTilEdit"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
@@ -121,6 +125,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/txt_Tipo1_Update"
+            style="@style/StyledTilEdit"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="36dp"
@@ -139,6 +144,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/txt_Tipo2_Update"
+            style="@style/StyledTilEdit"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="24dp"
@@ -155,6 +161,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/txt_Tipo3_Update"
+            style="@style/StyledTilEdit"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -173,6 +180,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/txt_Tipo4_Update"
+            style="@style/StyledTilEdit"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             app:errorEnabled="true"
