@@ -1,7 +1,6 @@
 package com.example.alkar.projetosa.TelaAdmin;
 
-import android.graphics.Bitmap;
-import android.net.Uri;
+
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,14 +23,14 @@ public class AdapterEntidadeRemove extends FirestoreRecyclerAdapter<Entidade, Ad
 
     @Override
     protected void onBindViewHolder(@NonNull EntidadeHolder holder, int position, @NonNull Entidade model) {
-        holder.textNomeUpdateEntidade.setText(String.valueOf(model.getNome()));
-        Picasso.get().load(model.getEntidadeUrl()).into(holder.imageUpdateEntidade);
+        holder.textNomeRemoveEntidade.setText(String.valueOf(model.getNome()));
+        Picasso.get().load(model.getEntidadeUrl()).into(holder.imageRemoveEntidade);
     }
 
     @NonNull
     @Override
     public EntidadeHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cardview_lista_entidades, null);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cardview_lista_entidade_remove, null);
         return new EntidadeHolder(v);
     }
 
@@ -41,14 +40,14 @@ public class AdapterEntidadeRemove extends FirestoreRecyclerAdapter<Entidade, Ad
 
     class EntidadeHolder extends RecyclerView.ViewHolder {
 
-        TextView textNomeUpdateEntidade;
-        ImageView imageUpdateEntidade;
+        TextView textNomeRemoveEntidade;
+        ImageView imageRemoveEntidade;
 
         public EntidadeHolder(@NonNull View itemView) {
             super(itemView);
 
-            textNomeUpdateEntidade = itemView.findViewById(R.id.textNomeUpdateEntidade);
-            imageUpdateEntidade = itemView.findViewById(R.id.imageUpdateEntidade);
+            textNomeRemoveEntidade = itemView.findViewById(R.id.textNomeRemoveEntidade);
+            imageRemoveEntidade = itemView.findViewById(R.id.imageRemoveEntidade);
         }
     }
 }

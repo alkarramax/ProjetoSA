@@ -105,9 +105,6 @@ public class ProfileFragment extends Fragment implements PopupMenu.OnMenuItemCli
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_perfil_editar:
-                Toast.makeText(getActivity(), "Edit", Toast.LENGTH_SHORT).show();
-                return true;
             case R.id.nav_perfil_sair:
                 Intent intent = new Intent(getActivity(), LoginMain.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -115,7 +112,6 @@ public class ProfileFragment extends Fragment implements PopupMenu.OnMenuItemCli
                 return true;
             default:
                 return false;
-
         }
     }
 

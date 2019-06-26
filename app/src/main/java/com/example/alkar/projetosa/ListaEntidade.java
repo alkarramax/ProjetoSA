@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.alkar.projetosa.Firebase.Entidade;
+import com.example.alkar.projetosa.TelaAdmin.TelaAdmin;
 import com.example.alkar.projetosa.TelaAdmin.UpdateEntidade;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -55,6 +56,11 @@ public class ListaEntidade extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void voltarMain(View view) {
+        Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+        startActivity(intent);
     }
 
     public class EntidadeItem extends Item<ViewHolder> {

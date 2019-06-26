@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.alkar.projetosa.Firebase.Entidade;
+import com.example.alkar.projetosa.TelaAdmin.TelaAdmin;
 import com.example.alkar.projetosa.TelaAdmin.UpdateDoacao;
 import com.example.alkar.projetosa.TelaAdmin.UpdateEntidade;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,6 +59,11 @@ public class ListaEntidadeDoacao extends AppCompatActivity {
 
     }
 
+    public void voltarMain(View view) {
+        Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+        startActivity(intent);
+    }
+
     public class EntidadeItem extends Item<ViewHolder> {
 
         private final Entidade entidade;
@@ -68,9 +74,9 @@ public class ListaEntidadeDoacao extends AppCompatActivity {
 
         @Override
         public void bind(@NonNull ViewHolder viewHolder, final int position) {
-            TextView nomeEntidadeUpdate  = viewHolder.itemView.findViewById(R.id.textNomeUpdateEntidade);
-            ImageView img_photoUpdate    = viewHolder.itemView.findViewById(R.id.imageUpdateEntidade);
-            CardView cardViewLista       = viewHolder.itemView.findViewById(R.id.cardViewEntidadeUpdate);
+            TextView nomeEntidadeUpdate  = viewHolder.itemView.findViewById(R.id.textNomeUpdateDoacao);
+            ImageView img_photoUpdate    = viewHolder.itemView.findViewById(R.id.imageUpdateDoacao);
+            CardView cardViewLista       = viewHolder.itemView.findViewById(R.id.cardViewDoacaoUpdate);
 
             cardViewLista.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -88,7 +94,7 @@ public class ListaEntidadeDoacao extends AppCompatActivity {
 
         @Override
         public int getLayout() {
-            return R.layout.cardview_lista_entidades;
+            return R.layout.cardview_lista_doacoes_update;
         }
     }
 }

@@ -65,6 +65,11 @@ public class RemoverDoacao extends AppCompatActivity {
 
     }
 
+    public void voltarMain(View view) {
+        Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+        startActivity(intent);
+    }
+
     public class EntidadeItem extends Item<ViewHolder> {
 
         private final Entidade entidade;

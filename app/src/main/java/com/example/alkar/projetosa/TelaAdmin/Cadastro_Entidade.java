@@ -69,49 +69,42 @@ public class Cadastro_Entidade extends AppCompatActivity {
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        saveEntidade();
-            }
-        });
-    }
 
-
-    private void saveEntidade() {
-        final String filename = UUID.randomUUID().toString();
-        final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/" + filename);
-        ref.putFile(selectedUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                final String filename = UUID.randomUUID().toString();
+                final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/" + filename);
+                ref.putFile(selectedUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                             @Override
-                            public void onSuccess(Uri uri) {
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
+                                        String uuid = UUID.randomUUID().toString();
+                                        String descricao = textInputDescricao.getEditText().getText().toString().trim();
+                                        String nome = textInputNomeEntidade.getEditText().getText().toString().trim();
+                                        String entidadeUrl = uri.toString();
 
-                                String uuid = UUID.randomUUID().toString();
-                                String descricao = textInputDescricao.getEditText().getText().toString().trim();
-                                String nome = textInputNomeEntidade.getEditText().getText().toString().trim();
-                                String entidadeUrl = uri.toString();
+                                        Entidade entidade = new Entidade(uuid, nome, descricao, entidadeUrl);
 
-                                Entidade entidade = new Entidade(uuid, nome, descricao, entidadeUrl);
-
-                                FirebaseFirestore.getInstance().collection("entidade")
-                                        .document(nome).set(entidade)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if(task.isSuccessful()) {
-                                                    Toast.makeText(Cadastro_Entidade.this, "Entidade Cadastrada", Toast.LENGTH_SHORT).show();
-                                                } else {
-                                                    Toast.makeText(Cadastro_Entidade.this, " :( ", Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-                                        });
+                                        FirebaseFirestore.getInstance().collection("entidade")
+                                                .document(nome).set(entidade)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        Toast.makeText(Cadastro_Entidade.this, "Entidade Cadastrada", Toast.LENGTH_SHORT).show();
+                                                        Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+                                                        startActivity(intent);
+                                                    }
+                                                });
+                                    }
+                                });
                             }
                         });
-                    }
-                });
+            }
+        });
+
 
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

@@ -76,47 +76,39 @@ public class CadastroDoacao extends AppCompatActivity {
         cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveDoacao();
+                String nome = textInputNomeEntidade.getEditText().getText().toString().trim();
+                String tipo1 = textInputTipo1.getEditText().getText().toString().trim();
+                String tipo2 = textInputTipo2.getEditText().getText().toString().trim();
+                String tipo3 = textInputTipo3.getEditText().getText().toString().trim();
+                String tipo4 = textInputTipo4.getEditText().getText().toString().trim();
+                String objetivo = textObjetivo.getEditText().getText().toString().trim();
+                String local = textlocal.getEditText().getText().toString().trim();
+                String hora = textHora.getEditText().getText().toString().trim();
+                String data = textData.getEditText().getText().toString().trim();
+
+                Map<String, Object> Doacao = new HashMap<>();
+                Doacao.put("tipo1", tipo1);
+                Doacao.put("tipo2", tipo2);
+                Doacao.put("tipo3", tipo3);
+                Doacao.put("tipo4", tipo4);
+                Doacao.put("objetivo", objetivo);
+                Doacao.put("local", local);
+                Doacao.put("hora", hora);
+                Doacao.put("data", data);
+
+                db.collection("entidade").document(nome)
+                        .update(Doacao)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                    Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+                                    Toast.makeText(CadastroDoacao.this, "Doação Cadastrada", Toast.LENGTH_SHORT).show();
+                                    startActivity(intent);
+                            }
+                        });
             }
         });
 
-    }
-
-    private void saveDoacao() {
-
-
-        String nome = textInputNomeEntidade.getEditText().getText().toString().trim();
-        String tipo1 = textInputTipo1.getEditText().getText().toString().trim();
-        String tipo2 = textInputTipo2.getEditText().getText().toString().trim();
-        String tipo3 = textInputTipo3.getEditText().getText().toString().trim();
-        String tipo4 = textInputTipo4.getEditText().getText().toString().trim();
-        String objetivo = textObjetivo.getEditText().getText().toString().trim();
-        String local = textlocal.getEditText().getText().toString().trim();
-        String hora = textHora.getEditText().getText().toString().trim();
-        String data = textData.getEditText().getText().toString().trim();
-
-        Map<String, Object> Doacao = new HashMap<>();
-        Doacao.put("tipo1", tipo1);
-        Doacao.put("tipo2", tipo2);
-        Doacao.put("tipo3", tipo3);
-        Doacao.put("tipo4", tipo4);
-        Doacao.put("objetivo", objetivo);
-        Doacao.put("local", local);
-        Doacao.put("hora", hora);
-        Doacao.put("data", data);
-
-        db.collection("entidade").document(nome)
-                .update(Doacao)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()) {
-                            Toast.makeText(CadastroDoacao.this, "Doacao Cadastrada", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(CadastroDoacao.this, " :( ", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
     }
 
     public void voltarTelaAdm(View view){

@@ -13,5 +13,17 @@
 
     </android.support.v7.widget.RecyclerView>
 
+    <ImageButton
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="357dp"
+        android:onClick="voltarMain"
+        android:background="@drawable/ic_arrow_back_black_24dp" />
+
 
 </RelativeLayout>

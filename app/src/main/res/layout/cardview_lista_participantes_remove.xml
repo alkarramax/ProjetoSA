@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="92dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="20dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView_Participantes_Remove"
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="3dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageParticipante_Remove"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/eu" />
+
+        <TextView
+            android:id="@+id/textParticipanteNome_Remove"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="70dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="40dp"
+            android:layout_toEndOf="@+id/imageParticipante"
+            android:text="Text View"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="60dp"
+            android:textSize="16sp"
+            android:textColor="#2bbd7e"
+            android:text="Arraste para o lado para remover" />
+
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
