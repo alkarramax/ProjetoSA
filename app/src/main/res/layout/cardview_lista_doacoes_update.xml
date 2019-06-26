@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
-    android:id="@+id/cardViewEntidadeUpdate"
+    android:id="@+id/cardViewDoacaoUpdate"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="200dp"
@@ -16,20 +16,20 @@
         android:layout_height="200dp">
 
         <ImageView
-            android:id="@+id/imageUpdateEntidade"
+            android:id="@+id/imageUpdateDoacao"
             android:layout_width="300dp"
             android:layout_height="130dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="5dp"
-            android:src="@drawable/eu" />
+            android:src="@drawable/eu"
+            android:layout_marginTop="5dp"/>
 
         <TextView
-            android:id="@+id/textNomeUpdateEntidade"
+            android:id="@+id/textNomeUpdateDoacao"
             android:layout_width="273dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageUpdateEntidade"
-            android:layout_alignStart="@+id/imageUpdateEntidade"
-            android:layout_alignEnd="@+id/imageUpdateEntidade"
+            android:layout_below="@+id/imageUpdateDoacao"
+            android:layout_alignStart="@+id/imageUpdateDoacao"
+            android:layout_alignEnd="@+id/imageUpdateDoacao"
             android:layout_marginStart="18dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="7dp"
@@ -46,7 +46,7 @@
             android:layout_marginLeft="60dp"
             android:layout_marginTop="170dp"
             android:gravity="center"
-            android:text="Clique para alterar a entidade"
+            android:text="Clique para alterar a doação"
             android:textColor="#2bbd7e"
             android:textSize="16sp" />
 

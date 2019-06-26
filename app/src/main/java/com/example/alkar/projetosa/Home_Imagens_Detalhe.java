@@ -87,7 +87,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity implements PopupMenu
     }
 
     public void tirarParticipacao(View view) {
-        PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
+        PopupMenu popupMenu = new PopupMenu(this, view);
         popupMenu.setOnMenuItemClickListener(this);
         popupMenu.inflate(R.menu.remove_participacao);
         popupMenu.show();
@@ -100,6 +100,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity implements PopupMenu
         String nomeSoftplayer  = intent.getStringExtra("uuidSoft");
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
+
         DocumentReference collectionEntidades = db.collection("entidade")
                 .document(nomeEntidade).collection("Doações").document(nomeSoftplayer);
 
@@ -108,8 +109,9 @@ public class Home_Imagens_Detalhe extends AppCompatActivity implements PopupMenu
                 collectionEntidades.delete();
                 Toast.makeText(this, "Participação removida", Toast.LENGTH_SHORT).show();
                 return true;
+            default:
+                return false;
         }
-        return false;
     }
 
     public class EntidadeItem extends Item<ViewHolder> {
@@ -180,7 +182,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity implements PopupMenu
                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                    Toast.makeText(Home_Imagens_Detalhe.this, "Doação feita", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Home_Imagens_Detalhe.this, "Doação registrada", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
 
@@ -191,7 +193,7 @@ public class Home_Imagens_Detalhe extends AppCompatActivity implements PopupMenu
                                     Softplayer softplayerDoacao = new Softplayer(uuid, nome, url);
 
                                      collectionReference1.document(nomeEntidade).collection("Doações")
-                                             .document(softplayer.getNome()).set(softplayerDoacao);
+                                             .document(softplayer.getUuid()).set(softplayerDoacao);
                                 }
                             }
                         }

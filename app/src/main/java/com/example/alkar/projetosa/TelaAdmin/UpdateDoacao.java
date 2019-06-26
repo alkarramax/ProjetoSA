@@ -51,51 +51,43 @@ public class UpdateDoacao extends AppCompatActivity {
         Update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateDoacao();
+                Intent intent = getIntent();
+                String nome = intent.getStringExtra("nomeEntidade");
+
+                String tipo1 = textInputTipo1Update.getEditText().getText().toString().trim();
+                String tipo2 = textInputTipo2Update.getEditText().getText().toString().trim();
+                String tipo3 = textInputTipo3Update.getEditText().getText().toString().trim();
+                String tipo4 = textInputTipo4Update.getEditText().getText().toString().trim();
+                String objetivo = textObjetivoUpdate.getEditText().getText().toString().trim();
+                String local = textlocalUpdate.getEditText().getText().toString().trim();
+                String hora = textHoraUpdate.getEditText().getText().toString().trim();
+                String data = textDataUpdate.getEditText().getText().toString().trim();
+
+                Map<String, Object> DoacaoUpdate = new HashMap<>();
+                DoacaoUpdate.put("tipo1", tipo1);
+                DoacaoUpdate.put("tipo2", tipo2);
+                DoacaoUpdate.put("tipo3", tipo3);
+                DoacaoUpdate.put("tipo4", tipo4);
+                DoacaoUpdate.put("objetivo", objetivo);
+                DoacaoUpdate.put("local", local);
+                DoacaoUpdate.put("hora", hora);
+                DoacaoUpdate.put("data", data);
+
+                db.collection("entidade").document(nome)
+                        .update(DoacaoUpdate)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(UpdateDoacao.this, "Doacao alterada", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+                                startActivity(intent);
+                            }
+                        });
             }
         });
 
     }
 
-    private void updateDoacao() {
-
-        Intent intent = getIntent();
-        String nome = intent.getStringExtra("nomeEntidade");
-
-        String tipo1 = textInputTipo1Update.getEditText().getText().toString().trim();
-        String tipo2 = textInputTipo2Update.getEditText().getText().toString().trim();
-        String tipo3 = textInputTipo3Update.getEditText().getText().toString().trim();
-        String tipo4 = textInputTipo4Update.getEditText().getText().toString().trim();
-        String objetivo = textObjetivoUpdate.getEditText().getText().toString().trim();
-        String local = textlocalUpdate.getEditText().getText().toString().trim();
-        String hora = textHoraUpdate.getEditText().getText().toString().trim();
-        String data = textDataUpdate.getEditText().getText().toString().trim();
-
-        Map<String, Object> DoacaoUpdate = new HashMap<>();
-        DoacaoUpdate.put("tipo1", tipo1);
-        DoacaoUpdate.put("tipo2", tipo2);
-        DoacaoUpdate.put("tipo3", tipo3);
-        DoacaoUpdate.put("tipo4", tipo4);
-        DoacaoUpdate.put("objetivo", objetivo);
-        DoacaoUpdate.put("local", local);
-        DoacaoUpdate.put("hora", hora);
-        DoacaoUpdate.put("data", data);
-
-        db.collection("entidade").document(nome)
-                .update(DoacaoUpdate)
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()) {
-                            Toast.makeText(UpdateDoacao.this, "Doacao alterada", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(UpdateDoacao.this, " :( ", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
 
     public void voltarTelaAdm(View view) {
         Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);

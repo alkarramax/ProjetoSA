@@ -107,11 +107,9 @@ public class UpdateEntidade extends AppCompatActivity {
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
-                                                if(task.isSuccessful()) {
-                                                    Toast.makeText(UpdateEntidade.this, "Entidade Cadastrada", Toast.LENGTH_SHORT).show();
-                                                } else {
-                                                    Toast.makeText(UpdateEntidade.this, " :( ", Toast.LENGTH_SHORT).show();
-                                                }
+                                                Toast.makeText(UpdateEntidade.this, "Entidade alterada", Toast.LENGTH_SHORT).show();
+                                                Intent telaadmin = new Intent(getApplicationContext(), TelaAdmin.class);
+                                                startActivity(telaadmin);
                                             }
                                         });
                             }

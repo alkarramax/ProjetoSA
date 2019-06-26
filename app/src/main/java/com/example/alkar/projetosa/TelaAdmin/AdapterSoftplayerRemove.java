@@ -29,7 +29,7 @@ public class AdapterSoftplayerRemove extends FirestoreRecyclerAdapter<Softplayer
     @NonNull
     @Override
     public SoftplayerHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cardview_lista_participantes, null);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cardview_lista_participantes_remove, null);
         return new SoftplayerHolder(v);
     }
 
@@ -41,11 +41,10 @@ public class AdapterSoftplayerRemove extends FirestoreRecyclerAdapter<Softplayer
         TextView nome;
         ImageView imagem;
 
-
         public SoftplayerHolder(@NonNull View itemView) {
             super(itemView);
-            nome = itemView.findViewById(R.id.textParticipanteNome);
-            imagem = itemView.findViewById(R.id.imageParticipante);
+            nome = itemView.findViewById(R.id.textParticipanteNome_Remove);
+            imagem = itemView.findViewById(R.id.imageParticipante_Remove);
         }
     }
 }

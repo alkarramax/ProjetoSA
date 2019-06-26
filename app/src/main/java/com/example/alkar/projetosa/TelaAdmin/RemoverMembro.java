@@ -1,11 +1,13 @@
 package com.example.alkar.projetosa.TelaAdmin;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 
 import com.example.alkar.projetosa.Firebase.Entidade;
 import com.example.alkar.projetosa.Firebase.Softplayer;
@@ -66,5 +68,10 @@ public class RemoverMembro extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    public void voltarMain(View view) {
+        Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+        startActivity(intent);
     }
 }

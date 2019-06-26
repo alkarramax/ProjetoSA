@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -30,8 +31,6 @@ import com.xwray.groupie.ViewHolder;
 public class RemoverEntidade extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference entidadeRef = db.collection("entidade");
-
     private AdapterEntidadeRemove adapter;
 
     @Override
@@ -44,6 +43,9 @@ public class RemoverEntidade extends AppCompatActivity {
     }
 
     private void setUpRecyclerView() {
+
+        CollectionReference entidadeRef = db.collection("entidade");
+
         FirestoreRecyclerOptions<Entidade> options = new FirestoreRecyclerOptions.Builder<Entidade>()
                 .setQuery(entidadeRef, Entidade.class)
                 .build();
@@ -52,7 +54,7 @@ public class RemoverEntidade extends AppCompatActivity {
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview_remover_entidade);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this,1 ));
         recyclerView.setAdapter(adapter);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
@@ -80,5 +82,11 @@ public class RemoverEntidade extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    public void voltarMain(View view) {
+        Intent intent = new Intent(getApplicationContext(), TelaAdmin.class);
+        startActivity(intent);
+
     }
 }

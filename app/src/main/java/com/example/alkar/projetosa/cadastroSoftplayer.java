@@ -192,55 +192,46 @@ public class cadastroSoftplayer extends AppCompatActivity {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+                    String filename = UUID.randomUUID().toString();
+                    final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/" + filename);
+                    ref.putFile(selectedUri)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                    ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                        @Override
+                                        public void onSuccess(Uri uri) {
+                                            Log.i("Teste", uri.toString());
 
-                    if(task.isSuccessful()){
-                        Toast.makeText(cadastroSoftplayer.this, "Correct!", Toast.LENGTH_SHORT).show();
-                        saveUserInFirebase();
+                                            String uid = FirebaseAuth.getInstance().getUid();
+                                            String nome = textInputNome.getEditText().getText().toString().trim();
+                                            String sobrenome = textInputSobrenome.getEditText().getText().toString().trim();
+                                            String email = textInputEmail.getEditText().getText().toString().trim();
+                                            String unidade = textInputUnidade.getEditText().getText().toString().trim();
+                                            String cargo = textInputCargo.getEditText().getText().toString().trim();
+                                            String profileUrl = uri.toString();
+                                            int contador = 0;
 
-                    } else {
-                        Toast.makeText(cadastroSoftplayer.this, " :( " +task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                                            Softplayer softplayer = new Softplayer(uid, nome, sobrenome, email, unidade, cargo, profileUrl, contador);
+
+                                            FirebaseFirestore.getInstance().collection("softplayers").document(uid)
+                                                    .set(softplayer)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            Toast.makeText(cadastroSoftplayer.this, "Cadastrado registrado!", Toast.LENGTH_SHORT).show();
+                                                            irLogin();
+                                                        }
+                                                    });
+                                        }
+                                    });
+                                }
+                            });
                 }
             });
 
     }
 
-    private void saveUserInFirebase() {
-        String filename = UUID.randomUUID().toString();
-        final StorageReference ref = FirebaseStorage.getInstance().getReference("/images/" + filename);
-        ref.putFile(selectedUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                Log.i("Teste", uri.toString());
-
-                                String uid = FirebaseAuth.getInstance().getUid();
-                                String nome = textInputNome.getEditText().getText().toString().trim();
-                                String sobrenome = textInputSobrenome.getEditText().getText().toString().trim();
-                                String email = textInputEmail.getEditText().getText().toString().trim();
-                                String unidade = textInputUnidade.getEditText().getText().toString().trim();
-                                String cargo = textInputCargo.getEditText().getText().toString().trim();
-                                String profileUrl = uri.toString();
-                                int contador = 0;
-
-                                Softplayer softplayer = new Softplayer(uid, nome, sobrenome, email, unidade, cargo, profileUrl, contador);
-
-                                FirebaseFirestore.getInstance().collection("softplayers").document(uid)
-                                        .set(softplayer)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                irLogin();
-                                            }
-                                        });
-                            }
-                        });
-                    }
-                });
-    }
 
     private void irLogin() {
         Intent intent = new Intent(getApplicationContext(), LoginMain.class);
